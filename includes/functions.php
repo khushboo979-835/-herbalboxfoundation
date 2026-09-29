@@ -221,7 +221,7 @@ function renderRatingStars(int $rating = 5): string {
 }
 
 /**
- * Get Image URL with fallback placeholder
+ * Get Image URL with fallback placeholder & contextual fallback matching
  */
 function getImageUrl(?string $imagePath, string $fallback = 'assets/images/placeholder.jpg'): string {
     if (!empty($imagePath)) {
@@ -231,6 +231,36 @@ function getImageUrl(?string $imagePath, string $fallback = 'assets/images/place
         $fullPath = APP_ROOT . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $imagePath);
         if (file_exists($fullPath)) {
             return BASE_URL . '/uploads/' . ltrim($imagePath, '/');
+        }
+
+        // Contextual smart image mapping based on file name or category
+        $lower = strtolower($imagePath);
+        if (str_contains($lower, 'eye') || str_contains($lower, 'netra') || str_contains($lower, 'cataract')) {
+            return 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80';
+        }
+        if (str_contains($lower, 'blood') || str_contains($lower, 'donor') || str_contains($lower, 'redcross')) {
+            return 'https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=800&q=80';
+        }
+        if (str_contains($lower, 'school') || str_contains($lower, 'class') || str_contains($lower, 'ncert') || str_contains($lower, 'education') || str_contains($lower, 'book')) {
+            return 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80';
+        }
+        if (str_contains($lower, 'yoga') || str_contains($lower, 'meditation') || str_contains($lower, 'wellness')) {
+            return 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80';
+        }
+        if (str_contains($lower, 'ayush') || str_contains($lower, 'ayurved') || str_contains($lower, 'herbal') || str_contains($lower, 'plant')) {
+            return 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=800&q=80';
+        }
+        if (str_contains($lower, 'medicine') || str_contains($lower, 'pharma') || str_contains($lower, 'drug') || str_contains($lower, 'dist')) {
+            return 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80';
+        }
+        if (str_contains($lower, 'dental') || str_contains($lower, 'teeth') || str_contains($lower, 'dentist')) {
+            return 'https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80';
+        }
+        if (str_contains($lower, 'doctor') || str_contains($lower, 'physician') || str_contains($lower, 'specialist')) {
+            return 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=800&q=80';
+        }
+        if (str_contains($lower, 'camp') || str_contains($lower, 'health') || str_contains($lower, 'clinic') || str_contains($lower, 'medical')) {
+            return 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800&q=80';
         }
     }
     if (str_starts_with($fallback, 'http://') || str_starts_with($fallback, 'https://')) {

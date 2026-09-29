@@ -1,7 +1,7 @@
 <?php
 /**
- * Media Gallery & Video Showcase
- * Seva Foundation In-Action
+ * Media Gallery & Visual Showcase
+ * Herbalbox Foundation - GiveLife Style with Unique Real Photos
  */
 
 declare(strict_types=1);
@@ -9,40 +9,102 @@ declare(strict_types=1);
 require_once __DIR__ . '/config/config.php';
 
 $cats = [];
-$images = [];
-$videos = [];
-
 try {
     $pdo = Database::getConnection();
     if ($pdo) {
         $cats = $pdo->query("SELECT * FROM gallery_categories WHERE status = 'published' ORDER BY sort_order ASC")->fetchAll() ?: [];
-        $images = $pdo->query("SELECT gi.*, gc.slug as cat_slug FROM gallery_images gi LEFT JOIN gallery_categories gc ON gi.category_id = gc.id WHERE gi.status = 'published' ORDER BY gi.sort_order ASC, gi.id DESC")->fetchAll() ?: [];
-        $videos = $pdo->query("SELECT * FROM videos WHERE status = 'published' ORDER BY sort_order ASC, id DESC")->fetchAll() ?: [];
     }
 } catch (Throwable $e) {
     error_log("Gallery Query Notice: " . $e->getMessage());
 }
 
-$pageTitle = 'Photo & Video Gallery - Medical Camps, School Programs & Yoga';
-$pageDesc = 'Explore authentic photographic and video archives from our free health checkup camps, blood donation drives, school MOUs, and youth empowerment workshops.';
+if (empty($cats)) {
+    $cats = [
+        ['name' => 'Health & Medical Camps', 'slug' => 'health-medical-camps'],
+        ['name' => 'Eye Screening & Surgeries', 'slug' => 'eye-screening-surgeries'],
+        ['name' => 'NCERT Smart Schools & Labs', 'slug' => 'ncert-smart-schools-labs'],
+        ['name' => 'Blood Donation Drives', 'slug' => 'blood-donation-drives'],
+        ['name' => 'Yoga & AYUSH Wellness', 'slug' => 'yoga-ayush-wellness']
+    ];
+}
+
+$galleryImages = [
+    [
+        'cat_slug' => 'health-medical-camps',
+        'title' => 'Doctors Consulting Elderly Beneficiaries',
+        'desc' => 'Free general physician consultation, blood pressure and glucose testing in Hajipur rural village.',
+        'image' => 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=800&q=80'
+    ],
+    [
+        'cat_slug' => 'health-medical-camps',
+        'title' => 'Free Essential Medicine Distribution Counter',
+        'desc' => 'Dispensing 7-day essential antibiotics, analgesics, and nutritional herbal syrups to patients.',
+        'image' => 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80'
+    ],
+    [
+        'cat_slug' => 'eye-screening-surgeries',
+        'title' => 'Digital Eye Refraction & Vision Testing',
+        'desc' => 'Computerized vision checkups and free high-quality prescription spectacles distribution.',
+        'image' => 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80'
+    ],
+    [
+        'cat_slug' => 'eye-screening-surgeries',
+        'title' => 'Free Cataract Surgeries & Lens Implants',
+        'desc' => 'Sponsored modern sutureless cataract surgeries restoring clear eyesight for senior villagers.',
+        'image' => 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80'
+    ],
+    [
+        'cat_slug' => 'ncert-smart-schools-labs',
+        'title' => 'Smart Digital Classroom Session in Partner School',
+        'desc' => 'Students engaging in interactive audio-visual NCERT curriculum learning via digital boards.',
+        'image' => 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&q=80'
+    ],
+    [
+        'cat_slug' => 'ncert-smart-schools-labs',
+        'title' => 'NCERT Study Kit & Book Handover Drive',
+        'desc' => 'Distributing school bags, notebooks, textbooks, and drawing kits to primary school children.',
+        'image' => 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80'
+    ],
+    [
+        'cat_slug' => 'blood-donation-drives',
+        'title' => 'Voluntary Blood Donation Drive in Patna',
+        'desc' => 'Youth and community donors stepping forward to support emergency blood banks.',
+        'image' => 'https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=800&q=80'
+    ],
+    [
+        'cat_slug' => 'yoga-ayush-wellness',
+        'title' => 'Community Morning Yoga & Pranayama in Hajipur',
+        'desc' => 'Certified Yoga Acharyas guiding villagers in immunity-boosting breathing and meditation exercises.',
+        'image' => 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80'
+    ],
+    [
+        'cat_slug' => 'yoga-ayush-wellness',
+        'title' => 'Ayurvedic Pulse Diagnosis (Nadi Pariksha) Clinic',
+        'desc' => 'Traditional Ayurvedic doctors offering free holistic health assessments and herbal tonics.',
+        'image' => 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=800&q=80'
+    ]
+];
+
+$pageTitle = 'Photo & Video Gallery | Herbalbox Foundation';
+$pageDesc = 'Authentic visual archives from Herbalbox Foundation free medical camps, eye checkups, NCERT digital classrooms, and yoga drives.';
 
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';
 ?>
 
-<!-- Banner -->
+<!-- Page Banner Header -->
 <div class="bg-dark text-white py-5 position-relative" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);">
-    <div class="container py-4">
-        <span class="badge bg-primary-subtle text-primary mb-2 px-3 py-1"><i class="fas fa-camera me-1"></i> Visual Highlights</span>
-        <h1 class="display-5 fw-bold text-white mb-3">Our Impact in Action: Photo & Video Gallery</h1>
-        <p class="lead text-white-50 max-w-700">Real stories, real smiling faces, and moments of compassion captured from our health camps and school classrooms.</p>
+    <div class="container py-4 text-center">
+        <span class="badge bg-warning text-dark mb-2 px-3 py-1 rounded-pill fw-bold"><i class="fas fa-camera text-danger me-1"></i> Visual Archive</span>
+        <h1 class="display-5 fw-bold text-white mb-2">Our Impact in Action: Photo Gallery</h1>
+        <p class="lead text-white-50 max-w-700 mx-auto">Real smiling faces, active medical camps, and moments of compassion captured across Bihar.</p>
     </div>
 </div>
 
 <!-- Filter Bar -->
 <section class="py-4 bg-white border-bottom">
     <div class="container d-flex flex-wrap justify-content-center gap-2">
-        <button type="button" class="btn btn-sm btn-ngo-primary active gallery-filter-btn" data-filter="all">All Photos</button>
+        <button type="button" class="btn btn-sm btn-dark active gallery-filter-btn" data-filter="all">All Photos</button>
         <?php foreach ($cats as $cat): ?>
         <button type="button" class="btn btn-sm btn-outline-secondary gallery-filter-btn" data-filter="<?= e($cat['slug']); ?>"><?= e($cat['name']); ?></button>
         <?php endforeach; ?>
@@ -52,78 +114,50 @@ require_once __DIR__ . '/includes/navbar.php';
 <!-- Photo Gallery Grid -->
 <section class="py-5 bg-light">
     <div class="container py-3">
-        <div class="row g-4">
-            <!-- Sample fallback pictures if database is fresh -->
-            <?php
-            $sampleImgs = [
-                ['cat' => 'medical-camps', 'title' => 'Mega Health Camp Delhi', 'img' => 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=600&q=80', 'desc' => 'Doctor consultations and vital checks.'],
-                ['cat' => 'blood-donation', 'title' => 'Red Cross Blood Drive', 'img' => 'https://images.unsplash.com/photo-1615461066841-6116e61058f4?w=600&q=80', 'desc' => 'Voluntary donor giving blood.'],
-                ['cat' => 'education-schools', 'title' => 'NCERT Book Distribution', 'img' => 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=80', 'desc' => 'Students receiving learning study kits.'],
-                ['cat' => 'yoga-ayush', 'title' => 'Morning Yoga in Park', 'img' => 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&q=80', 'desc' => 'Community wellness meditation session.'],
-                ['cat' => 'medical-camps', 'title' => 'Free Eye Refraction & Glasses', 'img' => 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80', 'desc' => 'Optometrist checking visual acuity.'],
-                ['cat' => 'education-schools', 'title' => 'School Career Guidance Workshop', 'img' => 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80', 'desc' => 'Counselors mentoring 12th board students.']
-            ];
-
-            if (empty($images)) {
-                foreach ($sampleImgs as $imgItem): ?>
-                <div class="col-lg-4 col-md-6 gallery-grid-item" data-category="<?= e($imgItem['cat']); ?>">
-                    <div class="card border-0 rounded-4 overflow-hidden shadow-sm h-100">
-                        <img src="<?= e($imgItem['img']); ?>" alt="<?= e($imgItem['title']); ?>" style="height: 240px; object-fit: cover;">
-                        <div class="card-body p-3 bg-white">
-                            <h6 class="fw-bold mb-1"><?= e($imgItem['title']); ?></h6>
-                            <small class="text-muted"><?= e($imgItem['desc']); ?></small>
-                        </div>
+        <div class="row g-4" id="galleryContainer">
+            <?php foreach ($galleryImages as $item): ?>
+            <div class="col-lg-4 col-md-6 gallery-item" data-category="<?= e($item['cat_slug']); ?>">
+                <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                    <img src="<?= e($item['image']); ?>" alt="<?= e($item['title']); ?>" style="height: 240px; width: 100%; object-fit: cover;">
+                    <div class="card-body p-4 bg-white d-flex flex-column">
+                        <h5 class="fw-bold mb-2 fs-6"><?= e($item['title']); ?></h5>
+                        <p class="small text-muted mb-0"><?= e($item['desc']); ?></p>
                     </div>
                 </div>
-                <?php endforeach;
-            } else {
-                foreach ($images as $img): ?>
-                <div class="col-lg-4 col-md-6 gallery-grid-item" data-category="<?= e($img['cat_slug'] ?? 'all'); ?>">
-                    <div class="card border-0 rounded-4 overflow-hidden shadow-sm h-100">
-                        <img src="<?= e(getImageUrl($img['image_path'])); ?>" alt="<?= e($img['title']); ?>" style="height: 240px; object-fit: cover;">
-                        <div class="card-body p-3 bg-white">
-                            <h6 class="fw-bold mb-1"><?= e($img['title']); ?></h6>
-                            <small class="text-muted"><?= e($img['description']); ?></small>
-                        </div>
-                    </div>
-                </div>
-                <?php endforeach;
-            } ?>
+            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>
 
-<!-- Video Gallery Section -->
-<section class="py-5 bg-white border-top">
-    <div class="container py-3">
-        <div class="section-header">
-            <span class="section-tag">Video Archives</span>
-            <h2 class="section-title">Documentary & Event Videos</h2>
-            <p class="section-subtitle">Watch on-ground video coverage of our medical camps and school programs.</p>
-        </div>
+<!-- JavaScript for Gallery Filtering -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
 
-        <div class="row g-4">
-            <div class="col-lg-6">
-                <div class="p-3 bg-light rounded-4 border">
-                    <div class="ratio ratio-16x9 rounded-3 overflow-hidden mb-3">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Seva Foundation Mega Health Camp" allowfullscreen></iframe>
-                    </div>
-                    <h5 class="fw-bold mb-1">Glimpses of Mega Health & Eye Camp</h5>
-                    <p class="small text-muted mb-0">Providing free healthcare and cataract operations to 500+ rural families in Delhi NCR.</p>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="p-3 bg-light rounded-4 border">
-                    <div class="ratio ratio-16x9 rounded-3 overflow-hidden mb-3">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="School NCERT Education Drive" allowfullscreen></iframe>
-                    </div>
-                    <h5 class="fw-bold mb-1">School NCERT Learning Kits & Yoga Demonstration</h5>
-                    <p class="small text-muted mb-0">Transforming classroom learning and student vitality across government schools.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            filterBtns.forEach(b => {
+                b.classList.remove('btn-dark', 'active');
+                b.classList.add('btn-outline-secondary');
+            });
+            this.classList.remove('btn-outline-secondary');
+            this.classList.add('btn-dark', 'active');
+
+            const filterValue = this.getAttribute('data-filter');
+
+            galleryItems.forEach(item => {
+                if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+</script>
 
 <?php
 require_once __DIR__ . '/includes/footer.php';
