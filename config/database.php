@@ -18,12 +18,12 @@ class Database {
     /**
      * Get active PDO database connection instance with multi-fallback logic
      */
-    public static function getConnection(): PDO {
+    public static function getConnection(): ?PDO {
         if (self::$pdoInstance === null) {
             $dbName = getenv('DB_NAME') ?: self::$dbName;
             $username = getenv('DB_USER') ?: self::$username;
             
-            // Passwords to attempt (New updated password vs Initial created password)
+            // Passwords to attempt
             $passwordsToTry = array_unique(array_filter([
                 getenv('DB_PASS') !== false ? getenv('DB_PASS') : null,
                 self::$password,         // 'IXMwfvq6R&4'
@@ -31,7 +31,7 @@ class Database {
                 ''
             ]));
 
-            // Hosts to attempt (localhost socket vs TCP 127.0.0.1)
+            // On Hostinger shared hosting, always prioritize 'localhost'
             $hostsToTry = array_unique(array_filter([
                 getenv('DB_HOST') ?: null,
                 'localhost',
@@ -59,20 +59,47 @@ class Database {
                 }
             }
 
-            // If all attempts failed, log and render descriptive diagnostic notice
+            // Diagnostic error box with 1-click configuration launcher
             $errorMsg = $lastException ? $lastException->getMessage() : 'Unknown connection error';
             error_log("Database Connection Error: " . $errorMsg);
             
-            die("<div style='font-family:Segoe UI,sans-serif;padding:35px;max-width:650px;margin:50px auto;border:1px solid #fecaca;background:#fff1f2;color:#991b1b;border-radius:12px;box-shadow:0 10px 25px rgba(0,0,0,0.08);'>
-                <h3 style='margin-top:0;color:#b91c1c;font-size:20px;'><i style='margin-right:8px;'>⚠️</i> Database Connection Notice</h3>
-                <p style='color:#374151;font-size:15px;line-height:1.6;'>Unable to establish a connection with the MySQL database on Hostinger.</p>
-                <div style='background:#ffffff;border:1px solid #fee2e2;padding:15px;border-radius:8px;margin:15px 0;font-size:13px;color:#1f2937;'>
-                    <p style='margin:4px 0;'><strong>Database Name:</strong> <code>" . htmlspecialchars($dbName) . "</code></p>
-                    <p style='margin:4px 0;'><strong>Database User:</strong> <code>" . htmlspecialchars($username) . "</code></p>
-                    <p style='margin:4px 0;'><strong>MySQL Response:</strong> <code style='color:#dc2626;'>" . htmlspecialchars($errorMsg) . "</code></p>
-                </div>
-                <p style='font-size:13px;color:#6b7280;margin-bottom:0;'>Please ensure the database user is assigned to the database in Hostinger hPanel with <strong>All Privileges</strong>.</p>
-            </div>");
+            // If requested directly or in admin, display the setup helper
+            $currentPage = basename($_SERVER['PHP_SELF'] ?? '');
+            if ($currentPage !== 'db_check.php') {
+                echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Database Setup - Herbalbox Foundation</title>
+                <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet'>
+                <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet'>
+                </head><body style='background:#0f172a;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;font-family:sans-serif;'>
+                <div style='background:#ffffff;border-radius:18px;max-width:620px;width:100%;padding:35px;box-shadow:0 25px 50px rgba(0,0,0,0.35);'>
+                    <div style='text-align:center;margin-bottom:25px;'>
+                        <img src='/assets/images/logo.png' style='width:60px;height:60px;object-fit:contain;margin-bottom:10px;' alt='Herbalbox Foundation'>
+                        <h4 style='color:#0f172a;font-weight:700;margin-bottom:4px;'>Herbalbox Foundation</h4>
+                        <p style='color:#64748b;font-size:14px;margin-bottom:0;'>Hostinger Database Configuration</p>
+                    </div>
+                    
+                    <div class='alert alert-danger p-3 rounded-3 mb-4'>
+                        <div class='fw-bold mb-1'><i class='fas fa-exclamation-triangle me-2'></i> MySQL Connection Error:</div>
+                        <small style='word-break:break-all;'>" . htmlspecialchars($errorMsg) . "</small>
+                    </div>
+
+                    <div class='bg-light p-3 rounded-3 mb-4 small'>
+                        <p class='mb-1'><strong>Host:</strong> <code>localhost</code></p>
+                        <p class='mb-1'><strong>Database:</strong> <code>" . htmlspecialchars($dbName) . "</code></p>
+                        <p class='mb-0'><strong>User:</strong> <code>" . htmlspecialchars($username) . "</code></p>
+                    </div>
+
+                    <div class='d-grid gap-2 mb-3'>
+                        <a href='/db_check.php' class='btn btn-primary btn-lg fw-bold shadow-sm'>
+                            <i class='fas fa-key me-2'></i> Click Here to Enter Password & Connect
+                        </a>
+                    </div>
+                    
+                    <div class='text-center'>
+                        <small class='text-muted'>Or change the user password in Hostinger hPanel &rarr; Databases &rarr; Change Password.</small>
+                    </div>
+                </div></body></html>";
+                exit;
+            }
         }
 
         return self::$pdoInstance;
