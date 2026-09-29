@@ -1,7 +1,7 @@
 <?php
 /**
  * Database Configuration & Connection Manager
- * NGO Website & Admin System - Hostinger & Production Resilient
+ * NGO Website & Admin System - Hostinger Production Ready
  */
 
 declare(strict_types=1);
@@ -11,7 +11,7 @@ class Database {
     private static string $host = 'localhost';
     private static string $dbName = 'u467991428_ngo_management';
     private static string $username = 'u467991428_ngo_user';
-    private static string $password = 'IXMwfvq6R&4';
+    private static string $password = 'G=o4&HZ:uHBA';
     private static string $charset = 'utf8mb4';
     private static ?PDO $pdoInstance = null;
 
@@ -26,12 +26,13 @@ class Database {
             // Passwords to attempt
             $passwordsToTry = array_unique(array_filter([
                 getenv('DB_PASS') !== false ? getenv('DB_PASS') : null,
-                self::$password,         // 'IXMwfvq6R&4'
-                'News@Portal2026#',       // Alternative Hostinger password
+                self::$password,         // 'G=o4&HZ:uHBA'
+                'IXMwfvq6R&4',
+                'News@Portal2026#',
                 ''
             ]));
 
-            // On Hostinger shared hosting, always prioritize 'localhost'
+            // On Hostinger shared hosting, prioritize 'localhost'
             $hostsToTry = array_unique(array_filter([
                 getenv('DB_HOST') ?: null,
                 'localhost',
@@ -63,7 +64,6 @@ class Database {
             $errorMsg = $lastException ? $lastException->getMessage() : 'Unknown connection error';
             error_log("Database Connection Error: " . $errorMsg);
             
-            // If requested directly or in admin, display the setup helper
             $currentPage = basename($_SERVER['PHP_SELF'] ?? '');
             if ($currentPage !== 'db_check.php') {
                 echo "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Database Setup - Herbalbox Foundation</title>
@@ -90,12 +90,8 @@ class Database {
 
                     <div class='d-grid gap-2 mb-3'>
                         <a href='/db_check.php' class='btn btn-primary btn-lg fw-bold shadow-sm'>
-                            <i class='fas fa-key me-2'></i> Click Here to Enter Password & Connect
+                            <i class='fas fa-key me-2'></i> Click Here to Test & Update Connection
                         </a>
-                    </div>
-                    
-                    <div class='text-center'>
-                        <small class='text-muted'>Or change the user password in Hostinger hPanel &rarr; Databases &rarr; Change Password.</small>
                     </div>
                 </div></body></html>";
                 exit;

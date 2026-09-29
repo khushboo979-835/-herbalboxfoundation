@@ -15,7 +15,7 @@ $success = '';
 $currentHost = 'localhost';
 $currentDb = 'u467991428_ngo_management';
 $currentUser = 'u467991428_ngo_user';
-$currentPass = 'IXMwfvq6R&4';
+$currentPass = 'G=o4&HZ:uHBA';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $host = trim($_POST['db_host'] ?? 'localhost');
