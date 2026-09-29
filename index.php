@@ -22,7 +22,7 @@ try {
         $statsStmt = $pdo->query("SELECT * FROM impact_statistics WHERE status = 'published' ORDER BY sort_order ASC, id ASC LIMIT 6");
         $impactStats = $statsStmt ? $statsStmt->fetchAll() : [];
 
-        $programsStmt = $pdo->query("SELECT * FROM programs WHERE status = 'published' AND is_featured = 1 ORDER BY sort_order ASC, id ASC LIMIT 6");
+        $programsStmt = $pdo->query("SELECT p.*, c.name as category_name, c.slug as category_slug FROM programs p LEFT JOIN program_categories c ON p.category_id = c.id WHERE p.status = 'published' ORDER BY p.sort_order ASC, p.id ASC LIMIT 6");
         $featuredPrograms = $programsStmt ? $programsStmt->fetchAll() : [];
 
         $eventsStmt = $pdo->query("SELECT * FROM events WHERE status IN ('upcoming', 'published') ORDER BY event_date ASC LIMIT 3");
@@ -44,6 +44,7 @@ try {
     error_log("Index Query Notice: " . $e->getMessage());
 }
 
+// Fallback defaults
 if (empty($impactStats)) {
     $impactStats = [
         ['title' => 'Patients Treated', 'count_number' => '150,000+', 'icon' => 'fa-user-md'],
@@ -60,9 +61,10 @@ if (empty($featuredPrograms)) {
         [
             'id' => 1,
             'title' => 'Free Mega Medical & Eye Camps',
+            'category_name' => 'Healthcare',
             'type' => 'healthcare',
             'icon' => 'fa-stethoscope',
-            'image' => 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=600&q=80',
+            'featured_image' => 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=600&q=80',
             'short_description' => 'Providing free multi-specialty medical checkups, free prescription glasses, and cataract surgeries across rural Bihar.',
             'target_amount' => 500000,
             'raised_amount' => 385000
@@ -70,9 +72,10 @@ if (empty($featuredPrograms)) {
         [
             'id' => 2,
             'title' => 'NCERT Digital Classrooms & School Support',
+            'category_name' => 'Education',
             'type' => 'education',
             'icon' => 'fa-graduation-cap',
-            'image' => 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=80',
+            'featured_image' => 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=80',
             'short_description' => 'Empowering underprivileged government and partner schools with smart digital classes and free NCERT books.',
             'target_amount' => 400000,
             'raised_amount' => 295000
@@ -80,9 +83,10 @@ if (empty($featuredPrograms)) {
         [
             'id' => 3,
             'title' => 'AYUSH Herbal Wellness & Yoga Camps',
+            'category_name' => 'AYUSH',
             'type' => 'ayush',
             'icon' => 'fa-leaf',
-            'image' => 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&q=80',
+            'featured_image' => 'https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=600&q=80',
             'short_description' => 'Promoting holistic wellness through daily morning yoga, Ayurvedic consultations, and pure herbal remedies.',
             'target_amount' => 300000,
             'raised_amount' => 240000
@@ -133,7 +137,6 @@ if (empty($featuredSchools)) {
             'state' => 'Bihar',
             'mou_date' => '2026-08-29',
             'description' => 'Collaborative partnership for student wellness checkups, digital education support, and environmental awareness.',
-            'active_programs' => 'Health Screenings, Yoga Camps, Digital Learning Support',
             'logo' => 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=200&q=80'
         ],
         [
@@ -142,7 +145,6 @@ if (empty($featuredSchools)) {
             'state' => 'Bihar',
             'mou_date' => '2026-08-15',
             'description' => 'NCERT digital smart class installation and annual eye refraction clinics for over 800 students.',
-            'active_programs' => 'NCERT Smart Kits, Vision Screenings',
             'logo' => 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=200&q=80'
         ],
         [
@@ -151,7 +153,6 @@ if (empty($featuredSchools)) {
             'state' => 'Bihar',
             'mou_date' => '2026-07-20',
             'description' => 'Comprehensive school nutrition and regular pediatric health checkups for underprivileged children.',
-            'active_programs' => 'Pediatric Care, Nutritional Supplements',
             'logo' => 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=200&q=80'
         ]
     ];
@@ -164,7 +165,6 @@ if (empty($featuredDoctors)) {
             'specialization' => 'Senior Ophthalmologist & Eye Surgeon',
             'qualification' => 'MBBS, MS (Ophthalmology)',
             'treatment_type' => 'allopathy',
-            'clinic_hospital_name' => 'Patna Eye Care & Herbalbox Partner Clinic',
             'photo' => 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&q=80'
         ],
         [
@@ -172,7 +172,6 @@ if (empty($featuredDoctors)) {
             'specialization' => 'Consultant Pediatrician & Child Specialist',
             'qualification' => 'MBBS, MD (Pediatrics)',
             'treatment_type' => 'allopathy',
-            'clinic_hospital_name' => 'Hajipur Children Wellness Center',
             'photo' => 'https://images.unsplash.com/photo-1594824813587-0b1a03975549?w=300&q=80'
         ],
         [
@@ -180,7 +179,6 @@ if (empty($featuredDoctors)) {
             'specialization' => 'Ayurveda & Panchakarma Specialist',
             'qualification' => 'BAMS, MD (Ayurveda)',
             'treatment_type' => 'ayush',
-            'clinic_hospital_name' => 'Herbalbox AYUSH Wellness Center',
             'photo' => 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&q=80'
         ],
         [
@@ -188,7 +186,6 @@ if (empty($featuredDoctors)) {
             'specialization' => 'General Physician & Community Health Expert',
             'qualification' => 'MBBS, DNB (Family Medicine)',
             'treatment_type' => 'allopathy',
-            'clinic_hospital_name' => 'Community Health Mission',
             'photo' => 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&q=80'
         ]
     ];
@@ -259,9 +256,8 @@ require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';
 ?>
 
-<!-- 1. GiveLife Hero Banner (Exact 1-to-1 Match to Template) -->
+<!-- 1. GiveLife Hero Banner -->
 <section class="givelife-hero-banner">
-    <!-- Slider Navigation Arrows -->
     <button class="givelife-slider-arrow left" type="button" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
     <button class="givelife-slider-arrow right" type="button" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
 
@@ -288,7 +284,7 @@ require_once __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
-<!-- 2. Three Feature Pillar Cards (Overlapping Below Hero) -->
+<!-- 2. Three Feature Pillar Cards (Below Hero) -->
 <div class="container givelife-pillars-wrap">
     <div class="row g-4 justify-content-center">
         <!-- Pillar 1 -->
@@ -406,20 +402,37 @@ require_once __DIR__ . '/includes/navbar.php';
 
         <div class="row g-4">
             <?php foreach ($featuredPrograms as $prog): ?>
+            <?php 
+                $img = !empty($prog['featured_image']) ? $prog['featured_image'] : (!empty($prog['image']) ? $prog['image'] : 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=600&q=80');
+                $categoryName = (string)($prog['category_name'] ?? $prog['type'] ?? 'Healthcare');
+                $target = (float)($prog['target_amount'] ?? 500000);
+                $raised = (float)($prog['raised_amount'] ?? 350000);
+                $pct = $target > 0 ? min(100, round(($raised / $target) * 100)) : 70;
+                $linkPage = (stripos($categoryName, 'Education') !== false) ? 'education.php' : ((stripos($categoryName, 'AYUSH') !== false || stripos($categoryName, 'Yoga') !== false) ? 'ayush.php' : 'healthcare.php');
+            ?>
             <div class="col-lg-4 col-md-6">
                 <div class="cause-card-give">
                     <div class="cause-img-box">
-                        <img src="<?= e(getImageUrl($prog['image'] ?? null, 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=600&q=80')); ?>" alt="<?= e($prog['title']); ?>">
-                        <span class="cause-tag-badge"><?= e(strtoupper($prog['type'])); ?></span>
+                        <img src="<?= e(getImageUrl($img)); ?>" alt="<?= e((string)$prog['title']); ?>">
+                        <span class="cause-tag-badge"><?= e(strtoupper($categoryName)); ?></span>
                     </div>
                     <div class="p-4 d-flex flex-column flex-grow-1">
                         <h4 class="fw-bold fs-5 mb-2">
-                            <a href="<?= BASE_URL; ?>/<?= $prog['type'] === 'education' ? 'education.php' : ($prog['type'] === 'ayush' ? 'ayush.php' : 'healthcare.php'); ?>" class="text-dark text-decoration-none">
-                                <?= e($prog['title']); ?>
+                            <a href="<?= BASE_URL; ?>/<?= $linkPage; ?>" class="text-dark text-decoration-none">
+                                <?= e((string)$prog['title']); ?>
                             </a>
                         </h4>
-                        <p class="small text-muted mb-3 flex-grow-1"><?= e($prog['short_description']); ?></p>
+                        <p class="small text-muted mb-3 flex-grow-1"><?= e((string)($prog['short_description'] ?? '')); ?></p>
                         
+                        <!-- Progress Bar -->
+                        <div class="progress mb-2" style="height: 8px;">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: <?= $pct; ?>%;" aria-valuenow="<?= $pct; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <div class="d-flex justify-content-between small text-muted mb-3">
+                            <span>Raised: <strong><?= formatCurrency($raised); ?></strong></span>
+                            <span>Goal: <strong><?= formatCurrency($target); ?></strong></span>
+                        </div>
+
                         <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-givelife-orange w-100 py-2 mt-auto">
                             <i class="fas fa-heart text-danger me-1"></i> DONATE TO THIS CAUSE
                         </a>
@@ -437,8 +450,8 @@ require_once __DIR__ . '/includes/navbar.php';
         <div class="row g-4 justify-content-center text-center">
             <?php foreach ($impactStats as $stat): ?>
             <div class="col-lg-2 col-md-4 col-6">
-                <div class="counter-digit"><?= e($stat['count_number']); ?></div>
-                <div class="counter-name"><?= e($stat['title']); ?></div>
+                <div class="counter-digit"><?= e((string)$stat['count_number']); ?></div>
+                <div class="counter-name"><?= e((string)$stat['title']); ?></div>
             </div>
             <?php endforeach; ?>
         </div>
@@ -496,14 +509,18 @@ require_once __DIR__ . '/includes/navbar.php';
 
         <div class="row g-4">
             <?php foreach ($upcomingEvents as $evt): ?>
+            <?php 
+                $evtImg = !empty($evt['featured_image']) ? $evt['featured_image'] : 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=600&q=80';
+                $evtCat = (string)($evt['category'] ?? 'Event');
+            ?>
             <div class="col-lg-4 col-md-6">
                 <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
-                    <img src="<?= e(getImageUrl($evt['featured_image'] ?? null, 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=600&q=80')); ?>" alt="<?= e($evt['title']); ?>" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    <img src="<?= e(getImageUrl($evtImg)); ?>" alt="<?= e((string)$evt['title']); ?>" class="card-img-top" style="height: 200px; object-fit: cover;">
                     <div class="card-body p-4 d-flex flex-column">
-                        <div class="badge bg-warning text-dark align-self-start mb-2"><?= e(str_replace('_', ' ', strtoupper($evt['category']))); ?> • <?= formatDate($evt['event_date']); ?></div>
-                        <h5 class="fw-bold mb-2"><a href="<?= BASE_URL; ?>/event-details.php?id=<?= $evt['id']; ?>" class="text-dark text-decoration-none"><?= e($evt['title']); ?></a></h5>
-                        <p class="small text-muted mb-3"><i class="fas fa-map-marker-alt text-danger me-1"></i> <?= e($evt['venue']); ?>, <?= e($evt['city']); ?></p>
-                        <p class="small text-muted mb-4 flex-grow-1"><?= e($evt['short_description']); ?></p>
+                        <div class="badge bg-warning text-dark align-self-start mb-2"><?= e(str_replace('_', ' ', strtoupper($evtCat))); ?> • <?= formatDate($evt['event_date'] ?? null); ?></div>
+                        <h5 class="fw-bold mb-2"><a href="<?= BASE_URL; ?>/event-details.php?id=<?= $evt['id']; ?>" class="text-dark text-decoration-none"><?= e((string)$evt['title']); ?></a></h5>
+                        <p class="small text-muted mb-3"><i class="fas fa-map-marker-alt text-danger me-1"></i> <?= e((string)($evt['venue'] ?? '')); ?>, <?= e((string)($evt['city'] ?? '')); ?></p>
+                        <p class="small text-muted mb-4 flex-grow-1"><?= e((string)($evt['short_description'] ?? '')); ?></p>
                         <a href="<?= BASE_URL; ?>/event-details.php?id=<?= $evt['id']; ?>" class="btn btn-givelife-orange w-100 py-2 mt-auto">Free Registration</a>
                     </div>
                 </div>
@@ -513,7 +530,65 @@ require_once __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
-<!-- 8. Testimonials -->
+<!-- 8. School Partnerships -->
+<section class="py-5 bg-white">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <span class="text-warning fw-bold text-uppercase small tracking-wider mb-2 d-inline-block">EDUCATION ALLIANCES</span>
+            <h2 class="fw-bold display-6 mb-2">School Partners & MOUs</h2>
+            <p class="text-muted max-w-650 mx-auto">Promoting student wellness, eye screenings, NCERT digital learning support, and yoga across partner schools.</p>
+        </div>
+
+        <div class="row g-4">
+            <?php foreach ($featuredSchools as $school): ?>
+            <?php 
+                $schLogo = !empty($school['logo']) ? $school['logo'] : 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=200&q=80';
+            ?>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 p-4 border-0 shadow-sm rounded-4 text-center">
+                    <img src="<?= e(getImageUrl($schLogo)); ?>" alt="<?= e((string)$school['name']); ?>" class="img-fluid rounded-circle mx-auto mb-3" style="width: 80px; height: 80px; object-fit: cover;">
+                    <h5 class="fw-bold mb-1"><?= e((string)$school['name']); ?></h5>
+                    <p class="small text-muted mb-2"><i class="fas fa-map-marker-alt text-primary me-1"></i> <?= e((string)($school['city'] ?? '')); ?>, <?= e((string)($school['state'] ?? '')); ?></p>
+                    <div class="badge bg-success-subtle text-success mb-3">MOU Signed: <?= formatDate($school['mou_date'] ?? null); ?></div>
+                    <p class="small text-muted mb-3"><?= e(truncateText((string)($school['description'] ?? ''), 110)); ?></p>
+                    <a href="<?= BASE_URL; ?>/schools.php" class="btn btn-sm btn-outline-dark mt-auto">View School Details</a>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- 9. Specialist Doctor Network -->
+<section class="py-5 bg-light">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <span class="text-warning fw-bold text-uppercase small tracking-wider mb-2 d-inline-block">MEDICAL EXPERTISE</span>
+            <h2 class="fw-bold display-6 mb-2">Distinguished Doctor Network</h2>
+            <p class="text-muted max-w-650 mx-auto">Dedicated allopathic specialists and AYUSH practitioners volunteering their medical expertise.</p>
+        </div>
+
+        <div class="row g-4">
+            <?php foreach ($featuredDoctors as $doc): ?>
+            <?php 
+                $docPhoto = !empty($doc['photo']) ? $doc['photo'] : 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&q=80';
+            ?>
+            <div class="col-lg-3 col-md-6">
+                <div class="card h-100 p-4 border-0 shadow-sm rounded-4 text-center">
+                    <img src="<?= e(getImageUrl($docPhoto)); ?>" alt="<?= e((string)$doc['name']); ?>" class="img-fluid rounded-circle mx-auto mb-3" style="width: 100px; height: 100px; object-fit: cover;">
+                    <h5 class="fw-bold mb-1 fs-6"><?= e((string)$doc['name']); ?></h5>
+                    <p class="small text-warning fw-bold mb-1"><?= e((string)($doc['specialization'] ?? '')); ?></p>
+                    <p class="small text-muted mb-2"><?= e((string)($doc['qualification'] ?? '')); ?></p>
+                    <div class="badge bg-secondary-subtle text-secondary mb-3"><?= e(ucfirst((string)($doc['treatment_type'] ?? 'Allopathy'))); ?> Care</div>
+                    <a href="<?= BASE_URL; ?>/doctors.php" class="btn btn-sm btn-outline-dark mt-auto">Consultation Details</a>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- 10. Testimonials -->
 <section class="py-5 bg-white">
     <div class="container py-3">
         <div class="text-center mb-5">
@@ -524,17 +599,21 @@ require_once __DIR__ . '/includes/navbar.php';
 
         <div class="row g-4">
             <?php foreach ($testimonials as $t): ?>
+            <?php 
+                $tName = (string)($t['name'] ?? 'Beneficiary');
+                $initial = strtoupper(substr($tName, 0, 1));
+            ?>
             <div class="col-lg-3 col-md-6">
                 <div class="card h-100 p-4 border-0 shadow-sm rounded-4 d-flex flex-column">
-                    <?= renderRatingStars((int)$t['rating']); ?>
-                    <p class="small text-muted my-3 flex-grow-1">"<?= e($t['content']); ?>"</p>
+                    <?= renderRatingStars((int)($t['rating'] ?? 5)); ?>
+                    <p class="small text-muted my-3 flex-grow-1">"<?= e((string)($t['content'] ?? '')); ?>"</p>
                     <div class="d-flex align-items-center gap-3 pt-3 border-top">
                         <div class="bg-warning text-white rounded-circle d-flex align-items-center justify-content-center fw-bold" style="width: 44px; height: 44px;">
-                            <?= strtoupper(substr($t['name'], 0, 1)); ?>
+                            <?= $initial; ?>
                         </div>
                         <div>
-                            <h6 class="mb-0 fw-bold fs-6"><?= e($t['name']); ?></h6>
-                            <small class="text-muted d-block"><?= e($t['designation'] ?? 'Beneficiary'); ?></small>
+                            <h6 class="mb-0 fw-bold fs-6"><?= e($tName); ?></h6>
+                            <small class="text-muted d-block"><?= e((string)($t['designation'] ?? 'Beneficiary')); ?></small>
                         </div>
                     </div>
                 </div>
@@ -544,8 +623,44 @@ require_once __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
-<!-- 9. High-Impact Donation & Volunteer CTA -->
+<!-- 11. Latest News & Articles -->
 <section class="py-5 bg-light">
+    <div class="container py-3">
+        <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-3">
+            <div>
+                <span class="text-warning fw-bold text-uppercase small tracking-wider mb-1 d-inline-block">KNOWLEDGE & UPDATES</span>
+                <h2 class="fw-bold display-6 mb-0">Latest News & Health Articles</h2>
+            </div>
+            <a href="<?= BASE_URL; ?>/blog.php" class="btn btn-outline-dark fw-bold">View All Articles <i class="fas fa-arrow-right ms-1"></i></a>
+        </div>
+
+        <div class="row g-4">
+            <?php foreach ($latestBlogs as $blog): ?>
+            <?php 
+                $bImg = !empty($blog['featured_image']) ? $blog['featured_image'] : 'https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=600&q=80';
+            ?>
+            <div class="col-lg-4 col-md-6">
+                <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                    <img src="<?= e(getImageUrl($bImg)); ?>" alt="<?= e((string)$blog['title']); ?>" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <div class="d-flex align-items-center gap-2 mb-2 small text-muted">
+                            <span class="badge bg-warning text-dark"><?= e((string)($blog['category_name'] ?? 'Healthcare')); ?></span>
+                            <span>•</span>
+                            <span><?= formatDate($blog['published_at'] ?? null); ?></span>
+                        </div>
+                        <h5 class="fw-bold mb-2"><a href="<?= BASE_URL; ?>/blog-details.php?slug=<?= e((string)$blog['slug']); ?>" class="text-dark text-decoration-none"><?= e((string)$blog['title']); ?></a></h5>
+                        <p class="small text-muted mb-3 flex-grow-1"><?= e((string)($blog['short_description'] ?? '')); ?></p>
+                        <a href="<?= BASE_URL; ?>/blog-details.php?slug=<?= e((string)$blog['slug']); ?>" class="text-warning fw-bold small text-decoration-none mt-auto">Read Full Article <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- 12. High-Impact Donation & Volunteer CTA Banner -->
+<section class="py-5 bg-white">
     <div class="container">
         <div class="p-5 rounded-4 shadow-lg text-white" style="background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);">
             <div class="row align-items-center g-4">
