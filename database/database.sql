@@ -5,11 +5,12 @@
 -- Character Set: utf8mb4 / Collation: utf8mb4_unicode_ci / Engine: InnoDB
 -- ============================================================================
 
-CREATE DATABASE IF NOT EXISTS `ngo_management`
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_unicode_ci;
-
-USE `ngo_management`;
+-- ----------------------------------------------------------------------------
+-- For Hostinger/cPanel: Import directly inside your database in phpMyAdmin.
+-- If creating locally on root MySQL, you can uncomment the 2 lines below:
+-- CREATE DATABASE IF NOT EXISTS `u467991428_ngo_management` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- USE `u467991428_ngo_management`;
+-- ----------------------------------------------------------------------------
 
 SET FOREIGN_KEY_CHECKS = 0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";

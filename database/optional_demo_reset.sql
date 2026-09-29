@@ -5,8 +5,7 @@
 --              pristine initial state without dropping schema structure.
 -- ============================================================================
 
-USE `ngo_management`;
-
+-- USE `u467991428_ngo_management`;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- 1. Inquiries & Registrations
