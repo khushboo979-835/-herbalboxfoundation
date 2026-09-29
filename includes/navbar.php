@@ -14,25 +14,27 @@ $tagline = getSetting('site_tagline', 'Health • Education • Better Tomorrow'
 $cinNumber = getSetting('cin_number', 'U86901BR2026NPL087665');
 ?>
 
-<!-- GiveLife Top Announcement Header (Orange Bar) -->
+<!-- GiveLife Top Announcement Header (Slim Orange Bar) -->
 <div class="givelife-topbar d-none d-lg-block">
-    <div class="container-fluid px-lg-5">
-        <div class="row align-items-center">
-            <div class="col-lg-8 d-flex align-items-center flex-wrap gap-4">
+    <div class="container-fluid px-lg-4">
+        <div class="d-flex justify-content-between align-items-center flex-nowrap">
+            <div class="d-flex align-items-center gap-3 text-nowrap overflow-hidden">
                 <div class="top-contact-box">
                     <span class="top-icon-sq"><i class="fas fa-map-marker-alt"></i></span>
-                    <span class="top-text-lbl">Address : Near Birla Open Minds School, Hajipur (844101)</span>
+                    <span class="top-text-lbl">Near Birla Open Minds School, Hajipur (844101)</span>
                 </div>
+                <span class="text-white-50">|</span>
                 <div class="top-contact-box">
                     <span class="top-icon-sq"><i class="fas fa-phone-alt"></i></span>
-                    <span class="top-text-lbl">CALL : <a href="tel:9234055507">+91 92340 55507</a></span>
+                    <span class="top-text-lbl"><a href="tel:9234055507">+91 92340 55507</a></span>
                 </div>
+                <span class="text-white-50">|</span>
                 <div class="top-contact-box">
                     <span class="top-icon-sq"><i class="fas fa-envelope"></i></span>
-                    <span class="top-text-lbl">EMAIL : <a href="mailto:<?= e($email); ?>"><?= e($email); ?></a></span>
+                    <span class="top-text-lbl"><a href="mailto:<?= e($email); ?>"><?= e($email); ?></a></span>
                 </div>
             </div>
-            <div class="col-lg-4 text-end d-flex justify-content-end align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2 text-nowrap ms-2">
                 <div class="givelife-social-boxes">
                     <a href="https://www.facebook.com/profile.php?id=61594374894081" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                     <a href="https://wa.me/919234055507" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
