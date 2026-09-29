@@ -16,7 +16,7 @@ $cinNo = getSetting('cin_number', 'U86901BR2026NPL087665');
 ?>
 
 <!-- Master Footer -->
-<footer class="main-footer">
+<footer class="main-footer givelife-footer">
     <div class="container">
         <div class="row g-4">
             <!-- Col 1: About NGO -->

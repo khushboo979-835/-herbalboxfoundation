@@ -1,7 +1,7 @@
 <?php
 /**
  * Master Frontend Navbar & Top Bar
- * GiveLife Style - Bright, Humanitarian, Clean Layout
+ * GiveLife NGO Template - Exact 1-to-1 Match
  */
 
 declare(strict_types=1);
@@ -14,89 +14,92 @@ $tagline = getSetting('site_tagline', 'Health • Education • Better Tomorrow'
 $cinNumber = getSetting('cin_number', 'U86901BR2026NPL087665');
 ?>
 
-<!-- Top Announcement Bar (GiveLife Charity Amber/Orange Header) -->
-<div class="top-bar-charity d-none d-lg-block">
-    <div class="container">
+<!-- GiveLife Top Announcement Header (Orange Bar) -->
+<div class="givelife-topbar d-none d-lg-block">
+    <div class="container-fluid px-lg-5">
         <div class="row align-items-center">
             <div class="col-lg-8 d-flex align-items-center flex-wrap gap-4">
-                <div class="top-info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Near Birla Open Minds School, Hajipur (844101)</span>
+                <div class="top-contact-box">
+                    <span class="top-icon-sq"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="top-text-lbl">Address : Near Birla Open Minds School, Hajipur (844101)</span>
                 </div>
-                <div class="top-info-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <span>CALL : <a href="tel:9234055507">+91 92340 55507</a></span>
+                <div class="top-contact-box">
+                    <span class="top-icon-sq"><i class="fas fa-phone-alt"></i></span>
+                    <span class="top-text-lbl">CALL : <a href="tel:9234055507">+91 92340 55507</a></span>
                 </div>
-                <div class="top-info-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>EMAIL : <a href="mailto:<?= e($email); ?>"><?= e($email); ?></a></span>
+                <div class="top-contact-box">
+                    <span class="top-icon-sq"><i class="fas fa-envelope"></i></span>
+                    <span class="top-text-lbl">EMAIL : <a href="mailto:<?= e($email); ?>"><?= e($email); ?></a></span>
                 </div>
             </div>
-            <div class="col-lg-4 text-end d-flex justify-content-end align-items-center gap-3">
-                <div class="top-social-links">
+            <div class="col-lg-4 text-end d-flex justify-content-end align-items-center gap-2">
+                <div class="givelife-social-boxes">
                     <a href="https://www.facebook.com/profile.php?id=61594374894081" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/herbalboxfoundation/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://wa.me/919234055507" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://youtube.com/@herbalboxfoundation" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://linkedin.com/company/herbalboxfoundation" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/herbalboxfoundation/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
-                <span class="top-cin-badge">CIN: <?= e($cinNumber); ?></span>
+                <span class="cin-top-pill">CIN: <?= e($cinNumber); ?></span>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Main Sticky Navbar -->
-<nav class="navbar navbar-expand-xl navbar-give-life sticky-top">
-    <div class="container">
+<!-- GiveLife Main Navbar -->
+<nav class="navbar navbar-expand-xl givelife-navbar sticky-top">
+    <div class="container-fluid px-lg-5">
+        <!-- Logo -->
         <a class="navbar-brand d-flex align-items-center gap-2" href="<?= BASE_URL; ?>/index.php">
-            <img src="<?= BASE_URL; ?>/assets/images/logo.png" alt="Herbalbox Foundation" class="brand-logo-img">
-            <div class="brand-text">
-                <h1 class="brand-title mb-0">HERBALBOX FOUNDATION</h1>
-                <span class="brand-tagline">Health • Education • Better Tomorrow</span>
+            <img src="<?= BASE_URL; ?>/assets/images/logo.png" alt="Herbalbox Foundation" class="givelife-logo">
+            <div class="d-flex flex-column">
+                <span class="givelife-logo-text">HERBALBOX</span>
+                <span class="givelife-logo-sub">FOUNDATION</span>
             </div>
         </a>
 
-        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNgoNavbar" aria-controls="mainNgoNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#giveLifeNav" aria-controls="giveLifeNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fas fa-bars fa-lg text-dark"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="mainNgoNavbar">
-            <ul class="navbar-nav mx-auto mb-2 mb-xl-0">
+        <!-- Nav Links & CTA -->
+        <div class="collapse navbar-collapse" id="giveLifeNav">
+            <ul class="navbar-nav mx-auto mb-2 mb-xl-0 align-items-center">
                 <li class="nav-item">
-                    <a class="nav-link <?= $currentPage === 'index.php' ? 'active' : ''; ?>" href="<?= BASE_URL; ?>/index.php">HOME</a>
+                    <a class="nav-link nav-btn-box <?= $currentPage === 'index.php' ? 'active' : ''; ?>" href="<?= BASE_URL; ?>/index.php">HOME</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link <?= $currentPage === 'about.php' ? 'active' : ''; ?>" href="<?= BASE_URL; ?>/about.php">ABOUT</a>
                 </li>
                 
-                <!-- Causes / Programs Dropdown -->
+                <!-- Causes Dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle <?= in_array($currentPage, ['healthcare.php', 'education.php', 'ayush.php', 'yoga.php', 'medical-camps.php', 'blood-donation.php']) ? 'active' : ''; ?>" href="#" role="button" data-bs-toggle="dropdown">
                         CAUSES
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="<?= BASE_URL; ?>/healthcare.php"><i class="fas fa-stethoscope text-primary"></i> Healthcare Services</a></li>
-                        <li><a class="dropdown-item" href="<?= BASE_URL; ?>/education.php"><i class="fas fa-graduation-cap text-success"></i> School Education (1st - 12th)</a></li>
-                        <li><a class="dropdown-item" href="<?= BASE_URL; ?>/ayush.php"><i class="fas fa-leaf text-warning"></i> AYUSH & Herbal Medicine</a></li>
-                        <li><a class="dropdown-item" href="<?= BASE_URL; ?>/yoga.php"><i class="fas fa-spa text-info"></i> Daily Yoga & Meditation</a></li>
+                    <ul class="dropdown-menu shadow-lg border-0 rounded-3">
+                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/healthcare.php"><i class="fas fa-stethoscope text-primary me-2"></i> Healthcare Services</a></li>
+                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/education.php"><i class="fas fa-graduation-cap text-success me-2"></i> NCERT School Support</a></li>
+                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/ayush.php"><i class="fas fa-leaf text-warning me-2"></i> AYUSH & Herbal Medicine</a></li>
+                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/yoga.php"><i class="fas fa-spa text-info me-2"></i> Daily Yoga & Wellness</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="<?= BASE_URL; ?>/medical-camps.php"><i class="fas fa-clinic-medical text-danger"></i> Free Medical Camps</a></li>
-                        <li><a class="dropdown-item" href="<?= BASE_URL; ?>/blood-donation.php"><i class="fas fa-tint text-danger"></i> Blood Donation Drives</a></li>
+                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/medical-camps.php"><i class="fas fa-clinic-medical text-danger me-2"></i> Free Medical Camps</a></li>
+                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/blood-donation.php"><i class="fas fa-tint text-danger me-2"></i> Blood Donation Drives</a></li>
                     </ul>
                 </li>
 
-                <!-- Partnerships & MOUs Dropdown -->
+                <!-- Partners Dropdown -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle <?= in_array($currentPage, ['schools.php', 'doctors.php', 'hospitals.php', 'partnerships.php', 'mou.php']) ? 'active' : ''; ?>" href="#" role="button" data-bs-toggle="dropdown">
                         PARTNERS
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="<?= BASE_URL; ?>/schools.php"><i class="fas fa-school text-primary"></i> School Partners & MOUs</a></li>
-                        <li><a class="dropdown-item" href="<?= BASE_URL; ?>/doctors.php"><i class="fas fa-user-md text-success"></i> Doctor Network</a></li>
-                        <li><a class="dropdown-item" href="<?= BASE_URL; ?>/hospitals.php"><i class="fas fa-hospital text-info"></i> Hospital Collaborations</a></li>
-                        <li><a class="dropdown-item" href="<?= BASE_URL; ?>/mou.php"><i class="fas fa-file-contract text-warning"></i> Public MOU Archive</a></li>
+                    <ul class="dropdown-menu shadow-lg border-0 rounded-3">
+                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/schools.php"><i class="fas fa-school text-primary me-2"></i> School Partners & MOUs</a></li>
+                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/doctors.php"><i class="fas fa-user-md text-success me-2"></i> Doctor Network</a></li>
+                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/hospitals.php"><i class="fas fa-hospital text-info me-2"></i> Hospital Network</a></li>
+                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/mou.php"><i class="fas fa-file-contract text-warning me-2"></i> Public MOU Archive</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item font-weight-bold text-primary" href="<?= BASE_URL; ?>/partnerships.php"><i class="fas fa-handshake"></i> Become a Partner (Apply)</a></li>
+                        <li><a class="dropdown-item py-2 text-primary fw-bold" href="<?= BASE_URL; ?>/partnerships.php"><i class="fas fa-handshake me-2"></i> Become a Partner</a></li>
                     </ul>
                 </li>
 
@@ -114,8 +117,8 @@ $cinNumber = getSetting('cin_number', 'U86901BR2026NPL087665');
                 </li>
             </ul>
 
-            <div class="d-flex align-items-center gap-2">
-                <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-give-donate">
+            <div class="d-flex align-items-center">
+                <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-givelife-nav-donate">
                     DONATE NOW
                 </a>
             </div>

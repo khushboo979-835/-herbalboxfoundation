@@ -1,30 +1,18 @@
 /**
- * Herbalbox Foundation - Master Stylesheet
- * GiveLife NGO Template Aesthetic - Bright, Modern, Clean & Humanitarian
+ * Herbalbox Foundation - GiveLife NGO Master Stylesheet
+ * 100% Visual Match to GiveLife Charity Template
  */
 
 :root {
-  --primary-orange: #f59e0b;
-  --primary-orange-hover: #d97706;
-  --primary-orange-dark: #b45309;
-  --charity-green: #16a34a;
-  --charity-green-hover: #15803d;
-  --charity-blue: #0284c7;
-  --dark-navy: #1e293b;
-  --dark-heading: #0f172a;
-  --body-text: #475569;
-  --muted-text: #64748b;
-  --light-bg: #f8fafc;
-  --card-bg: #ffffff;
-  --border-color: #e2e8f0;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --shadow-sm: 0 2px 6px rgba(0,0,0,0.04);
-  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.12);
-  --shadow-hover: 0 20px 40px rgba(245, 158, 11, 0.2);
-  --transition: all 0.3s ease-in-out;
+  --give-orange: #f39c12;
+  --give-orange-hover: #e67e22;
+  --give-dark: #333333;
+  --give-dark-hover: #222222;
+  --give-green: #2ecc71;
+  --give-blue: #3498db;
+  --text-dark: #2c3e50;
+  --text-muted: #666666;
+  --bg-light: #f9f9f9;
 }
 
 * {
@@ -34,558 +22,400 @@
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: var(--text-dark);
   background-color: #ffffff;
-  color: var(--body-text);
-  line-height: 1.65;
+  line-height: 1.6;
   font-size: 15px;
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--dark-heading);
-  font-weight: 700;
-  line-height: 1.3;
-}
-
-a {
-  color: var(--primary-orange);
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-a:hover {
-  color: var(--primary-orange-hover);
-}
-
-/* 1. Top Announcement Bar (GiveLife Style) */
-.top-bar-charity {
-  background: #f59e0b;
-  color: #ffffff;
-  font-size: 13px;
+/* ==========================================================================
+   1. GIVELIFE TOP ANNOUNCEMENT HEADER (ORANGE BAR)
+   ========================================================================== */
+.givelife-topbar {
+  background-color: #f39c12 !important;
+  color: #ffffff !important;
+  padding: 8px 0;
+  font-size: 13.5px;
   font-weight: 500;
-  padding: 10px 0;
 }
 
-.top-info-item {
+.top-contact-box {
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
 
-.top-info-item i {
+.top-icon-sq {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  font-size: 13px;
   color: #ffffff;
-  font-size: 14px;
 }
 
-.top-info-item a {
+.top-text-lbl {
   color: #ffffff;
+}
+
+.top-text-lbl a {
+  color: #ffffff !important;
   text-decoration: none;
   font-weight: 600;
 }
 
-.top-info-item a:hover {
-  color: #1e293b;
+.top-text-lbl a:hover {
+  text-decoration: underline;
 }
 
-.top-social-links {
+.givelife-social-boxes {
   display: inline-flex;
-  gap: 12px;
+  gap: 6px;
 }
 
-.top-social-links a {
-  color: #ffffff;
-  font-size: 14px;
-  transition: var(--transition);
+.givelife-social-boxes a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff !important;
+  font-size: 13px;
+  border-radius: 3px;
+  transition: all 0.2s ease;
 }
 
-.top-social-links a:hover {
-  color: #1e293b;
+.givelife-social-boxes a:hover {
+  background: #ffffff;
+  color: #f39c12 !important;
   transform: translateY(-2px);
 }
 
-.top-cin-badge {
-  background: rgba(0, 0, 0, 0.15);
+.cin-top-pill {
+  background: rgba(0, 0, 0, 0.2);
   color: #ffffff;
-  font-size: 11px;
-  font-weight: 700;
   padding: 3px 8px;
   border-radius: 4px;
-  letter-spacing: 0.5px;
+  font-size: 11px;
+  font-weight: 700;
 }
 
-/* 2. Main Navbar (GiveLife Style) */
-.navbar-give-life {
-  background: #ffffff;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.06);
-  padding: 14px 0;
-  transition: var(--transition);
+/* ==========================================================================
+   2. GIVELIFE MAIN NAVBAR
+   ========================================================================== */
+.givelife-navbar {
+  background: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 12px 0;
+  z-index: 1040;
 }
 
-.brand-logo-img {
-  width: 50px;
-  height: 50px;
+.givelife-logo {
+  height: 48px;
+  width: auto;
   object-fit: contain;
 }
 
-.brand-title {
+.givelife-logo-text {
   font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: #0f172a;
-}
-
-.brand-tagline {
-  font-size: 11px;
-  font-weight: 700;
-  color: #16a34a;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  display: block;
-}
-
-.navbar-give-life .nav-link {
-  color: #334155 !important;
-  font-weight: 700;
-  font-size: 14px;
-  padding: 10px 16px !important;
+  font-weight: 900;
   letter-spacing: 0.5px;
-  border-radius: 4px;
-  transition: var(--transition);
+  color: #2c3e50;
+  line-height: 1;
 }
 
-.navbar-give-life .nav-link:hover {
-  color: var(--primary-orange) !important;
+.givelife-logo-sub {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #f39c12;
 }
 
-.navbar-give-life .nav-link.active {
-  background-color: #1e293b;
+.givelife-navbar .nav-link {
+  color: #333333 !important;
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.8px;
+  padding: 8px 16px !important;
+  transition: all 0.2s ease;
+}
+
+.givelife-navbar .nav-link:hover {
+  color: #f39c12 !important;
+}
+
+.givelife-navbar .nav-btn-box.active {
+  background-color: #333333 !important;
   color: #ffffff !important;
+  border-radius: 3px;
 }
 
-.btn-give-donate {
-  background-color: #1e293b;
+.btn-givelife-nav-donate {
+  background-color: #333333 !important;
   color: #ffffff !important;
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 1px;
-  padding: 12px 24px;
-  border-radius: 4px;
-  border: 2px solid #1e293b;
-  transition: var(--transition);
+  padding: 10px 22px;
+  border-radius: 3px;
+  border: none;
+  transition: all 0.3s ease;
 }
 
-.btn-give-donate:hover {
-  background-color: #f59e0b;
-  border-color: #f59e0b;
+.btn-givelife-nav-donate:hover {
+  background-color: #f39c12 !important;
   color: #ffffff !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4);
 }
 
-/* 3. Hero Section (GiveLife Full-Width Slider / Banner Style) */
-.givelife-hero-section {
+/* ==========================================================================
+   3. GIVELIFE HERO BANNER / SLIDER
+   ========================================================================== */
+.givelife-hero-banner {
   position: relative;
-  min-height: 580px;
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.65) 100%), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80') center/cover no-repeat;
+  min-height: 600px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.55) 100%), url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1600&q=80') center center / cover no-repeat;
   display: flex;
   align-items: center;
   color: #ffffff;
-  padding: 80px 0 100px;
+  padding: 100px 0 120px;
 }
 
-.hero-carousel-slide {
-  position: relative;
-  z-index: 2;
-}
-
-.hero-large-title {
-  font-size: 3.5rem;
+.hero-main-title {
+  font-size: 4rem;
   font-weight: 900;
   color: #ffffff;
-  line-height: 1.15;
+  line-height: 1.1;
   letter-spacing: -1px;
   margin-bottom: 20px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
 }
 
-.hero-desc {
+.hero-subtext-para {
   font-size: 1.15rem;
-  color: #e2e8f0;
+  color: #f1f5f9;
   line-height: 1.7;
-  max-width: 650px;
-  margin-bottom: 30px;
+  max-width: 680px;
+  margin-bottom: 35px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
-.btn-hero-orange {
-  background-color: #f59e0b;
+.btn-givelife-orange {
+  background-color: #f39c12 !important;
   color: #ffffff !important;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
-  padding: 14px 32px;
-  border-radius: 4px;
+  padding: 14px 34px;
+  border-radius: 3px;
   border: none;
   text-transform: uppercase;
-  transition: var(--transition);
-  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
 }
 
-.btn-hero-orange:hover {
-  background-color: #d97706;
+.btn-givelife-orange:hover {
+  background-color: #e67e22 !important;
+  color: #ffffff !important;
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+  box-shadow: 0 8px 25px rgba(243, 156, 18, 0.5);
 }
 
-.btn-hero-white {
-  background-color: #ffffff;
-  color: #0f172a !important;
+.btn-givelife-white {
+  background-color: #ffffff !important;
+  color: #333333 !important;
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 1px;
-  padding: 14px 32px;
-  border-radius: 4px;
+  padding: 14px 34px;
+  border-radius: 3px;
   border: none;
   text-transform: uppercase;
-  transition: var(--transition);
+  transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.btn-hero-white:hover {
-  background-color: #f1f5f9;
+.btn-givelife-white:hover {
+  background-color: #f8fafc !important;
+  color: #111111 !important;
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 /* Slider Controls (< >) */
-.hero-slider-nav {
+.givelife-slider-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 46px;
-  height: 46px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(5px);
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  transition: var(--transition);
-  z-index: 5;
-  border: none;
-}
-
-.hero-slider-nav:hover {
-  background: #f59e0b;
-  color: #ffffff;
-}
-
-.hero-slider-nav.prev { left: 25px; }
-.hero-slider-nav.next { right: 25px; }
-
-/* 4. Three Feature Pillar Cards (Overlapping) */
-.feature-pillars-wrap {
-  margin-top: -50px;
-  position: relative;
+  transition: all 0.3s ease;
   z-index: 10;
-  margin-bottom: 40px;
 }
 
-.pillar-card {
+.givelife-slider-arrow:hover {
+  background: #f39c12;
+  color: #ffffff;
+  border-color: #f39c12;
+}
+
+.givelife-slider-arrow.left { left: 30px; }
+.givelife-slider-arrow.right { right: 30px; }
+
+/* ==========================================================================
+   4. THREE FEATURE PILLARS SECTION (Below Hero)
+   ========================================================================== */
+.givelife-pillars-wrap {
+  margin-top: -60px;
+  position: relative;
+  z-index: 20;
+  margin-bottom: 50px;
+}
+
+.givelife-pillar-card {
   background: #ffffff;
-  border-radius: var(--radius-md);
+  border-radius: 6px;
   padding: 35px 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-  border-top: 5px solid #f59e0b;
-  transition: var(--transition);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-top: 4px solid #f39c12;
+  transition: all 0.3s ease;
   height: 100%;
   display: flex;
-  flex-column;
+  flex-direction: column;
 }
 
-.pillar-card.pillar-green { border-top-color: #16a34a; }
-.pillar-card.pillar-blue { border-top-color: #0284c7; }
+.givelife-pillar-card.pillar-green { border-top-color: #2ecc71; }
+.givelife-pillar-card.pillar-blue { border-top-color: #3498db; }
 
-.pillar-card:hover {
+.givelife-pillar-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 }
 
-.pillar-icon {
-  width: 60px;
-  height: 60px;
+.pillar-icon-box {
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
-  background: #fef3c7;
-  color: #f59e0b;
+  background: #fef5e7;
+  color: #f39c12;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
+  font-size: 22px;
   margin-bottom: 20px;
 }
 
-.pillar-green .pillar-icon { background: #dcfce7; color: #16a34a; }
-.pillar-blue .pillar-icon { background: #e0f2fe; color: #0284c7; }
+.pillar-green .pillar-icon-box { background: #e8f8f0; color: #2ecc71; }
+.pillar-blue .pillar-icon-box { background: #ebf5fb; color: #3498db; }
 
 .pillar-title {
   font-size: 1.25rem;
   font-weight: 700;
+  color: #2c3e50;
   margin-bottom: 12px;
 }
 
 .pillar-desc {
   font-size: 14px;
-  color: var(--muted-text);
+  color: #666666;
   line-height: 1.6;
   margin-bottom: 20px;
 }
 
-/* 5. Section Headers */
-.section-tag-charity {
-  color: #f59e0b;
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  display: inline-block;
-  margin-bottom: 8px;
-}
-
-.section-title-charity {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--dark-heading);
-  letter-spacing: -0.5px;
-  margin-bottom: 15px;
-}
-
-.section-subtext {
-  font-size: 1rem;
-  color: var(--muted-text);
-  max-width: 680px;
-  margin: 0 auto;
-}
-
-/* 6. Impact Counter Strip */
-.impact-counter-strip {
-  background: #1e293b;
+/* ==========================================================================
+   5. IMPACT COUNTERS & CAUSES
+   ========================================================================== */
+.impact-counters-bar {
+  background: #2c3e50;
   color: #ffffff;
-  padding: 60px 0;
-  position: relative;
+  padding: 55px 0;
 }
 
-.counter-item {
-  text-align: center;
-  padding: 15px;
-}
-
-.counter-num {
+.counter-digit {
   font-size: 2.8rem;
   font-weight: 800;
-  color: #f59e0b;
-  margin-bottom: 5px;
+  color: #f39c12;
+  line-height: 1;
+  margin-bottom: 6px;
 }
 
-.counter-lbl {
-  font-size: 14px;
+.counter-name {
+  font-size: 13.5px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: #ecf0f1;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-/* 7. Causes / Program Cards */
-.cause-card {
+.cause-card-give {
   background: #ffffff;
-  border-radius: var(--radius-md);
+  border-radius: 6px;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   border: 1px solid #e2e8f0;
-  transition: var(--transition);
+  transition: all 0.3s ease;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.cause-card:hover {
+.cause-card-give:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
 }
 
-.cause-img-wrap {
+.cause-img-box {
   position: relative;
   height: 220px;
   overflow: hidden;
 }
 
-.cause-img-wrap img {
+.cause-img-box img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
 }
 
-.cause-card:hover .cause-img-wrap img {
-  transform: scale(1.05);
-}
-
-.cause-badge {
+.cause-tag-badge {
   position: absolute;
   top: 15px;
   right: 15px;
-  background: #f59e0b;
+  background: #f39c12;
   color: #ffffff;
   font-weight: 700;
   font-size: 11px;
   padding: 4px 10px;
-  border-radius: 4px;
+  border-radius: 3px;
   text-transform: uppercase;
 }
 
-.cause-body {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
+/* ==========================================================================
+   6. FOOTER
+   ========================================================================== */
+.givelife-footer {
+  background: #222222;
+  color: #cccccc;
+  padding: 65px 0 0;
+  border-top: 4px solid #f39c12;
 }
 
-.cause-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.cause-title a {
-  color: var(--dark-heading);
-}
-
-.cause-title a:hover {
-  color: var(--primary-orange);
-}
-
-.cause-text {
-  font-size: 14px;
-  color: var(--muted-text);
-  margin-bottom: 20px;
-  flex-grow: 1;
-}
-
-.cause-progress-bar {
-  height: 8px;
-  border-radius: 4px;
-  background: #e2e8f0;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-
-.cause-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #f59e0b, #ea580c);
-  border-radius: 4px;
-}
-
-.cause-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-  font-weight: 600;
-  color: #475569;
-  margin-bottom: 20px;
-}
-
-/* 8. Event Cards */
-.event-give-card {
-  background: #ffffff;
-  border-radius: var(--radius-md);
-  border: 1px solid #e2e8f0;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  transition: var(--transition);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.event-give-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 28px rgba(0,0,0,0.1);
-}
-
-.event-date-box {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: #f59e0b;
-  color: #ffffff;
-  text-align: center;
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-weight: 800;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.event-date-box .day { font-size: 20px; line-height: 1; }
-.event-date-box .month { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
-
-/* 9. Testimonial Card */
-.testi-give-card {
-  background: #ffffff;
-  border-radius: var(--radius-md);
-  padding: 28px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.testi-quote {
-  font-size: 14.5px;
-  color: #475569;
-  font-style: italic;
-  margin-bottom: 20px;
-  flex-grow: 1;
-}
-
-.testi-author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.testi-avatar {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #f59e0b;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-}
-
-/* 10. Call To Action Banner */
-.cta-banner-charity {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%), url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?w=1200&q=80') center/cover;
-  background-blend-mode: overlay;
-  border-radius: var(--radius-lg);
-  padding: 60px 40px;
-  color: #ffffff;
-  box-shadow: 0 15px 35px rgba(15, 23, 42, 0.2);
-}
-
-/* 11. Footer */
-.main-footer {
-  background: #0f172a;
-  color: #cbd5e1;
-  padding: 70px 0 0;
-  border-top: 4px solid #f59e0b;
-}
-
-.main-footer h5 {
+.givelife-footer h5 {
   color: #ffffff;
   font-size: 1.1rem;
   font-weight: 700;
@@ -594,85 +424,82 @@ a:hover {
   padding-bottom: 10px;
 }
 
-.main-footer h5::after {
+.givelife-footer h5::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 35px;
   height: 3px;
-  background: #f59e0b;
-  border-radius: 2px;
+  background: #f39c12;
 }
 
-.footer-links {
+.footer-nav-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.footer-links li {
+.footer-nav-list li {
   margin-bottom: 10px;
 }
 
-.footer-links a {
-  color: #94a3b8;
+.footer-nav-list a {
+  color: #aaaaaa;
   font-size: 14px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: var(--transition);
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-.footer-links a:hover {
-  color: #f59e0b;
-  transform: translateX(4px);
+.footer-nav-list a:hover {
+  color: #f39c12;
+  padding-left: 5px;
 }
 
-.footer-social a {
+.footer-social-sq a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.08);
+  width: 34px;
+  height: 34px;
+  background: #333333;
   color: #ffffff;
-  border-radius: 50%;
-  margin-right: 8px;
-  transition: var(--transition);
+  border-radius: 3px;
+  margin-right: 6px;
+  transition: all 0.2s ease;
 }
 
-.footer-social a:hover {
-  background: #f59e0b;
+.footer-social-sq a:hover {
+  background: #f39c12;
   color: #ffffff;
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
-.footer-bottom {
-  background: #020617;
+.footer-copyright {
+  background: #111111;
   padding: 20px 0;
   margin-top: 50px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
-  font-size: 13.5px;
+  font-size: 13px;
+  color: #888888;
 }
 
 /* Floating Widgets */
 .floating-whatsapp {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
-  width: 58px;
-  height: 58px;
+  bottom: 25px;
+  right: 25px;
+  width: 56px;
+  height: 56px;
   background-color: #25d366;
   color: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  font-size: 28px;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
   z-index: 1050;
-  transition: var(--transition);
+  transition: all 0.3s ease;
 }
 
 .floating-whatsapp:hover {
@@ -683,62 +510,36 @@ a:hover {
 
 .floating-call {
   position: fixed;
-  bottom: 96px;
-  right: 28px;
-  width: 52px;
-  height: 52px;
-  background-color: #0284c7;
+  bottom: 90px;
+  right: 25px;
+  width: 50px;
+  height: 50px;
+  background-color: #f39c12;
   color: #ffffff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.4);
+  font-size: 20px;
+  box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
   z-index: 1050;
-  transition: var(--transition);
+  transition: all 0.3s ease;
 }
 
 .floating-call:hover {
-  background-color: #0369a1;
+  background-color: #e67e22;
   color: #ffffff;
   transform: scale(1.1);
 }
 
-.back-to-top {
-  position: fixed;
-  bottom: 28px;
-  left: 28px;
-  width: 44px;
-  height: 44px;
-  background: #1e293b;
-  color: #ffffff;
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  cursor: pointer;
-  opacity: 0.8;
-  transition: var(--transition);
-  z-index: 1040;
-}
-
-.back-to-top:hover {
-  background: #f59e0b;
-  opacity: 1;
-}
-
-/* Responsive adjustments */
 @media (max-width: 991px) {
-  .hero-large-title {
-    font-size: 2.3rem;
+  .hero-main-title {
+    font-size: 2.5rem;
   }
-  .feature-pillars-wrap {
+  .givelife-pillars-wrap {
     margin-top: 20px;
   }
-  .givelife-hero-section {
+  .givelife-hero-banner {
     min-height: auto;
     padding: 60px 0;
   }

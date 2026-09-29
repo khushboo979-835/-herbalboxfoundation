@@ -50,8 +50,8 @@ $ogImage = $ogImage ?? (BASE_URL . '/assets/images/og-banner.jpg');
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome 6 -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <!-- Custom Style -->
-    <link href="<?= BASE_URL; ?>/assets/css/style.css" rel="stylesheet">
+    <!-- Custom Style with Cache-Buster -->
+    <link href="<?= BASE_URL; ?>/assets/css/style.css?v=<?= time(); ?>" rel="stylesheet">
 
     <!-- Schema.org Organization JSON-LD -->
     <script type="application/ld+json">
