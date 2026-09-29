@@ -8,13 +8,20 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$upcomingCamps = [];
+$pastCamps = [];
 
-// Fetch upcoming & past medical camps
-$upcomingCamps = $pdo->query("SELECT * FROM events WHERE category IN ('medical_camp', 'eye_camp', 'dental_camp') AND status = 'upcoming' ORDER BY event_date ASC")->fetchAll();
-$pastCamps = $pdo->query("SELECT * FROM events WHERE category IN ('medical_camp', 'eye_camp', 'dental_camp') AND status = 'completed' ORDER BY event_date DESC LIMIT 6")->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $upcomingCamps = $pdo->query("SELECT * FROM events WHERE status IN ('upcoming', 'published') ORDER BY event_date ASC")->fetchAll() ?: [];
+        $pastCamps = $pdo->query("SELECT * FROM events WHERE status = 'completed' ORDER BY event_date DESC LIMIT 6")->fetchAll() ?: [];
+    }
+} catch (Throwable $e) {
+    error_log("Medical Camps Query Notice: " . $e->getMessage());
+}
 
-$pageTitle = 'Free Medical Camps - Eye, Dental, General Health & Medicine Distribution';
+$pageTitle = 'Free Medical Camps - Eye, Dental, General Health & Medicine Distribution | Herbalbox Foundation';
 $pageDesc = 'Discover upcoming free mega health checkup camps, eye refraction clinics, cataract surgeries, and dental camps organized across India.';
 
 require_once __DIR__ . '/includes/header.php';

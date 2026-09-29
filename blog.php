@@ -8,42 +8,46 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$posts = [];
+$categories = [];
+$recentPosts = [];
 
-// Filters & Search
-$catSlug = sanitize($_GET['category'] ?? '');
-$searchTerm = sanitize($_GET['search'] ?? '');
-$tag = sanitize($_GET['tag'] ?? '');
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $catSlug = sanitize($_GET['category'] ?? '');
+        $searchTerm = sanitize($_GET['search'] ?? '');
+        $tag = sanitize($_GET['tag'] ?? '');
 
-$sql = "SELECT b.*, c.name as category_name, c.slug as category_slug FROM blog_posts b LEFT JOIN blog_categories c ON b.category_id = c.id WHERE b.status = 'published'";
-$params = [];
+        $sql = "SELECT b.*, c.name as category_name, c.slug as category_slug FROM blog_posts b LEFT JOIN blog_categories c ON b.category_id = c.id WHERE b.status = 'published'";
+        $params = [];
 
-if (!empty($catSlug)) {
-    $sql .= " AND c.slug = ?";
-    $params[] = $catSlug;
+        if (!empty($catSlug)) {
+            $sql .= " AND c.slug = ?";
+            $params[] = $catSlug;
+        }
+        if (!empty($searchTerm)) {
+            $sql .= " AND (b.title LIKE ? OR b.excerpt LIKE ? OR b.content LIKE ?)";
+            $term = "%{$searchTerm}%";
+            $params[] = $term;
+            $params[] = $term;
+            $params[] = $term;
+        }
+
+        $sql .= " ORDER BY b.published_at DESC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+        $posts = $stmt->fetchAll();
+
+        // Fetch categories for sidebar
+        $categories = $pdo->query("SELECT c.*, COUNT(b.id) as post_count FROM blog_categories c LEFT JOIN blog_posts b ON c.id = b.category_id AND b.status = 'published' WHERE c.status = 'published' GROUP BY c.id ORDER BY c.name ASC")->fetchAll() ?: [];
+
+        // Fetch recent posts
+        $recentPosts = $pdo->query("SELECT title, slug, published_at, featured_image FROM blog_posts WHERE status = 'published' ORDER BY published_at DESC LIMIT 4")->fetchAll() ?: [];
+    }
+} catch (Throwable $e) {
+    error_log("Blog Query Notice: " . $e->getMessage());
 }
-if (!empty($searchTerm)) {
-    $sql .= " AND (b.title LIKE ? OR b.short_description LIKE ? OR b.content LIKE ?)";
-    $term = "%{$searchTerm}%";
-    $params[] = $term;
-    $params[] = $term;
-    $params[] = $term;
-}
-if (!empty($tag)) {
-    $sql .= " AND b.tags LIKE ?";
-    $params[] = "%{$tag}%";
-}
-
-$sql .= " ORDER BY b.published_at DESC";
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
-$posts = $stmt->fetchAll();
-
-// Fetch categories for sidebar
-$categories = $pdo->query("SELECT c.*, COUNT(b.id) as post_count FROM blog_categories c LEFT JOIN blog_posts b ON c.id = b.category_id AND b.status = 'published' WHERE c.status = 'active' GROUP BY c.id ORDER BY c.name ASC")->fetchAll();
-
-// Fetch recent posts
-$recentPosts = $pdo->query("SELECT title, slug, published_at, featured_image FROM blog_posts WHERE status = 'published' ORDER BY published_at DESC LIMIT 4")->fetchAll();
 
 $pageTitle = 'News & Health Articles - Healthcare Insights & Education Guides';
 $pageDesc = 'Explore expert articles on preventive healthcare, NCERT exam strategies, Ayurvedic remedies, and updates on Seva Foundation community camps.';

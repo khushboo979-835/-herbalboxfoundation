@@ -8,11 +8,17 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$mous = [];
 
-// Fetch all public MOUs
-$stmt = $pdo->query("SELECT * FROM mous WHERE is_public = 1 AND status = 'active' ORDER BY signed_date DESC");
-$mous = $stmt->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $stmt = $pdo->query("SELECT * FROM mous WHERE status = 'published' ORDER BY start_date DESC");
+        $mous = $stmt ? $stmt->fetchAll() : [];
+    }
+} catch (Throwable $e) {
+    error_log("MOU Query Notice: " . $e->getMessage());
+}
 
 $pageTitle = 'Public MOU Archive - Formal Accreditations & Partnerships';
 $pageDesc = 'Review and download public Memorandums of Understanding (MOUs) signed between Seva Foundation, schools, hospitals, and corporate CSR entities.';

@@ -8,14 +8,19 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$healthcarePrograms = [];
 
-// Fetch healthcare programs
-$stmt = $pdo->prepare("SELECT * FROM programs WHERE type = 'healthcare' AND status = 'active' ORDER BY sort_order ASC, id ASC");
-$stmt->execute();
-$healthcarePrograms = $stmt->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $stmt = $pdo->query("SELECT * FROM healthcare_services WHERE status = 'published' ORDER BY sort_order ASC, id ASC");
+        $healthcarePrograms = $stmt ? $stmt->fetchAll() : [];
+    }
+} catch (Throwable $e) {
+    error_log("Healthcare Query Notice: " . $e->getMessage());
+}
 
-$pageTitle = 'Healthcare Services, Free Medical Camps & Diagnostic Assistance';
+$pageTitle = 'Healthcare Services, Free Medical Camps & Diagnostic Assistance | Herbalbox Foundation';
 $pageDesc = 'Comprehensive primary healthcare, blood donation camps, free eye surgery, dental screenings, and essential medicine distribution across India.';
 
 require_once __DIR__ . '/includes/header.php';

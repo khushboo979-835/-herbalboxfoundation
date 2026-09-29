@@ -8,13 +8,19 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$schools = [];
 
-// Fetch all active school partners
-$schoolsStmt = $pdo->query("SELECT * FROM schools WHERE status = 'active' ORDER BY is_featured DESC, students_benefited DESC, id ASC");
-$schools = $schoolsStmt->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $schoolsStmt = $pdo->query("SELECT * FROM schools WHERE status = 'published' ORDER BY id ASC");
+        $schools = $schoolsStmt ? $schoolsStmt->fetchAll() : [];
+    }
+} catch (Throwable $e) {
+    error_log("Schools Query Notice: " . $e->getMessage());
+}
 
-$pageTitle = 'School Partnerships & MOUs - Student Health & NCERT Support';
+$pageTitle = 'School Partnerships & MOUs - Student Health & NCERT Support | Herbalbox Foundation';
 $pageDesc = 'Explore our network of 65+ partner government and private schools benefiting from student health screenings, eye checkups, NCERT study kits, and yoga.';
 
 require_once __DIR__ . '/includes/header.php';

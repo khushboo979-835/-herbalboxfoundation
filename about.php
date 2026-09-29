@@ -8,18 +8,21 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$teamMembers = [];
+$reports = [];
 
-// Fetch Team Members
-$teamStmt = $pdo->query("SELECT * FROM team_members WHERE status = 'active' ORDER BY sort_order ASC, id ASC");
-$teamMembers = $teamStmt->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $reportsStmt = $pdo->query("SELECT * FROM about_documents WHERE status = 'published' ORDER BY id ASC");
+        $reports = $reportsStmt ? $reportsStmt->fetchAll() : [];
+    }
+} catch (Throwable $e) {
+    error_log("About Query Notice: " . $e->getMessage());
+}
 
-// Fetch Certificates & Reports
-$reportsStmt = $pdo->query("SELECT * FROM certificates_reports WHERE status = 'active' ORDER BY id DESC");
-$reports = $reportsStmt->fetchAll();
-
-$pageTitle = 'About Us - History, Mission, Vision & Legal Accreditations';
-$pageDesc = 'Discover Seva Foundation\'s journey, founding trustees, NITI Aayog registration, 12A/80G tax exemptions, and annual audit reports.';
+$pageTitle = 'About Us - History, Mission, Vision & Legal Accreditations | Herbalbox Foundation';
+$pageDesc = 'Discover Herbalbox Foundation journey, legal status under Companies Act 2013, CIN: U86901BR2026NPL087665, and community impact.';
 
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';

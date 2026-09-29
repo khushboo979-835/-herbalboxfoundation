@@ -8,32 +8,39 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$doctors = [];
 
-// Filter parameters
-$treatmentFilter = sanitize($_GET['type'] ?? '');
-$specializationSearch = sanitize($_GET['search'] ?? '');
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $treatmentFilter = sanitize($_GET['type'] ?? '');
+        $specializationSearch = sanitize($_GET['search'] ?? '');
 
-$sql = "SELECT d.*, h.name as hospital_name FROM doctors d LEFT JOIN hospitals h ON d.hospital_id = h.id WHERE d.status = 'active'";
-$params = [];
+        $sql = "SELECT d.*, h.name as hospital_name FROM doctors d LEFT JOIN hospitals h ON d.hospital_id = h.id WHERE d.status = 'published'";
+        $params = [];
 
-if (!empty($treatmentFilter)) {
-    $sql .= " AND d.treatment_type = ?";
-    $params[] = $treatmentFilter;
+        if (!empty($treatmentFilter)) {
+            $sql .= " AND (d.specialization LIKE ? OR d.bio LIKE ?)";
+            $params[] = "%{$treatmentFilter}%";
+            $params[] = "%{$treatmentFilter}%";
+        }
+
+        if (!empty($specializationSearch)) {
+            $sql .= " AND (d.name LIKE ? OR d.specialization LIKE ? OR d.city LIKE ?)";
+            $term = "%{$specializationSearch}%";
+            $params[] = $term;
+            $params[] = $term;
+            $params[] = $term;
+        }
+
+        $sql .= " ORDER BY d.is_featured DESC, d.id ASC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+        $doctors = $stmt->fetchAll();
+    }
+} catch (Throwable $e) {
+    error_log("Doctors Query Notice: " . $e->getMessage());
 }
-
-if (!empty($specializationSearch)) {
-    $sql .= " AND (d.name LIKE ? OR d.specialization LIKE ? OR d.city LIKE ?)";
-    $term = "%{$specializationSearch}%";
-    $params[] = $term;
-    $params[] = $term;
-    $params[] = $term;
-}
-
-$sql .= " ORDER BY d.is_featured DESC, d.id ASC";
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
-$doctors = $stmt->fetchAll();
 
 $pageTitle = 'Partner Doctors Directory - Specialists & AYUSH Vaidyas';
 $pageDesc = 'Meet our network of qualified physicians, eye surgeons, pediatricians, Ayurvedic vaidyas, and homeopaths volunteering across Seva Foundation camps.';

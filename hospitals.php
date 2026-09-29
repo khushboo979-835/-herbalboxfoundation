@@ -8,24 +8,31 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$hospitals = [];
 
-// Fetch hospitals and diagnostic centers
-$typeFilter = sanitize($_GET['type'] ?? '');
-$sql = "SELECT * FROM hospitals WHERE status = 'active'";
-$params = [];
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $typeFilter = sanitize($_GET['type'] ?? '');
+        $sql = "SELECT * FROM hospitals WHERE status = 'published'";
+        $params = [];
 
-if (!empty($typeFilter)) {
-    $sql .= " AND type = ?";
-    $params[] = $typeFilter;
+        if (!empty($typeFilter)) {
+            $sql .= " AND (type LIKE ? OR services LIKE ?)";
+            $params[] = "%$typeFilter%";
+            $params[] = "%$typeFilter%";
+        }
+        $sql .= " ORDER BY is_featured DESC, id ASC";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+        $hospitals = $stmt->fetchAll();
+    }
+} catch (Throwable $e) {
+    error_log("Hospitals Query Notice: " . $e->getMessage());
 }
-$sql .= " ORDER BY is_featured DESC, id ASC";
 
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
-$hospitals = $stmt->fetchAll();
-
-$pageTitle = 'Hospital & Diagnostic Partners - Subsidized Care & Surgery Network';
+$pageTitle = 'Hospital & Diagnostic Partners - Subsidized Care & Surgery Network | Herbalbox Foundation';
 $pageDesc = 'Explore our institutional hospital network providing subsidized surgeries, emergency ICU reservations, and discounted diagnostic pathology/radiology tests.';
 
 require_once __DIR__ . '/includes/header.php';

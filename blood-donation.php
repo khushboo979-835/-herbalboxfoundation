@@ -8,12 +8,17 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$bloodCamps = [];
 
-// Fetch blood donation drives
-$stmt = $pdo->prepare("SELECT * FROM events WHERE category = 'blood_donation' AND status = 'upcoming' ORDER BY event_date ASC");
-$stmt->execute();
-$bloodCamps = $stmt->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $stmt = $pdo->query("SELECT * FROM events WHERE status IN ('upcoming', 'published') ORDER BY event_date ASC");
+        $bloodCamps = $stmt ? $stmt->fetchAll() : [];
+    }
+} catch (Throwable $e) {
+    error_log("Blood Donation Query Notice: " . $e->getMessage());
+}
 
 $successMsg = '';
 $errorMsg = '';

@@ -8,37 +8,44 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$events = [];
 
-// Filters
-$catFilter = sanitize($_GET['category'] ?? '');
-$statusFilter = sanitize($_GET['status'] ?? 'upcoming');
-$citySearch = sanitize($_GET['city'] ?? '');
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $catFilter = sanitize($_GET['category'] ?? '');
+        $statusFilter = sanitize($_GET['status'] ?? 'upcoming');
+        $citySearch = sanitize($_GET['city'] ?? '');
 
-$sql = "SELECT * FROM events WHERE 1=1";
-$params = [];
+        $sql = "SELECT * FROM events WHERE 1=1";
+        $params = [];
 
-if (!empty($catFilter)) {
-    $sql .= " AND category = ?";
-    $params[] = $catFilter;
+        if (!empty($catFilter)) {
+            $sql .= " AND (title LIKE ? OR description LIKE ?)";
+            $params[] = "%$catFilter%";
+            $params[] = "%$catFilter%";
+        }
+        if ($statusFilter === 'upcoming') {
+            $sql .= " AND (status = 'published' OR status = 'upcoming' OR event_date >= CURRENT_DATE)";
+        } elseif ($statusFilter === 'past') {
+            $sql .= " AND (status = 'completed' OR event_date < CURRENT_DATE)";
+        }
+        if (!empty($citySearch)) {
+            $sql .= " AND (city LIKE ? OR venue LIKE ? OR title LIKE ?)";
+            $term = "%{$citySearch}%";
+            $params[] = $term;
+            $params[] = $term;
+            $params[] = $term;
+        }
+
+        $sql .= " ORDER BY event_date ASC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+        $events = $stmt->fetchAll();
+    }
+} catch (Throwable $e) {
+    error_log("Events Query Notice: " . $e->getMessage());
 }
-if ($statusFilter === 'upcoming') {
-    $sql .= " AND (status = 'upcoming' OR event_date >= CURRENT_DATE)";
-} elseif ($statusFilter === 'past') {
-    $sql .= " AND (status = 'completed' OR event_date < CURRENT_DATE)";
-}
-if (!empty($citySearch)) {
-    $sql .= " AND (city LIKE ? OR venue LIKE ? OR title LIKE ?)";
-    $term = "%{$citySearch}%";
-    $params[] = $term;
-    $params[] = $term;
-    $params[] = $term;
-}
-
-$sql .= " ORDER BY event_date ASC";
-$stmt = $pdo->prepare($sql);
-$stmt->execute($params);
-$events = $stmt->fetchAll();
 
 $pageTitle = 'Events & Camps - Mega Health Checkups, Blood Drives & Yoga Mahotsavs';
 $pageDesc = 'Discover upcoming and past community welfare events, free eye camps, blood donation drives, school seminars, and meditation camps.';

@@ -8,17 +8,23 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$doctors = [];
+$ayushPrograms = [];
 
-// Fetch AYUSH doctors
-$doctorsStmt = $pdo->query("SELECT * FROM doctors WHERE status = 'active' AND treatment_type IN ('ayurvedic', 'homeopathic', 'allopathic') ORDER BY is_featured DESC, id ASC");
-$doctors = $doctorsStmt->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $doctorsStmt = $pdo->query("SELECT * FROM doctors WHERE status = 'published' ORDER BY is_featured DESC, id ASC");
+        $doctors = $doctorsStmt ? $doctorsStmt->fetchAll() : [];
 
-// Fetch AYUSH programs
-$programsStmt = $pdo->query("SELECT * FROM programs WHERE type = 'ayush' AND status = 'active' ORDER BY sort_order ASC");
-$ayushPrograms = $programsStmt->fetchAll();
+        $programsStmt = $pdo->query("SELECT * FROM healthcare_services WHERE status = 'published' ORDER BY id ASC");
+        $ayushPrograms = $programsStmt ? $programsStmt->fetchAll() : [];
+    }
+} catch (Throwable $e) {
+    error_log("AYUSH Query Notice: " . $e->getMessage());
+}
 
-$pageTitle = 'AYUSH & Medical Care - Ayurveda, Homeopathy & Allopathic Treatment';
+$pageTitle = 'AYUSH & Medical Care - Ayurveda, Homeopathy & Allopathic Treatment | Herbalbox Foundation';
 $pageDesc = 'Discover integrated medical treatments combining authentic Ayurveda, gentle Homeopathy, and evidence-based Allopathy for holistic community health.';
 
 require_once __DIR__ . '/includes/header.php';

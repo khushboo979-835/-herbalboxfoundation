@@ -8,18 +8,23 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$educationPrograms = [];
+$schools = [];
 
-// Fetch education programs
-$stmt = $pdo->prepare("SELECT * FROM programs WHERE type = 'education' AND status = 'active' ORDER BY sort_order ASC, id ASC");
-$stmt->execute();
-$educationPrograms = $stmt->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $stmt = $pdo->query("SELECT * FROM education_programs WHERE status = 'published' ORDER BY id ASC");
+        $educationPrograms = $stmt ? $stmt->fetchAll() : [];
 
-// Fetch school partners
-$schoolsStmt = $pdo->query("SELECT * FROM schools WHERE status = 'active' ORDER BY students_benefited DESC LIMIT 6");
-$schools = $schoolsStmt->fetchAll();
+        $schoolsStmt = $pdo->query("SELECT * FROM schools WHERE status = 'published' ORDER BY id ASC LIMIT 6");
+        $schools = $schoolsStmt ? $schoolsStmt->fetchAll() : [];
+    }
+} catch (Throwable $e) {
+    error_log("Education Query Notice: " . $e->getMessage());
+}
 
-$pageTitle = 'Education Programs (Class 1st to 12th) - NCERT Learning & School Kits';
+$pageTitle = 'Education Programs (Class 1st to 12th) - NCERT Learning & School Kits | Herbalbox Foundation';
 $pageDesc = 'Empowering school students with NCERT curriculum support, study materials, smart classrooms, career counseling, and health awareness.';
 
 require_once __DIR__ . '/includes/header.php';

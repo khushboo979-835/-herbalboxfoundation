@@ -8,12 +8,17 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$yogaEvents = [];
 
-// Fetch Yoga events
-$stmt = $pdo->prepare("SELECT * FROM events WHERE category IN ('yoga_camp', 'meditation_camp') AND status = 'upcoming' ORDER BY event_date ASC");
-$stmt->execute();
-$yogaEvents = $stmt->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $stmt = $pdo->query("SELECT * FROM events WHERE status IN ('upcoming', 'published') ORDER BY event_date ASC");
+        $yogaEvents = $stmt ? $stmt->fetchAll() : [];
+    }
+} catch (Throwable $e) {
+    error_log("Yoga Query Notice: " . $e->getMessage());
+}
 
 $pageTitle = 'Daily Yoga & Meditation Programs - Community Wellness & School Camps';
 $pageDesc = 'Rejuvenate mind, body, and soul with daily morning yoga, Pranayama, guided meditation, and school wellness camps conducted by certified Yoga Acharyas.';

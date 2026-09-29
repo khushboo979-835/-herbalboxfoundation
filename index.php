@@ -8,42 +8,63 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$impactStats = [];
+$featuredPrograms = [];
+$upcomingEvents = [];
+$featuredDoctors = [];
+$featuredSchools = [];
+$testimonials = [];
+$latestBlogs = [];
 
-// Fetch active hero banners
-$bannersStmt = $pdo->query("SELECT * FROM home_banners WHERE status = 'active' ORDER BY sort_order ASC, id ASC LIMIT 3");
-$banners = $bannersStmt->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        // Fetch impact stats
+        $statsStmt = $pdo->query("SELECT * FROM impact_statistics WHERE status = 'published' ORDER BY sort_order ASC, id ASC LIMIT 6");
+        $impactStats = $statsStmt ? $statsStmt->fetchAll() : [];
 
-// Fetch impact stats
-$statsStmt = $pdo->query("SELECT * FROM impact_statistics WHERE status = 'active' ORDER BY sort_order ASC, id ASC LIMIT 6");
-$impactStats = $statsStmt->fetchAll();
+        // Fetch featured healthcare and education programs
+        $programsStmt = $pdo->query("SELECT * FROM programs WHERE status = 'published' AND is_featured = 1 ORDER BY sort_order ASC, id ASC LIMIT 6");
+        $featuredPrograms = $programsStmt ? $programsStmt->fetchAll() : [];
 
-// Fetch featured healthcare and education programs
-$programsStmt = $pdo->query("SELECT * FROM programs WHERE status = 'active' AND is_featured = 1 ORDER BY sort_order ASC, id ASC LIMIT 6");
-$featuredPrograms = $programsStmt->fetchAll();
+        // Fetch upcoming events
+        $eventsStmt = $pdo->query("SELECT * FROM events WHERE status IN ('upcoming', 'published') ORDER BY event_date ASC LIMIT 3");
+        $upcomingEvents = $eventsStmt ? $eventsStmt->fetchAll() : [];
 
-// Fetch upcoming events
-$eventsStmt = $pdo->query("SELECT * FROM events WHERE status = 'upcoming' ORDER BY event_date ASC LIMIT 3");
-$upcomingEvents = $eventsStmt->fetchAll();
+        // Fetch featured partner doctors
+        $doctorsStmt = $pdo->query("SELECT d.*, h.name as hospital_name FROM doctors d LEFT JOIN hospitals h ON d.hospital_id = h.id WHERE d.status = 'published' AND d.is_featured = 1 ORDER BY d.id ASC LIMIT 4");
+        $featuredDoctors = $doctorsStmt ? $doctorsStmt->fetchAll() : [];
 
-// Fetch featured partner doctors
-$doctorsStmt = $pdo->query("SELECT d.*, h.name as hospital_name FROM doctors d LEFT JOIN hospitals h ON d.hospital_id = h.id WHERE d.status = 'active' AND d.is_featured = 1 ORDER BY d.id ASC LIMIT 4");
-$featuredDoctors = $doctorsStmt->fetchAll();
+        // Fetch featured school partners
+        $schoolsStmt = $pdo->query("SELECT * FROM schools WHERE status = 'published' AND is_featured = 1 ORDER BY id ASC LIMIT 3");
+        $featuredSchools = $schoolsStmt ? $schoolsStmt->fetchAll() : [];
 
-// Fetch featured school partners
-$schoolsStmt = $pdo->query("SELECT * FROM schools WHERE status = 'active' AND is_featured = 1 ORDER BY id ASC LIMIT 3");
-$featuredSchools = $schoolsStmt->fetchAll();
+        // Fetch testimonials
+        $testimonialsStmt = $pdo->query("SELECT * FROM testimonials WHERE status = 'published' ORDER BY id DESC LIMIT 4");
+        $testimonials = $testimonialsStmt ? $testimonialsStmt->fetchAll() : [];
 
-// Fetch testimonials
-$testimonialsStmt = $pdo->query("SELECT * FROM testimonials WHERE status = 'active' AND is_featured = 1 ORDER BY id DESC LIMIT 4");
-$testimonials = $testimonialsStmt->fetchAll();
+        // Fetch latest blog posts
+        $blogStmt = $pdo->query("SELECT b.*, c.name as category_name FROM blog_posts b LEFT JOIN blog_categories c ON b.category_id = c.id WHERE b.status = 'published' ORDER BY b.published_at DESC LIMIT 3");
+        $latestBlogs = $blogStmt ? $blogStmt->fetchAll() : [];
+    }
+} catch (Throwable $e) {
+    error_log("Index Query Notice: " . $e->getMessage());
+}
 
-// Fetch latest blog posts
-$blogStmt = $pdo->query("SELECT b.*, c.name as category_name FROM blog_posts b LEFT JOIN blog_categories c ON b.category_id = c.id WHERE b.status = 'published' ORDER BY b.published_at DESC LIMIT 3");
-$latestBlogs = $blogStmt->fetchAll();
+// Fallback defaults for impact stats if database is initializing
+if (empty($impactStats)) {
+    $impactStats = [
+        ['title' => 'Patients Treated', 'count_number' => '150,000+', 'icon' => 'fa-user-md'],
+        ['title' => 'Medical Camps', 'count_number' => '420+', 'icon' => 'fa-clinic-medical'],
+        ['title' => 'Free Cataract Surgeries', 'count_number' => '3,850+', 'icon' => 'fa-eye'],
+        ['title' => 'Students Supported', 'count_number' => '24,000+', 'icon' => 'fa-user-graduate'],
+        ['title' => 'Schools Digitized', 'count_number' => '48+', 'icon' => 'fa-school'],
+        ['title' => 'Blood Units Collected', 'count_number' => '5,600+', 'icon' => 'fa-tint']
+    ];
+}
 
-$pageTitle = getSetting('seo_meta_title', 'Seva Foundation | Healthcare, Education & AYUSH Wellness NGO');
-$pageDesc = getSetting('seo_meta_description', 'Serving humanity through free medical camps, NCERT school education, blood donation drives, and AYUSH healing across India.');
+$pageTitle = 'Herbalbox Foundation | Health • Education • Better Tomorrow';
+$pageDesc = 'Herbalbox Foundation (CIN: U86901BR2026NPL087665) - Dedicated to free medical camps, NCERT digital education, and community development across Bihar.';
 
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';

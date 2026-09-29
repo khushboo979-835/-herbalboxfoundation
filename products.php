@@ -8,11 +8,17 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$products = [];
 
-// Fetch products
-$stmt = $pdo->query("SELECT p.*, c.name as category_name FROM products p LEFT JOIN product_categories c ON p.category_id = c.id WHERE p.status = 'active' ORDER BY p.is_featured DESC, p.id ASC");
-$products = $stmt->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $stmt = $pdo->query("SELECT p.*, c.name as category_name FROM products p LEFT JOIN product_categories c ON p.category_id = c.id WHERE p.status = 'published' ORDER BY p.is_featured DESC, p.id ASC");
+        $products = $stmt ? $stmt->fetchAll() : [];
+    }
+} catch (Throwable $e) {
+    error_log("Products Query Notice: " . $e->getMessage());
+}
 
 $pageTitle = 'Ayurvedic Herbal Store - Pure Kwath, Oils & Supplements';
 $pageDesc = 'Order authentic Ministry of AYUSH approved herbal remedies, Ayush Kwath, Triphala, and pain relief oils with 100% of proceeds supporting free medical camps.';

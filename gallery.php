@@ -8,16 +8,20 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/config/config.php';
 
-$pdo = Database::getConnection();
+$cats = [];
+$images = [];
+$videos = [];
 
-// Fetch categories
-$cats = $pdo->query("SELECT * FROM gallery_categories WHERE status = 'active' ORDER BY sort_order ASC")->fetchAll();
-
-// Fetch images
-$images = $pdo->query("SELECT gi.*, gc.slug as cat_slug FROM gallery_images gi LEFT JOIN gallery_categories gc ON gi.category_id = gc.id WHERE gi.status = 'active' ORDER BY gi.sort_order ASC, gi.id DESC")->fetchAll();
-
-// Fetch videos
-$videos = $pdo->query("SELECT * FROM videos WHERE status = 'active' ORDER BY sort_order ASC, id DESC")->fetchAll();
+try {
+    $pdo = Database::getConnection();
+    if ($pdo) {
+        $cats = $pdo->query("SELECT * FROM gallery_categories WHERE status = 'published' ORDER BY sort_order ASC")->fetchAll() ?: [];
+        $images = $pdo->query("SELECT gi.*, gc.slug as cat_slug FROM gallery_images gi LEFT JOIN gallery_categories gc ON gi.category_id = gc.id WHERE gi.status = 'published' ORDER BY gi.sort_order ASC, gi.id DESC")->fetchAll() ?: [];
+        $videos = $pdo->query("SELECT * FROM videos WHERE status = 'published' ORDER BY sort_order ASC, id DESC")->fetchAll() ?: [];
+    }
+} catch (Throwable $e) {
+    error_log("Gallery Query Notice: " . $e->getMessage());
+}
 
 $pageTitle = 'Photo & Video Gallery - Medical Camps, School Programs & Yoga';
 $pageDesc = 'Explore authentic photographic and video archives from our free health checkup camps, blood donation drives, school MOUs, and youth empowerment workshops.';
