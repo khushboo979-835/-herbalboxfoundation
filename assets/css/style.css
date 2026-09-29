@@ -4,31 +4,31 @@
  */
 
 :root {
-  --primary: #0d9488;
-  --primary-hover: #0f766e;
-  --primary-light: #ccfbf1;
-  --primary-dark: #115e59;
-  --secondary: #0284c7;
-  --secondary-hover: #0369a1;
-  --secondary-light: #e0f2fe;
+  --primary: #16a34a;
+  --primary-hover: #15803d;
+  --primary-light: #dcfce7;
+  --primary-dark: #14532d;
+  --secondary: #1e40af;
+  --secondary-hover: #1d4ed8;
+  --secondary-light: #dbeafe;
   --accent: #f59e0b;
   --accent-hover: #d97706;
   --success: #10b981;
   --danger: #ef4444;
-  --dark: #0f172a;
+  --dark: #091e32;
   --slate: #334155;
   --muted: #64748b;
   --light: #f8fafc;
   --border-color: #e2e8f0;
   --card-bg: #ffffff;
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -1px rgba(0,0,0,0.04);
-  --shadow-lg: 0 10px 25px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.03);
-  --shadow-hover: 0 20px 30px -10px rgba(13, 148, 136, 0.2);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-md: 0 6px 16px -2px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 35px -8px rgba(15, 23, 42, 0.12);
+  --shadow-hover: 0 22px 45px -10px rgba(22, 163, 74, 0.22);
+  --transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Base Reset & Typography */
@@ -771,6 +771,106 @@ a:hover {
   box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.15);
 }
 
+/* Brand Logo & Gradients */
+.brand-logo-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.brand-logo-img:hover {
+  transform: scale(1.1) rotate(4deg);
+}
+
+.text-gradient-primary {
+  background: linear-gradient(135deg, #15803d 0%, #1e40af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-amber {
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.brand-tagline {
+  font-size: 0.72rem;
+  letter-spacing: 0.75px;
+  color: #64748b;
+  display: block;
+}
+
+/* 3D Dribbble Hover Lift & Glassmorphism */
+.hover-lift {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.015);
+  box-shadow: var(--shadow-hover) !important;
+  border-color: rgba(22, 163, 74, 0.35) !important;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+}
+
+.hero-gradient-dark {
+  background: radial-gradient(circle at top right, #1e3a8a 0%, #091e32 60%, #020b14 100%);
+}
+
+/* Keyframe Animations */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5); }
+  70% { box-shadow: 0 0 0 16px rgba(22, 163, 74, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); }
+}
+
+.animate-float {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulseGlow 2s infinite;
+}
+
+/* Floating Emergency Call Button */
+.floating-call {
+  position: fixed;
+  bottom: 26px;
+  left: 26px;
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 8px 25px rgba(22, 163, 74, 0.45);
+  z-index: 1000;
+  transition: var(--transition);
+  animation: pulseGlow 2.5s infinite;
+}
+
+.floating-call:hover {
+  transform: scale(1.12);
+  color: white;
+  box-shadow: 0 12px 30px rgba(22, 163, 74, 0.65);
+}
+
 /* Responsive Overrides */
 @media (max-width: 991px) {
   .hero-title {
@@ -781,5 +881,19 @@ a:hover {
   }
   .impact-section {
     margin-top: 30px;
+  }
+  .floating-call {
+    bottom: 92px;
+    left: 20px;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+  .floating-whatsapp {
+    bottom: 24px;
+    right: 20px;
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
   }
 }

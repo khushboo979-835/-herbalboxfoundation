@@ -936,18 +936,18 @@ INSERT INTO `admin_sessions` (`id`, `admin_id`, `session_token`, `ip_address`, `
 -- ----------------------------------------------------------------------------
 TRUNCATE TABLE `site_settings`;
 INSERT INTO `site_settings` (`id`, `site_name`, `tagline`, `logo`, `favicon`, `email`, `phone`, `whatsapp`, `alternate_phone`, `address`, `city`, `state`, `pincode`, `google_map_url`, `office_hours`, `footer_description`, `copyright_text`, `default_meta_title`, `default_meta_description`, `default_og_image`) VALUES
-(1, 'Herbalbox & Seva Arogya Foundation', 'Empowering Lives Through Integrative Healthcare, Quality Education & Rural Welfare', 'assets/images/logo.png', 'assets/images/favicon.png', 'contact@herbalboxfoundation.org', '+91 98765 43210', '+919876543210', '+91 11 2345 6789', 'Plot No. 45, Institutional Area, Sector 62', 'Noida', 'Uttar Pradesh', '201309', 'https://maps.google.com/?q=Noida+Sector+62', 'Mon - Sat: 9:00 AM - 6:30 PM (Emergency 24x7)', 'Herbalbox & Seva Arogya Foundation is a registered non-profit trust dedicated to holistic healthcare, NCERT-aligned digital education, free mobile medical camps, and community development across underprivileged regions.', '© 2026 Herbalbox & Seva Arogya Foundation. All Rights Reserved. Reg. Under 80G & 12A.', 'Herbalbox Foundation | Healthcare, Education & Rural Welfare NGO', 'Empowering communities through free healthcare camps, AYUSH wellness, NCERT school education, and disaster relief.', 'assets/images/og-default.jpg');
+(1, 'Herbalbox Foundation', 'Health • Education • Better Tomorrow', 'assets/images/logo.png', 'assets/images/favicon.png', 'contact@herbalboxfoundation.org', '+91 92340 55507', '+919234055507', '9234055507', 'Herbalbox Foundation, Near Birla Open Minds International School, Konhara Road, Hajipur', 'Hajipur', 'Bihar', '844101', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3596.3776461942125!2d85.2132!3d25.6885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed586c9945a00b%3A0x6a2c3a52e18d6e99!2sBirla%20Open%20Minds%20International%20School%2C%20Hajipur!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin', 'Mon - Sat: 9:00 AM - 6:30 PM (Support 24x7)', 'Herbalbox Foundation is a professionally established organization incorporated under the Companies Act, 2013, with its registered office in Patna, Bihar (CIN: U86901BR2026NPL087665). We are committed to creating meaningful social impact through healthcare, NCERT education, and community empowerment.', '© 2026 Herbalbox Foundation. All Rights Reserved. CIN: U86901BR2026NPL087665.', 'Herbalbox Foundation | Health • Education • Better Tomorrow', 'Herbalbox Foundation is incorporated under the Companies Act, 2013 (CIN: U86901BR2026NPL087665). Dedicated to free medical camps, NCERT smart education, and rural development.', 'assets/images/og-default.jpg');
 
 -- ----------------------------------------------------------------------------
 -- 4. Social Links
 -- ----------------------------------------------------------------------------
 TRUNCATE TABLE `social_links`;
 INSERT INTO `social_links` (`id`, `platform`, `url`, `icon`, `status`, `sort_order`) VALUES
-(1, 'facebook', 'https://facebook.com/herbalboxfoundation', 'fab fa-facebook-f', 'published', 1),
-(2, 'instagram', 'https://instagram.com/herbalboxfoundation', 'fab fa-instagram', 'published', 2),
-(3, 'youtube', 'https://youtube.com/@herbalboxfoundation', 'fab fa-youtube', 'published', 3),
-(4, 'twitter', 'https://twitter.com/herbalboxngo', 'fab fa-x-twitter', 'published', 4),
-(5, 'whatsapp', 'https://wa.me/919876543210', 'fab fa-whatsapp', 'published', 5),
+(1, 'facebook', 'https://www.facebook.com/profile.php?id=61594374894081', 'fab fa-facebook-f', 'published', 1),
+(2, 'instagram', 'https://www.instagram.com/herbalboxfoundation/', 'fab fa-instagram', 'published', 2),
+(3, 'whatsapp', 'https://wa.me/919234055507', 'fab fa-whatsapp', 'published', 3),
+(4, 'youtube', 'https://youtube.com/@herbalboxfoundation', 'fab fa-youtube', 'published', 4),
+(5, 'twitter', 'https://twitter.com/herbalboxngo', 'fab fa-x-twitter', 'published', 5),
 (6, 'linkedin', 'https://linkedin.com/company/herbalboxfoundation', 'fab fa-linkedin-in', 'published', 6);
 
 -- ----------------------------------------------------------------------------
@@ -956,20 +956,20 @@ INSERT INTO `social_links` (`id`, `platform`, `url`, `icon`, `status`, `sort_ord
 TRUNCATE TABLE `about_us`;
 INSERT INTO `about_us` (`id`, `title`, `short_description`, `full_description`, `history`, `mission`, `vision`, `objectives`, `values`, `founder_name`, `founder_designation`, `founder_image`, `registration_number`, `registration_details`, `featured_image`, `status`) VALUES
 (1, 
-'Bridging the Healthcare and Education Divide', 
-'Serving Over 150,000 Lives Across 180+ Villages and Urban Slums through free medical camps, AYUSH healthcare, and NCERT digital education.', 
-'Founded with the conviction that quality healthcare and modern education are fundamental human rights, Herbalbox & Seva Arogya Foundation operates at the grassroots level. We bring together certified allopathic doctors, traditional AYUSH practitioners, educationists, and corporate partners to deliver sustainable community welfare.', 
-'Established in 2018 as a small volunteer health drive in rural North India, the foundation has expanded into a multi-state humanitarian initiative with dedicated mobile diagnostic vans, 12 partner hospitals, and 45 affiliated schools.', 
-'To conduct 500+ free medical, eye, dental, and AYUSH wellness camps annually; to partner with 100+ schools for smart digital NCERT classrooms; and to ensure zero preventable disease deaths in our operational clusters.', 
-'To build a healthy, educated, and self-reliant society where every underprivileged child receives holistic education and every rural family has access to free, compassionate healthcare.', 
-'1. Expand mobile medical clinics to 50 underserved rural blocks. 2. Implement NCERT smart digital education across 100 rural schools. 3. Facilitate 5,000 free cataract surgeries annually. 4. Promote classical AYUSH wellness and preventive lifestyle.', 
-'Integrity, Compassion, Transparency, Inclusiveness, and Scientific Rigour in Community Service.', 
-'Dr. Arvind Sharma', 
-'Managing Trustee & Chief Medical Advisor', 
-'assets/images/team/founder.jpg', 
-'TRUST/REG/2018/DEL/9482 (80G & 12A Certified)', 
-'Registered Public Charitable Trust under the Indian Trusts Act, 1882. Valid 12A, 80G Tax Exemption, and MCA Form CSR-1 registrations.', 
-'assets/images/about/about-main.jpg', 
+'Herbalbox Foundation — Working Together for a Better Tomorrow', 
+'Herbalbox Foundation is a professionally established organization incorporated under the Companies Act, 2013, with its registered office in Patna, Bihar.', 
+'We are committed to creating meaningful social impact through community welfare, awareness, social development, empowerment and sustainable initiatives. Our mission is to work with communities and contribute towards building a more inclusive, responsible and empowered society. Working with certified medical professionals, educators, and community volunteers, Herbalbox Foundation executes free multi-specialty medical camps, blood donation initiatives, eye and dental care drives, AYUSH wellness programs, and digital NCERT classroom modernization across Bihar and adjoining regions.', 
+'Herbalbox Foundation was incorporated on 29 August 2026 under the Companies Act, 2013 as a Company Limited by Guarantee (CIN: U86901BR2026NPL087665). Rooted in the heart of Bihar, the foundation bridges critical gaps in accessible primary healthcare, traditional AYUSH medicine, and quality digital school education.', 
+'Our mission is to work with communities and contribute towards building a more inclusive, responsible and empowered society through accessible healthcare, quality education, and grassroots social development.', 
+'To serve society with integrity, compassion and responsibility while creating opportunities for positive and sustainable change.', 
+'1. Conduct free multi-specialty, eye, dental, and blood donation camps across rural districts. 2. Implement NCERT smart classrooms and STEM labs in government and rural schools. 3. Provide free and subsidized medicines and promote traditional AYUSH wellness. 4. Foster youth empowerment and rural skill development.', 
+'Integrity, Compassion, Responsibility, Transparency, Inclusiveness, and Community Empowerment.', 
+'Governing Board of Trustees', 
+'Board of Directors & Management Council', 
+'assets/images/logo.png', 
+'CIN: U86901BR2026NPL087665', 
+'Incorporated on 29 August 2026 under the Companies Act, 2013. Legal Status: Company Limited by Guarantee. Registered Office: Patna, Bihar, India. Operational Campus: Near Birla Open Minds International School, Konhara Road, Hajipur, Vaishali, Bihar - 844101.', 
+'assets/images/logo.png', 
 'published');
 
 -- ----------------------------------------------------------------------------

@@ -50,34 +50,41 @@ require_once __DIR__ . '/includes/navbar.php';
 ?>
 
 <!-- 1. Hero Section -->
-<section class="hero-slider-section">
-    <div class="container">
+<section class="hero-slider-section position-relative overflow-hidden">
+    <div class="container py-4">
         <div class="row align-items-center g-5">
             <div class="col-lg-7 hero-content">
-                <span class="hero-badge">
-                    <i class="fas fa-certificate text-warning"></i> <?= e($banners[0]['badge_text'] ?? 'Registered National NGO (80G / 12A / CSR-1)'); ?>
-                </span>
-                <h1 class="hero-title">
-                    <?= e($banners[0]['title'] ?? 'Serving Humanity Through Healthcare, Education & Community Welfare'); ?>
+                <div class="d-inline-flex align-items-center gap-2 mb-3 bg-white bg-opacity-10 px-3 py-2 rounded-pill border border-white border-opacity-20 shadow-sm backdrop-blur">
+                    <span class="badge bg-warning text-dark fw-bold"><i class="fas fa-shield-alt me-1"></i> CIN: U86901BR2026NPL087665</span>
+                    <span class="text-white small fw-semibold">Incorporated under Companies Act, 2013</span>
+                </div>
+                <h1 class="hero-title fw-bold text-white mb-3">
+                    Herbalbox Foundation <br>
+                    <span class="text-gradient-amber">Working Together for a Better Tomorrow</span>
                 </h1>
-                <p class="hero-subtitle">
-                    <?= e($banners[0]['subtitle'] ?? 'Working together to build a healthier, educated, and empowered society through free medical camps, school MOUs, and AYUSH care.'); ?>
+                <p class="hero-subtitle text-white-50 lead mb-4">
+                    Committed to creating meaningful social impact through community welfare, free multi-specialty medical camps, NCERT digital education, and sustainable empowerment across Bihar & Eastern India.
                 </p>
                 <div class="d-flex flex-wrap gap-3">
-                    <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-ngo-donate btn-lg">
-                        <i class="fas fa-heart"></i> Donate Now
+                    <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-warning btn-lg fw-bold text-dark px-4 shadow-sm hover-lift">
+                        <i class="fas fa-heart text-danger me-1"></i> Donate (80G Tax-Exempt)
                     </a>
-                    <a href="<?= BASE_URL; ?>/volunteer.php" class="btn btn-ngo-primary btn-lg">
-                        <i class="fas fa-user-plus me-1"></i> Become a Volunteer
+                    <a href="<?= BASE_URL; ?>/volunteer.php" class="btn btn-success btn-lg fw-bold px-4 shadow-sm hover-lift">
+                        <i class="fas fa-user-plus me-1"></i> Join as Volunteer
                     </a>
-                    <a href="<?= BASE_URL; ?>/partnerships.php" class="btn btn-outline-light btn-lg">
-                        <i class="fas fa-handshake me-1"></i> Partner With Us
+                    <a href="tel:9234055507" class="btn btn-outline-light btn-lg px-4 hover-lift">
+                        <i class="fas fa-phone-alt me-1 text-warning"></i> +91 92340 55507
                     </a>
                 </div>
             </div>
             <div class="col-lg-5 text-center">
-                <div class="hero-card-img p-2 bg-white rounded-4 shadow-lg">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80" alt="Seva Healthcare Camp" class="img-fluid rounded-4" style="min-height: 340px; object-fit: cover; width: 100%;">
+                <div class="hero-card-img p-4 bg-white bg-opacity-95 rounded-4 shadow-lg border border-2 border-white hover-lift animate-float" style="backdrop-filter: blur(10px);">
+                    <img src="<?= BASE_URL; ?>/assets/images/logo.png" alt="Herbalbox Foundation" class="img-fluid rounded-4 mb-3" style="max-height: 280px; width: auto; object-fit: contain;">
+                    <h5 class="fw-bold text-dark mb-1">HERBALBOX FOUNDATION</h5>
+                    <p class="text-success fw-bold text-uppercase small mb-2 tracking-wider">Health • Education • Better Tomorrow</p>
+                    <div class="d-flex justify-content-center gap-2 small text-muted">
+                        <span><i class="fas fa-map-marker-alt text-primary me-1"></i> Hajipur & Patna, Bihar</span>
+                    </div>
                 </div>
             </div>
         </div>

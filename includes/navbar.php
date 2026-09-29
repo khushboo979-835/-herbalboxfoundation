@@ -6,12 +6,11 @@
 declare(strict_types=1);
 
 $currentPage = basename($_SERVER['PHP_SELF']);
-$phone = getSetting('site_phone', '+91 98765 43210');
-$email = getSetting('site_email', 'info@ngoseva.org');
-$siteName = getSetting('site_name', 'Seva Arogya & Shiksha Foundation');
-$tagline = getSetting('site_tagline', 'Serving Humanity Through Healthcare & Education');
-$nitiId = getSetting('niti_aayog_id', 'DL/2018/0192847');
-$tax80g = getSetting('tax_exemption_80g', '80G-CIT(E)/DEL/2019-20');
+$phone = getSetting('site_phone', '+91 92340 55507');
+$email = getSetting('site_email', 'contact@herbalboxfoundation.org');
+$siteName = getSetting('site_name', 'Herbalbox Foundation');
+$tagline = getSetting('site_tagline', 'Health • Education • Better Tomorrow');
+$cinNumber = getSetting('cin_number', 'U86901BR2026NPL087665');
 ?>
 
 <!-- Top Announcement Bar -->
@@ -19,20 +18,19 @@ $tax80g = getSetting('tax_exemption_80g', '80G-CIT(E)/DEL/2019-20');
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-7 d-flex align-items-center gap-3">
-                <span class="badge-reg"><i class="fas fa-shield-alt me-1"></i> NITI Aayog: <?= e($nitiId); ?></span>
-                <span class="badge-reg"><i class="fas fa-hand-holding-usd me-1"></i> 80G Tax Exempt</span>
+                <span class="badge-reg"><i class="fas fa-certificate text-warning me-1"></i> CIN: <?= e($cinNumber); ?></span>
+                <span class="badge-reg"><i class="fas fa-building text-info me-1"></i> Patna, Bihar</span>
                 <span class="text-white-50">|</span>
-                <a href="tel:<?= e(str_replace(' ', '', $phone)); ?>"><i class="fas fa-phone-alt me-1 text-primary"></i> <?= e($phone); ?></a>
-                <a href="mailto:<?= e($email); ?>"><i class="fas fa-envelope me-1 text-primary"></i> <?= e($email); ?></a>
+                <a href="tel:9234055507"><i class="fas fa-phone-alt me-1 text-success"></i> +91 92340 55507</a>
+                <a href="mailto:<?= e($email); ?>"><i class="fas fa-envelope me-1 text-info"></i> <?= e($email); ?></a>
             </div>
             <div class="col-md-5 text-end d-flex justify-content-end align-items-center gap-3">
-                <a href="<?= BASE_URL; ?>/volunteer.php" class="text-white"><i class="fas fa-user-plus me-1 text-warning"></i> Join as Volunteer</a>
+                <a href="https://wa.me/919234055507" target="_blank" class="text-success fw-bold"><i class="fab fa-whatsapp me-1"></i> +91 92340 55507</a>
                 <span class="text-white-50">|</span>
                 <div class="d-inline-flex gap-2">
-                    <?php if ($fb = getSetting('facebook_url')): ?><a href="<?= e($fb); ?>" target="_blank"><i class="fab fa-facebook-f"></i></a><?php endif; ?>
-                    <?php if ($ig = getSetting('instagram_url')): ?><a href="<?= e($ig); ?>" target="_blank"><i class="fab fa-instagram"></i></a><?php endif; ?>
-                    <?php if ($yt = getSetting('youtube_url')): ?><a href="<?= e($yt); ?>" target="_blank"><i class="fab fa-youtube"></i></a><?php endif; ?>
-                    <?php if ($tw = getSetting('twitter_url')): ?><a href="<?= e($tw); ?>" target="_blank"><i class="fab fa-x-twitter"></i></a><?php endif; ?>
+                    <a href="https://www.facebook.com/profile.php?id=61594374894081" target="_blank" title="Facebook"><i class="fab fa-facebook-f text-primary"></i></a>
+                    <a href="https://www.instagram.com/herbalboxfoundation/" target="_blank" title="Instagram"><i class="fab fa-instagram text-danger"></i></a>
+                    <a href="https://wa.me/919234055507" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp text-success"></i></a>
                 </div>
             </div>
         </div>
@@ -40,15 +38,13 @@ $tax80g = getSetting('tax_exemption_80g', '80G-CIT(E)/DEL/2019-20');
 </div>
 
 <!-- Main Sticky Navbar -->
-<nav class="navbar navbar-expand-xl navbar-custom">
+<nav class="navbar navbar-expand-xl navbar-custom sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="<?= BASE_URL; ?>/index.php">
-            <div class="logo-icon">
-                <i class="fas fa-hands-holding-child"></i>
-            </div>
+        <a class="navbar-brand d-flex align-items-center gap-2" href="<?= BASE_URL; ?>/index.php">
+            <img src="<?= BASE_URL; ?>/assets/images/logo.png" alt="Herbalbox Foundation" class="brand-logo-img shadow-sm rounded-circle">
             <div class="brand-text">
-                <h1><?= e($siteName); ?></h1>
-                <span><?= e($tagline); ?></span>
+                <h1 class="mb-0 fw-bold fs-4 text-gradient-primary">HERBALBOX FOUNDATION</h1>
+                <span class="brand-tagline fw-semibold text-uppercase tracking-wider">Health • Education • Better Tomorrow</span>
             </div>
         </a>
 

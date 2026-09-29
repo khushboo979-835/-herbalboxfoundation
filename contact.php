@@ -59,26 +59,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$siteAddress = getSetting('site_address', 'Seva Bhavan, Plot 42, Institutional Area, Sector 14, New Delhi - 110001');
-$sitePhone = getSetting('site_phone', '+91 98765 43210');
-$siteAltPhone = getSetting('site_alt_phone', '+91 11 2345 6789');
-$siteEmail = getSetting('site_email', 'info@ngoseva.org');
-$officeHours = getSetting('office_hours', 'Mon - Sat: 9:00 AM - 6:00 PM (Sunday Closed for Camps)');
-$mapEmbed = getSetting('google_map_embed', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224345.83923192776!2d77.0688975472578!3d28.52758200617607!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sNew%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1650000000000!5m2!1sen!2sin');
+$siteAddress = getSetting('site_address', 'Herbalbox Foundation, Near Birla Open Minds International School, Konhara Road, Hajipur, Vaishali, Bihar - 844101');
+$regAddress = 'Patna, Bihar, India (CIN: U86901BR2026NPL087665)';
+$sitePhone = getSetting('site_phone', '+91 92340 55507');
+$siteEmail = getSetting('site_email', 'contact@herbalboxfoundation.org');
+$officeHours = getSetting('office_hours', 'Mon - Sat: 9:00 AM - 6:30 PM (Emergency Support 24x7)');
+$mapEmbed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3596.3776461942125!2d85.2132!3d25.6885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed586c9945a00b%3A0x6a2c3a52e18d6e99!2sBirla%20Open%20Minds%20International%20School%2C%20Hajipur!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin';
 
-$pageTitle = 'Contact Us - Office Address, Helpline & Google Maps';
-$pageDesc = 'Get in touch with Seva Arogya & Shiksha Foundation. Reach our healthcare helpdesk, partnerships office, and emergency blood helpline.';
+$pageTitle = 'Contact Us - Herbalbox Foundation | Hajipur & Patna Office';
+$pageDesc = 'Get in touch with Herbalbox Foundation. Campus: Near Birla Open Minds International School, Konhara Road, Hajipur, Bihar - 844101. Phone: +91 92340 55507.';
 
 require_once __DIR__ . '/includes/header.php';
 require_once __DIR__ . '/includes/navbar.php';
 ?>
 
 <!-- Banner -->
-<div class="bg-dark text-white py-5 position-relative" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+<div class="bg-dark text-white py-5 position-relative hero-gradient-dark">
     <div class="container py-4">
-        <span class="badge bg-primary-subtle text-primary mb-2 px-3 py-1"><i class="fas fa-headset me-1"></i> Helpdesk & Support</span>
-        <h1 class="display-5 fw-bold text-white mb-3">Get in Touch with Our Foundation</h1>
-        <p class="lead text-white-50 max-w-700">Have an inquiry regarding our free health checkup camps, school MOUs, blood donation, or 80G tax receipts? Our team is here to assist you.</p>
+        <span class="badge bg-success text-white mb-2 px-3 py-2 rounded-pill shadow-sm"><i class="fas fa-headset me-1"></i> 24x7 Foundation Helpdesk</span>
+        <h1 class="display-5 fw-bold text-white mb-3">Get in Touch with Herbalbox Foundation</h1>
+        <p class="lead text-white-50 max-w-700">Connect with us for free healthcare camps, NCERT digital school collaborations, blood donation drives, or volunteer opportunities across Bihar.</p>
     </div>
 </div>
 
@@ -88,56 +88,69 @@ require_once __DIR__ . '/includes/navbar.php';
         <div class="row g-5">
             <!-- Left Info -->
             <div class="col-lg-5">
-                <div class="p-4 p-md-5 bg-white rounded-4 shadow-sm border h-100">
-                    <h4 class="fw-bold mb-4">Contact Information</h4>
+                <div class="p-4 p-md-5 bg-white rounded-4 shadow-sm border h-100 hover-lift">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <img src="<?= BASE_URL; ?>/assets/images/logo.png" alt="Herbalbox Foundation" class="rounded-circle shadow-sm" style="width: 60px; height: 60px; object-fit: contain;">
+                        <div>
+                            <h4 class="fw-bold mb-0 text-gradient-primary">Herbalbox Foundation</h4>
+                            <small class="text-muted text-uppercase fw-semibold">Health • Education • Better Tomorrow</small>
+                        </div>
+                    </div>
 
                     <div class="d-flex align-items-start gap-3 mb-4">
-                        <div class="bg-primary-subtle text-primary p-3 rounded-circle fs-5">
+                        <div class="bg-primary-subtle text-primary p-3 rounded-circle fs-5 shadow-sm">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div>
-                            <h6 class="fw-bold mb-1">Headquarters</h6>
-                            <p class="small text-muted mb-0"><?= e($siteAddress); ?></p>
+                            <h6 class="fw-bold mb-1">Operational Campus</h6>
+                            <p class="small text-muted mb-1"><?= e($siteAddress); ?></p>
+                            <small class="text-secondary d-block"><strong>Registered Office:</strong> <?= e($regAddress); ?></small>
                         </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-3 mb-4">
-                        <div class="bg-success-subtle text-success p-3 rounded-circle fs-5">
+                        <div class="bg-success-subtle text-success p-3 rounded-circle fs-5 shadow-sm">
                             <i class="fas fa-phone-alt"></i>
                         </div>
                         <div>
-                            <h6 class="fw-bold mb-1">Phone & Emergency Helpline</h6>
-                            <p class="small text-muted mb-0"><?= e($sitePhone); ?><br><?= e($siteAltPhone); ?></p>
+                            <h6 class="fw-bold mb-1">Helpline & WhatsApp</h6>
+                            <p class="small text-muted mb-0">
+                                <a href="tel:9234055507" class="fw-bold text-dark text-decoration-none">+91 92340 55507</a><br>
+                                <a href="https://wa.me/919234055507" target="_blank" class="text-success fw-bold text-decoration-none"><i class="fab fa-whatsapp me-1"></i> WhatsApp: +91 92340 55507</a>
+                            </p>
                         </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-3 mb-4">
-                        <div class="bg-info-subtle text-info p-3 rounded-circle fs-5">
+                        <div class="bg-info-subtle text-info p-3 rounded-circle fs-5 shadow-sm">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div>
-                            <h6 class="fw-bold mb-1">Email Addresses</h6>
-                            <p class="small text-muted mb-0"><?= e($siteEmail); ?><br><?= e(getSetting('donation_email', 'donate@ngoseva.org')); ?></p>
+                            <h6 class="fw-bold mb-1">Official Email</h6>
+                            <p class="small text-muted mb-0">
+                                <a href="mailto:contact@herbalboxfoundation.org" class="text-decoration-none"><?= e($siteEmail); ?></a><br>
+                                <a href="mailto:info@herbalboxfoundation.org" class="text-decoration-none text-muted">info@herbalboxfoundation.org</a>
+                            </p>
                         </div>
                     </div>
 
                     <div class="d-flex align-items-start gap-3 mb-4">
-                        <div class="bg-warning-subtle text-warning p-3 rounded-circle fs-5">
+                        <div class="bg-warning-subtle text-warning p-3 rounded-circle fs-5 shadow-sm">
                             <i class="fas fa-clock"></i>
                         </div>
                         <div>
-                            <h6 class="fw-bold mb-1">Office Hours</h6>
+                            <h6 class="fw-bold mb-1">Working Hours</h6>
                             <p class="small text-muted mb-0"><?= e($officeHours); ?></p>
                         </div>
                     </div>
 
                     <div class="pt-3 border-top">
-                        <h6 class="fw-bold mb-2">Connect on Social Media</h6>
-                        <div class="footer-social">
-                            <?php if ($fb = getSetting('facebook_url')): ?><a href="<?= e($fb); ?>" target="_blank" class="bg-primary text-white"><i class="fab fa-facebook-f"></i></a><?php endif; ?>
-                            <?php if ($ig = getSetting('instagram_url')): ?><a href="<?= e($ig); ?>" target="_blank" class="bg-danger text-white"><i class="fab fa-instagram"></i></a><?php endif; ?>
-                            <?php if ($yt = getSetting('youtube_url')): ?><a href="<?= e($yt); ?>" target="_blank" class="bg-danger text-white"><i class="fab fa-youtube"></i></a><?php endif; ?>
-                            <?php if ($tw = getSetting('twitter_url')): ?><a href="<?= e($tw); ?>" target="_blank" class="bg-dark text-white"><i class="fab fa-x-twitter"></i></a><?php endif; ?>
+                        <h6 class="fw-bold mb-2">Connect on Social Channels</h6>
+                        <div class="d-flex gap-2">
+                            <a href="https://www.facebook.com/profile.php?id=61594374894081" target="_blank" class="btn btn-outline-primary btn-sm rounded-circle"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/herbalboxfoundation/" target="_blank" class="btn btn-outline-danger btn-sm rounded-circle"><i class="fab fa-instagram"></i></a>
+                            <a href="https://wa.me/919234055507" target="_blank" class="btn btn-outline-success btn-sm rounded-circle"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://youtube.com/@herbalboxfoundation" target="_blank" class="btn btn-outline-danger btn-sm rounded-circle"><i class="fab fa-youtube"></i></a>
                         </div>
                     </div>
                 </div>
