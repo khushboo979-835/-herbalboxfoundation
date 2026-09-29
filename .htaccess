@@ -1,0 +1,29 @@
+# ==========================================================
+# NGO Website - Master Apache .htaccess Configuration
+# ==========================================================
+
+# Disable Directory Browsing
+Options -Indexes
+
+# Follow Symbolic Links
+Options +FollowSymLinks
+
+# Prevent viewing of sensitive configuration files
+<FilesMatch "^(config\.php|database\.php|constants\.php|\.env|\.git|schema\.sql)">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Custom Error Pages
+ErrorDocument 404 /404.php
+
+# PHP Charset Default
+AddDefaultCharset UTF-8
