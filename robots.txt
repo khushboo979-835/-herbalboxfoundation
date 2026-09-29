@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /config/
-Disallow: /includes/
 Disallow: /database/
+Disallow: /includes/
 
-Sitemap: https://ngoseva.org/sitemap.xml
+Sitemap: https://herbalboxfoundation.com/sitemap.xml
