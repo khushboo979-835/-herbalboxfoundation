@@ -74,10 +74,11 @@ $cinNumber = getSetting('cin_number', 'U86901BR2026NPL087665');
                 
                 <!-- Causes Dropdown -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle <?= in_array($currentPage, ['healthcare.php', 'education.php', 'ayush.php', 'yoga.php', 'medical-camps.php', 'blood-donation.php']) ? 'active' : ''; ?>" href="#" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle <?= in_array($currentPage, ['causes.php', 'healthcare.php', 'education.php', 'ayush.php', 'yoga.php', 'medical-camps.php', 'blood-donation.php']) ? 'active' : ''; ?>" href="<?= BASE_URL; ?>/causes.php" role="button" data-bs-toggle="dropdown">
                         CAUSES
                     </a>
                     <ul class="dropdown-menu shadow-lg border-0 rounded-3">
+                        <li><a class="dropdown-item py-2 fw-bold text-dark border-bottom mb-1" href="<?= BASE_URL; ?>/causes.php"><i class="fas fa-th-large text-warning me-2"></i> All Causes Overview</a></li>
                         <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/healthcare.php"><i class="fas fa-stethoscope text-primary me-2"></i> Healthcare Services</a></li>
                         <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/education.php"><i class="fas fa-graduation-cap text-success me-2"></i> NCERT School Support</a></li>
                         <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/ayush.php"><i class="fas fa-leaf text-warning me-2"></i> AYUSH & Herbal Medicine</a></li>
@@ -90,10 +91,11 @@ $cinNumber = getSetting('cin_number', 'U86901BR2026NPL087665');
 
                 <!-- Partners Dropdown -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle <?= in_array($currentPage, ['schools.php', 'doctors.php', 'hospitals.php', 'partnerships.php', 'mou.php']) ? 'active' : ''; ?>" href="#" role="button" data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle <?= in_array($currentPage, ['partners.php', 'schools.php', 'doctors.php', 'hospitals.php', 'partnerships.php', 'mou.php']) ? 'active' : ''; ?>" href="<?= BASE_URL; ?>/partners.php" role="button" data-bs-toggle="dropdown">
                         PARTNERS
                     </a>
                     <ul class="dropdown-menu shadow-lg border-0 rounded-3">
+                        <li><a class="dropdown-item py-2 fw-bold text-dark border-bottom mb-1" href="<?= BASE_URL; ?>/partners.php"><i class="fas fa-handshake-angle text-primary me-2"></i> All Partners Overview</a></li>
                         <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/schools.php"><i class="fas fa-school text-primary me-2"></i> School Partners & MOUs</a></li>
                         <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/doctors.php"><i class="fas fa-user-md text-success me-2"></i> Doctor Network</a></li>
                         <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/hospitals.php"><i class="fas fa-hospital text-info me-2"></i> Hospital Network</a></li>

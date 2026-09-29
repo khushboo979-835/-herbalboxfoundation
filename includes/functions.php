@@ -233,5 +233,8 @@ function getImageUrl(?string $imagePath, string $fallback = 'assets/images/place
             return BASE_URL . '/uploads/' . ltrim($imagePath, '/');
         }
     }
+    if (str_starts_with($fallback, 'http://') || str_starts_with($fallback, 'https://')) {
+        return $fallback;
+    }
     return BASE_URL . '/' . ltrim($fallback, '/');
 }
