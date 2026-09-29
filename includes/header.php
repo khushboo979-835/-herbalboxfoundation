@@ -10,8 +10,8 @@ if (!defined('APP_ROOT')) {
     require_once __DIR__ . '/../config/config.php';
 }
 
-$siteName = getSetting('site_name', 'Seva Arogya & Shiksha Foundation');
-$pageTitle = isset($pageTitle) ? "{$pageTitle} | {$siteName}" : getSetting('seo_meta_title', "{$siteName} - Healthcare, Education & AYUSH NGO");
+$siteName = getSetting('site_name', 'Herbalbox Foundation');
+$pageTitle = isset($pageTitle) ? "{$pageTitle} | {$siteName}" : getSetting('seo_meta_title', "{$siteName} - Health • Education • Better Tomorrow");
 $pageDesc = $pageDesc ?? getSetting('seo_meta_description', 'Registered NGO empowering underprivileged communities through free healthcare camps, blood donation drives, NCERT school support, and AYUSH wellness.');
 $pageKeywords = $pageKeywords ?? getSetting('seo_meta_keywords', 'NGO India, free medical camp, school mou, blood donation, AYUSH clinics, child education support, donate 80g');
 $canonicalUrl = $canonicalUrl ?? (BASE_URL . '/' . basename($_SERVER['PHP_SELF']));
