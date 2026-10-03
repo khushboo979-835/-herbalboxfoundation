@@ -78,29 +78,6 @@ $cinNo = getSetting('cin_number', 'U86901BR2026NPL087665');
                 <p class="text-white-50 mb-2 small"><i class="fab fa-whatsapp text-success me-2"></i> <a href="https://wa.me/919234055507" target="_blank" class="text-white text-decoration-none">+91 92340 55507</a></p>
                 <p class="text-white-50 mb-3 small"><i class="fas fa-envelope text-info me-2"></i> <a href="mailto:contact@herbalboxfoundation.org" class="text-white text-decoration-none">contact@herbalboxfoundation.org</a></p>
                 <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-warning w-100 fw-bold text-dark shadow-sm"><i class="fas fa-heart text-danger me-1"></i> Support Our Mission (Donate)</a>
-        </div>
-
-        <!-- Pan-India Operational States Strip -->
-        <div class="pt-4 mt-4 border-top border-secondary">
-            <div class="row align-items-center">
-                <div class="col-lg-3 text-white">
-                    <small class="text-warning text-uppercase fw-bold d-block"><i class="fas fa-map-marked-alt me-1"></i> Pan-India Presence:</small>
-                    <span class="text-white-50" style="font-size: 13px;">10 States & UT Outreach</span>
-                </div>
-                <div class="col-lg-9">
-                    <div class="d-flex flex-wrap gap-2">
-                        <span class="badge bg-dark border border-secondary text-light px-2 py-1">New Delhi (नई दिल्ली)</span>
-                        <span class="badge bg-dark border border-secondary text-light px-2 py-1">Uttar Pradesh (उत्तर प्रदेश)</span>
-                        <span class="badge bg-dark border border-secondary text-light px-2 py-1">Uttarakhand (उत्तराखंड)</span>
-                        <span class="badge bg-dark border border-secondary text-light px-2 py-1">Bihar (बिहार)</span>
-                        <span class="badge bg-dark border border-secondary text-light px-2 py-1">Jharkhand (झारखंड)</span>
-                        <span class="badge bg-dark border border-secondary text-light px-2 py-1">Odisha (ओडिशा)</span>
-                        <span class="badge bg-dark border border-secondary text-light px-2 py-1">Madhya Pradesh (मध्य प्रदेश)</span>
-                        <span class="badge bg-dark border border-secondary text-light px-2 py-1">Chhattisgarh (छत्तीसगढ़)</span>
-                        <span class="badge bg-dark border border-secondary text-light px-2 py-1">West Bengal (पश्चिम बंगाल)</span>
-                        <span class="badge bg-dark border border-secondary text-light px-2 py-1">Assam (असम)</span>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

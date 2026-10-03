@@ -82,13 +82,6 @@ function getSiteSettings(): array {
             'linkedin_url' => 'https://linkedin.com/company/herbalboxfoundation',
             'logo' => 'assets/images/logo.png',
             'favicon' => 'assets/images/favicon.png',
-            'bank_name' => 'UNION BANK OF INDIA',
-            'bank_account_name' => 'आनन्द जानकी जनकल्याण समिति',
-            'bank_account_number' => '195721010000222',
-            'bank_ifsc' => 'UBIN0919578',
-            'bank_upi_id' => 'anandjankijks@ybl',
-            'bank_qr_image' => 'assets/images/qr-code.png',
-            'operational_states' => 'New Delhi, Uttar Pradesh, Uttarakhand, Bihar, Jharkhand, Odisha, Madhya Pradesh, Chhattisgarh, West Bengal, Assam',
             'google_map_url' => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3596.3776461942125!2d85.2132!3d25.6885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed586c9945a00b%3A0x6a2c3a52e18d6e99!2sBirla%20Open%20Minds%20International%20School%2C%20Hajipur!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin'
         ];
 
