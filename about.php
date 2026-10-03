@@ -261,6 +261,55 @@ require_once __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
+<!-- Pan-India Operational Presence (10 States) -->
+<section class="py-5 bg-white border-top">
+    <div class="container py-4">
+        <div class="text-center mb-5">
+            <span class="badge bg-success text-white px-3 py-2 rounded-pill fw-semibold mb-2">
+                <i class="fas fa-globe-asia me-1"></i> अखिल भारतीय सेवा नेटवर्क | Pan-India Outreach
+            </span>
+            <h2 class="fw-bold display-6 mb-2">हमारी कार्य उपस्थिति एवं विस्तार क्षेत्र (10 राज्य)</h2>
+            <p class="text-muted max-w-700 mx-auto">
+                आनन्द जानकी जनकल्याण समिति देश के 10 प्रमुख राज्यों व केंद्र शासित प्रदेशों में निःशुल्क स्वास्थ्य शिविर, डिजिटल बाल शिक्षा, महिला सशक्तिकरण एवं सामाजिक उत्थान के लिए निरंतर कार्य कर रही है।
+            </p>
+        </div>
+
+        <div class="row g-3">
+            <?php
+            $aboutStates = [
+                ['name' => 'New Delhi', 'hindi' => 'नई दिल्ली', 'role' => 'National Capital Outreach, Healthcare & Policy Coordination', 'icon' => 'fa-landmark', 'color' => 'danger'],
+                ['name' => 'Uttar Pradesh', 'hindi' => 'उत्तर प्रदेश', 'role' => 'Rural Health Camps, Women Empowerment & Skill Centers', 'icon' => 'fa-hands-helping', 'color' => 'warning'],
+                ['name' => 'Uttarakhand', 'hindi' => 'उत्तराखंड', 'role' => 'Hilly Community Wellness, AYUSH & Environment Camps', 'icon' => 'fa-mountain', 'color' => 'info'],
+                ['name' => 'Bihar', 'hindi' => 'बिहार', 'role' => 'Primary Operational Center, NCERT Classrooms & Eye Surgeries', 'icon' => 'fa-hospital-user', 'color' => 'success'],
+                ['name' => 'Jharkhand', 'hindi' => 'झारखंड', 'role' => 'Tribal Community Healthcare, Child Nutrition & Blood Drives', 'icon' => 'fa-users', 'color' => 'primary'],
+                ['name' => 'Odisha (Udisha)', 'hindi' => 'ओडिशा', 'role' => 'Rural Education Support, Disaster Relief & Health Drives', 'icon' => 'fa-hand-holding-medical', 'color' => 'teal'],
+                ['name' => 'Madhya Pradesh', 'hindi' => 'मध्य प्रदेश', 'role' => 'Grassroots Child Education Kits & AYUSH Herbal Wellness', 'icon' => 'fa-book-reader', 'color' => 'indigo'],
+                ['name' => 'Chhattisgarh', 'hindi' => 'छत्तीसगढ़', 'role' => 'Forest & Tribal Region Mobile Health Clinics', 'icon' => 'fa-ambulance', 'color' => 'danger'],
+                ['name' => 'West Bengal', 'hindi' => 'पश्चिम बंगाल', 'role' => 'Community Welfare, Vision Screenings & Preventive Care', 'icon' => 'fa-heartbeat', 'color' => 'success'],
+                ['name' => 'Assam', 'hindi' => 'असम', 'role' => 'North-East Health Outreach, Student Kits & Youth Development', 'icon' => 'fa-tree', 'color' => 'warning']
+            ];
+            ?>
+
+            <?php foreach ($aboutStates as $st): ?>
+            <div class="col-lg-4 col-md-6">
+                <div class="p-3 bg-light rounded-3 border h-100 d-flex align-items-center gap-3 hover-lift transition">
+                    <div class="bg-<?= $st['color']; ?> text-white rounded-circle d-flex align-items-center justify-content-center shadow-sm flex-shrink-0" style="width: 44px; height: 44px; font-size: 1.1rem;">
+                        <i class="fas <?= $st['icon']; ?>"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="fw-bold mb-0 text-dark"><?= $st['name']; ?></h6>
+                            <span class="badge bg-white text-muted border small"><?= $st['hindi']; ?></span>
+                        </div>
+                        <small class="text-muted d-block mt-1" style="font-size: 12px; line-height: 1.35;"><?= $st['role']; ?></small>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
 <!-- Call to Action Banner -->
 <section class="py-5 bg-light">
     <div class="container">

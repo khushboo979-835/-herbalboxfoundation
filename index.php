@@ -685,7 +685,116 @@ require_once __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
-<!-- 12. High-Impact Donation & Volunteer CTA Banner -->
+<!-- 12. Pan-India Operational Presence (10 States) -->
+<section class="py-5 bg-white border-top">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <span class="badge bg-success text-white px-3 py-2 rounded-pill fw-semibold mb-2">
+                <i class="fas fa-map-marked-alt me-1"></i> अखिल भारतीय सेवा नेटवर्क | Pan-India Outreach
+            </span>
+            <h2 class="fw-bold display-6 mb-2">हमारी कार्य उपस्थिति एवं विस्तार क्षेत्र</h2>
+            <p class="text-muted max-w-700 mx-auto">
+                आनन्द जानकी जनकल्याण समिति 10 प्रमुख राज्यों व केंद्र शासित प्रदेशों में निःशुल्क स्वास्थ्य शिविर, डिजिटल बाल शिक्षा, महिला सशक्तिकरण एवं सामाजिक उत्थान हेतु समर्पित है।
+            </p>
+        </div>
+
+        <div class="row g-3">
+            <?php
+            $homepageStates = [
+                ['name' => 'New Delhi', 'hindi' => 'नई दिल्ली', 'role' => 'National Capital Outreach, Healthcare & Policy Coordination', 'icon' => 'fa-landmark', 'color' => 'danger'],
+                ['name' => 'Uttar Pradesh', 'hindi' => 'उत्तर प्रदेश', 'role' => 'Rural Health Camps, Women Empowerment & Skill Centers', 'icon' => 'fa-hands-helping', 'color' => 'warning'],
+                ['name' => 'Uttarakhand', 'hindi' => 'उत्तराखंड', 'role' => 'Hilly Community Wellness, AYUSH & Environment Camps', 'icon' => 'fa-mountain', 'color' => 'info'],
+                ['name' => 'Bihar', 'hindi' => 'बिहार', 'role' => 'Primary Operational Center, NCERT Classrooms & Eye Surgeries', 'icon' => 'fa-hospital-user', 'color' => 'success'],
+                ['name' => 'Jharkhand', 'hindi' => 'झारखंड', 'role' => 'Tribal Community Healthcare, Child Nutrition & Blood Drives', 'icon' => 'fa-users', 'color' => 'primary'],
+                ['name' => 'Odisha (Udisha)', 'hindi' => 'ओडिशा', 'role' => 'Rural Education Support, Disaster Relief & Health Drives', 'icon' => 'fa-hand-holding-medical', 'color' => 'teal'],
+                ['name' => 'Madhya Pradesh', 'hindi' => 'मध्य प्रदेश', 'role' => 'Grassroots Child Education Kits & AYUSH Herbal Wellness', 'icon' => 'fa-book-reader', 'color' => 'indigo'],
+                ['name' => 'Chhattisgarh', 'hindi' => 'छत्तीसगढ़', 'role' => 'Forest & Tribal Region Mobile Health Clinics', 'icon' => 'fa-ambulance', 'color' => 'danger'],
+                ['name' => 'West Bengal', 'hindi' => 'पश्चिम बंगाल', 'role' => 'Community Welfare, Vision Screenings & Preventive Care', 'icon' => 'fa-heartbeat', 'color' => 'success'],
+                ['name' => 'Assam', 'hindi' => 'असम', 'role' => 'North-East Health Outreach, Student Kits & Youth Development', 'icon' => 'fa-tree', 'color' => 'warning']
+            ];
+            ?>
+
+            <?php foreach ($homepageStates as $st): ?>
+            <div class="col-lg-4 col-md-6">
+                <div class="p-3 bg-light rounded-3 border h-100 d-flex align-items-center gap-3 hover-lift transition">
+                    <div class="bg-<?= $st['color']; ?> text-white rounded-circle d-flex align-items-center justify-content-center shadow-sm flex-shrink-0" style="width: 44px; height: 44px; font-size: 1.1rem;">
+                        <i class="fas <?= $st['icon']; ?>"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h6 class="fw-bold mb-0 text-dark"><?= $st['name']; ?></h6>
+                            <span class="badge bg-white text-muted border small"><?= $st['hindi']; ?></span>
+                        </div>
+                        <small class="text-muted d-block mt-1" style="font-size: 12px; line-height: 1.35;"><?= $st['role']; ?></small>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- 13. Instant UPI Scanner & Direct Bank Donation Spotlight -->
+<section class="py-5" style="background: #f8fafc;">
+    <div class="container py-3">
+        <div class="row g-4 align-items-center">
+            <!-- Left QR Card -->
+            <div class="col-lg-5 text-center">
+                <div class="p-4 bg-white rounded-4 shadow-sm border">
+                    <div class="p-3 bg-light rounded-4 mb-3 position-relative" style="border: 2px dashed #059669; display: inline-block;">
+                        <img src="<?= BASE_URL; ?>/assets/images/qr-code.png" alt="UPI Scanner Union Bank" class="img-fluid rounded-3" style="max-height: 220px; object-fit: contain;">
+                        <div class="fw-bold text-uppercase mt-2" style="font-size: 11px; letter-spacing: 1px; color: #047857;">
+                            <i class="fas fa-qrcode me-1"></i> SCAN VIA ANY UPI APP
+                        </div>
+                    </div>
+                    <h5 class="fw-bold mb-1 text-dark">anandjankijks@ybl</h5>
+                    <p class="small text-muted mb-3">PhonePe • Google Pay • Paytm • BHIM</p>
+                    <button type="button" onclick="navigator.clipboard.writeText('anandjankijks@ybl'); alert('UPI ID (anandjankijks@ybl) Copied!');" class="btn btn-success btn-sm px-4 rounded-pill fw-bold">
+                        <i class="far fa-copy me-1"></i> UPI ID कॉपी करें
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Bank Details Card -->
+            <div class="col-lg-7">
+                <div class="p-4 p-md-5 rounded-4 text-white shadow" style="background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);">
+                    <span class="badge bg-warning text-dark px-3 py-1 rounded-pill fw-bold mb-2">Direct Bank Account Transfer</span>
+                    <h3 class="fw-bold text-white mb-3">सीधे बैंक खाते में सहयोग हेतु विवरण</h3>
+                    
+                    <div class="vstack gap-2 small mb-4">
+                        <div class="row py-1 border-bottom border-secondary">
+                            <div class="col-sm-4 text-warning fw-semibold">बैंक का नाम:</div>
+                            <div class="col-sm-8 fw-bold text-white fs-6">UNION BANK OF INDIA</div>
+                        </div>
+                        <div class="row py-1 border-bottom border-secondary">
+                            <div class="col-sm-4 text-warning fw-semibold">खाता धारक:</div>
+                            <div class="col-sm-8 fw-bold text-white">आनन्द जानकी जनकल्याण समिति</div>
+                        </div>
+                        <div class="row py-1 border-bottom border-secondary">
+                            <div class="col-sm-4 text-warning fw-semibold">खाता संख्या:</div>
+                            <div class="col-sm-8 fw-bold text-white fs-5 font-monospace">195721010000222</div>
+                        </div>
+                        <div class="row py-1">
+                            <div class="col-sm-4 text-warning fw-semibold">IFSC कोड:</div>
+                            <div class="col-sm-8 fw-bold text-white fs-6 font-monospace">UBIN0919578</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-warning fw-bold text-dark px-4 py-2 rounded-pill">
+                            <i class="fas fa-heart text-danger me-1"></i> सम्पूर्ण दान पोर्टल (80G Receipt)
+                        </a>
+                        <button type="button" onclick="navigator.clipboard.writeText('बैंक का नाम: UNION BANK OF INDIA\nखाता धारक: आनन्द जानकी जनकल्याण समिति\nखाता संख्या: 195721010000222\nIFSC: UBIN0919578'); alert('बैंक विवरण कॉपी हो गया!');" class="btn btn-outline-light px-4 py-2 rounded-pill fw-bold">
+                            <i class="far fa-copy me-1"></i> बैंक विवरण कॉपी करें
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 14. High-Impact Donation & Volunteer CTA Banner -->
 <section class="py-5 bg-white">
     <div class="container">
         <div class="p-5 rounded-4 shadow-lg text-white" style="background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);">
