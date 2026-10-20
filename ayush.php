@@ -24,6 +24,43 @@ try {
     error_log("AYUSH Query Notice: " . $e->getMessage());
 }
 
+if (empty($doctors)) {
+    $doctors = [
+        [
+            'name' => 'Vaidya Harishankar Joshi',
+            'specialization' => 'Ayurvedic Pulse Diagnosis (Nadi Pariksha) & Panchakarma',
+            'qualification' => 'BAMS, MD (Ayurveda - Kayachikitsa)',
+            'treatment_type' => 'ayurvedic',
+            'available_days' => 'Mon, Wed, Fri (11:00 AM - 3:30 PM)',
+            'photo' => 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&q=80'
+        ],
+        [
+            'name' => 'Dr. Anand Prakash',
+            'specialization' => 'Classical Homeopathy & Chronic Allergy Care',
+            'qualification' => 'BHMS, MD (Homeopathy)',
+            'treatment_type' => 'homeopathic',
+            'available_days' => 'Mon - Fri (10:00 AM - 1:30 PM)',
+            'photo' => 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=300&q=80'
+        ],
+        [
+            'name' => 'Dr. Arvind Kumar Singh',
+            'specialization' => 'Senior Consultant Physician & Clinical Medicine',
+            'qualification' => 'MBBS, MD (Senior Physician - Poly Clinic Hajipur)',
+            'treatment_type' => 'allopathic',
+            'available_days' => 'Mon - Sat (10:00 AM - 2:00 PM)',
+            'photo' => 'assets/images/doctors/dr-arvind-kumar-singh.jpg'
+        ],
+        [
+            'name' => 'Vaidya Rajeshwar Sharma',
+            'specialization' => 'Panchakarma & Herbal Immunity Formulations',
+            'qualification' => 'BAMS (Ayurvedacharya)',
+            'treatment_type' => 'ayurvedic',
+            'available_days' => 'Tue, Thu, Sat (10:00 AM - 2:00 PM)',
+            'photo' => 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&q=80'
+        ]
+    ];
+}
+
 $pageTitle = 'AYUSH & Medical Care - Ayurveda, Homeopathy & Allopathic Treatment | Herbalbox Foundation';
 $pageDesc = 'Discover integrated medical treatments combining authentic Ayurveda, gentle Homeopathy, and evidence-based Allopathy for holistic community health.';
 

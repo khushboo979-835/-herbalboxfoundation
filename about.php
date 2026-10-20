@@ -27,28 +27,36 @@ try {
 if (empty($teamMembers)) {
     $teamMembers = [
         [
-            'name' => 'Managing Trustee & Founder',
-            'designation' => 'Executive Director',
-            'bio' => 'Dedicated to grassroots public health reforms, rural education access, and AYUSH wellness expansion across Bihar.',
-            'photo' => 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&q=80'
+            'name' => 'Syed Mehdi Raza',
+            'designation' => 'Director & CEO / General Secretary',
+            'bio' => 'Directing Herbalbox Foundation with grassroots dedication. Spearheading free healthcare camps, digital education drives, and AYUSH wellness initiatives across Bihar.',
+            'photo' => 'assets/images/team/syed-mehdi-raza-director.jpg',
+            'phone' => '+91 99340 43877',
+            'email' => 'herbalboxfoundation@gmail.com'
         ],
         [
-            'name' => 'Chief Medical Officer',
-            'designation' => 'Director of Healthcare Operations',
-            'bio' => 'Senior physician coordinating free multi-specialty camps, mobile clinics, and hospital surgical partnerships.',
-            'photo' => 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&q=80'
+            'name' => 'Priti Kumari',
+            'designation' => 'Director & General Secretary',
+            'bio' => '“Leading with Purpose, Building a Healthier, Educated & Brighter Future.” Championing women welfare, child nutrition, smart school kits, and community development.',
+            'photo' => 'assets/images/team/director-herbalbox.jpg',
+            'phone' => '+91 92340 55507',
+            'email' => 'herbalboxfoundation@gmail.com'
         ],
         [
-            'name' => 'Head of Education Initiatives',
-            'designation' => 'Director of School Partnerships',
-            'bio' => 'Academics coordinator driving NCERT smart classrooms, teacher training, and child nutrition programs.',
-            'photo' => 'https://images.unsplash.com/photo-1594824813587-0b1a03975549?w=300&q=80'
+            'name' => 'Dr. Arvind Kumar Singh',
+            'designation' => 'Medical Advisor & Senior Consultant Physician',
+            'bio' => 'Senior Consultant Physician at Poly Clinic Hajipur, East Central Railway. Guiding the foundation\'s free multi-specialty clinical camps and diagnostics.',
+            'photo' => 'assets/images/doctors/dr-arvind-kumar-singh.jpg',
+            'phone' => '+91 92340 55507',
+            'email' => 'herbalboxfoundation@gmail.com'
         ],
         [
-            'name' => 'AYUSH & Yoga Director',
-            'designation' => 'Chief Yoga Acharya',
-            'bio' => 'Certified Ayurvedic and Panchakarma practitioner heading community wellness centers and morning yoga clinics.',
-            'photo' => 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&q=80'
+            'name' => 'Dr. Nirbhay Kumar',
+            'designation' => 'Healthcare Advisory & Medical Officer',
+            'bio' => 'Medical Officer at Divisional Railway Hospital Sonpur. Overseeing clinical emergency response, mobile healthcare clinics, and rural health checkups.',
+            'photo' => 'assets/images/doctors/dr-nirbhay-kumar.png',
+            'phone' => '+91 92340 55507',
+            'email' => 'herbalboxfoundation@gmail.com'
         ]
     ];
 }
@@ -207,14 +215,67 @@ require_once __DIR__ . '/includes/navbar.php';
         <div class="row g-4">
             <?php foreach ($teamMembers as $member): ?>
             <div class="col-lg-3 col-md-6">
-                <div class="card h-100 p-4 border-0 shadow-sm rounded-4 text-center">
-                    <img src="<?= e(getImageUrl($member['photo'] ?? null, 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&q=80')); ?>" alt="<?= e($member['name']); ?>" class="img-fluid rounded-circle mx-auto mb-3" style="width: 100px; height: 100px; object-fit: cover;">
-                    <h5 class="fw-bold mb-1 fs-6"><?= e($member['name']); ?></h5>
+                <div class="card h-100 p-4 border rounded-4 shadow-sm text-center bg-white d-flex flex-column">
+                    <div class="mx-auto mb-3" style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 3px solid #f39c12; box-shadow: 0 4px 15px rgba(243, 156, 18, 0.25);">
+                        <img src="<?= e(getImageUrl($member['photo'] ?? null, 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&q=80')); ?>" alt="<?= e($member['name']); ?>" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+                    </div>
+                    <h5 class="fw-bold mb-1 fs-6 text-dark"><?= e($member['name']); ?></h5>
                     <p class="small text-warning fw-bold mb-2"><?= e($member['designation']); ?></p>
-                    <p class="small text-muted mb-0"><?= e(truncateText($member['bio'] ?? '', 100)); ?></p>
+                    <p class="small text-muted mb-3 flex-grow-1" style="font-size: 13px;"><?= e(truncateText($member['bio'] ?? '', 120)); ?></p>
+
+                    <div class="p-2 bg-light rounded text-start small border mt-auto">
+                        <?php if (!empty($member['phone'])): ?>
+                            <div class="text-truncate mb-1"><i class="fas fa-phone-alt text-success me-1"></i> <a href="tel:<?= preg_replace('/[^0-9+]/', '', $member['phone']); ?>" class="text-muted text-decoration-none"><?= e($member['phone']); ?></a></div>
+                        <?php endif; ?>
+                        <?php if (!empty($member['email'])): ?>
+                            <div class="text-truncate"><i class="fas fa-envelope text-primary me-1"></i> <a href="mailto:<?= e($member['email']); ?>" class="text-muted text-decoration-none"><?= e($member['email']); ?></a></div>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
             <?php endforeach; ?>
+        </div>
+
+        <!-- Official Visiting Cards & Website QR Section -->
+        <div class="mt-5 p-4 p-lg-5 bg-white rounded-4 border shadow-sm">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-7 text-center">
+                    <span class="badge bg-warning text-dark fw-bold mb-2 px-3 py-1 text-uppercase">OFFICIAL IDENTITY CARDS</span>
+                    <h4 class="fw-bold mb-3 text-dark">Director Credentials & Visiting Cards</h4>
+                    <p class="text-muted small mb-4">Official visiting cards of Director Syed Mehdi Raza and Director Priti Kumari representing Herbalbox Foundation.</p>
+                    <div class="p-2 bg-light rounded-4 border shadow-sm d-inline-block">
+                        <a href="<?= BASE_URL; ?>/assets/images/team/visiting-cards.png" target="_blank" title="Click to view high-resolution visiting cards">
+                            <img src="<?= BASE_URL; ?>/assets/images/team/visiting-cards.png" alt="Herbalbox Foundation Director Visiting Cards" class="img-fluid rounded-3" style="max-height: 280px; width: auto; object-fit: contain;">
+                        </a>
+                    </div>
+                    <div class="mt-2">
+                        <small class="text-muted"><i class="fas fa-search-plus me-1"></i> Click on the cards to view full resolution</small>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="p-4 bg-light rounded-4 border text-center">
+                        <span class="badge bg-success text-white mb-2 px-3 py-1 fw-bold"><i class="fas fa-qrcode me-1"></i> OFFICIAL WEBSITE QR CODE</span>
+                        <h5 class="fw-bold mb-2">Scan & Visit Portal</h5>
+                        <p class="small text-muted mb-3">Scan this official QR code with any smartphone camera or QR scanner to open and share Herbalbox Foundation.</p>
+                        
+                        <div class="p-3 bg-white rounded-3 border d-inline-block shadow-sm mb-3">
+                            <img src="<?= BASE_URL; ?>/assets/images/qr/website-qr.png" alt="Herbalbox Foundation Website QR Code" class="img-fluid" style="width: 160px; height: 160px;">
+                        </div>
+
+                        <div class="d-flex flex-column gap-2 text-start small">
+                            <div class="p-2 bg-white rounded border">
+                                <i class="fas fa-globe text-primary me-2"></i> <strong>Website:</strong> <a href="https://herbalboxfoundation.com" target="_blank" class="text-decoration-none">www.herbalboxfoundation.com</a>
+                            </div>
+                            <div class="p-2 bg-white rounded border">
+                                <i class="fas fa-envelope text-info me-2"></i> <strong>Email:</strong> herbalboxfoundation@gmail.com
+                            </div>
+                            <div class="p-2 bg-white rounded border">
+                                <i class="fas fa-phone-alt text-success me-2"></i> <strong>Helpline:</strong> +91 92340 55507 / +91 99340 43877
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -223,37 +284,39 @@ require_once __DIR__ . '/includes/navbar.php';
 <section class="py-5 bg-white">
     <div class="container py-4">
         <div class="text-center mb-5">
-            <span class="text-warning fw-bold text-uppercase small tracking-wider mb-2 d-inline-block">FINANCIAL TRANSPARENCY</span>
-            <h2 class="fw-bold display-6 mb-2">Annual Reports & Audited Financials</h2>
-            <p class="text-muted max-w-650 mx-auto">Download our transparent annual audits and utilization statements.</p>
+            <span class="text-warning fw-bold text-uppercase small tracking-wider mb-2 d-inline-block">FINANCIAL TRANSPARENCY & VERIFICATION</span>
+            <h2 class="fw-bold display-6 mb-2">Statutory Accreditations & Verification</h2>
+            <p class="text-muted max-w-650 mx-auto">Verify corporate registration, 80G tax exemption, and voluntary participation certificates.</p>
         </div>
 
-        <div class="row g-3 justify-content-center">
-            <div class="col-md-6">
-                <div class="p-4 border rounded-4 bg-light d-flex align-items-center justify-content-between shadow-sm">
-                    <div class="d-flex align-items-center gap-3">
-                        <i class="fas fa-file-pdf fa-3x text-danger"></i>
-                        <div>
-                            <h5 class="mb-1 fw-bold">80G Income Tax Exemption Certificate</h5>
-                            <small class="text-muted">Status: Active & Certified | 50% Tax Deduction</small>
-                        </div>
-                    </div>
-                    <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-sm btn-outline-danger px-3 py-2 fw-bold">
-                        <i class="fas fa-download me-1"></i> Verify
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <div class="p-4 border rounded-4 bg-light d-flex flex-column h-100 shadow-sm text-center">
+                    <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                    <h5 class="mb-1 fw-bold">80G Income Tax Exemption</h5>
+                    <p class="small text-muted mb-3">Active & Certified | 50% Tax Deduction under Sec 80G for all donors.</p>
+                    <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-sm btn-outline-danger mt-auto fw-bold py-2">
+                        <i class="fas fa-hand-holding-heart me-1"></i> Donate (80G Receipt)
                     </a>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="p-4 border rounded-4 bg-light d-flex align-items-center justify-content-between shadow-sm">
-                    <div class="d-flex align-items-center gap-3">
-                        <i class="fas fa-file-shield fa-3x text-success"></i>
-                        <div>
-                            <h5 class="mb-1 fw-bold">MCA Certificate of Incorporation</h5>
-                            <small class="text-muted">CIN: U86901BR2026NPL087665 | Govt of India</small>
-                        </div>
-                    </div>
-                    <a href="<?= BASE_URL; ?>/contact.php" class="btn btn-sm btn-outline-success px-3 py-2 fw-bold">
-                        <i class="fas fa-check-circle me-1"></i> Verified
+            <div class="col-md-4">
+                <div class="p-4 border rounded-4 bg-light d-flex flex-column h-100 shadow-sm text-center">
+                    <i class="fas fa-file-shield fa-3x text-success mb-3"></i>
+                    <h5 class="mb-1 fw-bold">MCA Certificate of Incorporation</h5>
+                    <p class="small text-muted mb-3">CIN: <strong>U86901BR2026NPL087665</strong> | Ministry of Corporate Affairs, Govt of India.</p>
+                    <a href="<?= BASE_URL; ?>/contact.php" class="btn btn-sm btn-outline-success mt-auto fw-bold py-2">
+                        <i class="fas fa-check-circle me-1"></i> Verified Organization
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 border rounded-4 bg-light d-flex flex-column h-100 shadow-sm text-center">
+                    <i class="fas fa-award fa-3x text-warning mb-3"></i>
+                    <h5 class="mb-1 fw-bold">Certificate Verification Portal</h5>
+                    <p class="small text-muted mb-3">Verify volunteer certificates, donor 80G receipts, and partnership accreditations online.</p>
+                    <a href="<?= BASE_URL; ?>/certificate-verification.php" class="btn btn-sm btn-warning text-dark mt-auto fw-bold py-2">
+                        <i class="fas fa-search me-1"></i> Verify Certificate Online
                     </a>
                 </div>
             </div>

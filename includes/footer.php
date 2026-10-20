@@ -20,7 +20,7 @@ $cinNo = getSetting('cin_number', 'U86901BR2026NPL087665');
     <div class="container">
         <div class="row g-4">
             <!-- Col 1: About NGO -->
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-6">
                 <div class="d-flex align-items-center gap-3 mb-3">
                     <img src="<?= BASE_URL; ?>/assets/images/logo.png" alt="Herbalbox Foundation" class="brand-logo-img rounded-circle bg-white p-1 shadow-sm" style="width: 52px; height: 52px; object-fit: contain;">
                     <div>
@@ -28,12 +28,12 @@ $cinNo = getSetting('cin_number', 'U86901BR2026NPL087665');
                         <small class="text-warning text-uppercase fw-semibold" style="letter-spacing: 0.5px; font-size: 0.75rem;"><?= e($tagline); ?></small>
                     </div>
                 </div>
-                <p class="text-white-50 mb-3">Herbalbox Foundation is a professionally established organization incorporated under the Companies Act, 2013. We are committed to creating meaningful social impact through community welfare, free medical camps, NCERT digital education, and holistic AYUSH wellness.</p>
-                <div class="p-3 rounded-3 mb-3 legal-box" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);">
+                <p class="text-white-50 mb-3" style="font-size: 13.5px;">Herbalbox Foundation is incorporated under the Companies Act, 2013. Dedicated to accessible healthcare, doctor camps, NCERT digital education, and holistic AYUSH wellness.</p>
+                <div class="p-3 rounded-3 mb-3 legal-box" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); font-size: 12.5px;">
                     <small class="d-block text-white-50"><strong class="text-white">CIN:</strong> <span class="text-warning fw-bold"><?= e($cinNo); ?></span></small>
-                    <small class="d-block text-white-50"><strong class="text-white">Legal Status:</strong> Company Limited by Guarantee</small>
-                    <small class="d-block text-white-50"><strong class="text-white">Regd Office:</strong> Patna, Bihar, India</small>
-                    <small class="d-block text-white-50"><strong class="text-white">Incorporated:</strong> 29 August 2026</small>
+                    <small class="d-block text-white-50"><strong class="text-white">Regd Office:</strong> Patna - 800020, Bihar</small>
+                    <small class="d-block text-white-50"><strong class="text-white">Campus:</strong> Hajipur - 844101, Bihar</small>
+                    <small class="d-block text-white-50"><strong class="text-white">Bank:</strong> Ujjivan Small Finance Bank</small>
                 </div>
                 <div class="footer-social">
                     <a href="https://www.facebook.com/profile.php?id=61594374894081" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -59,25 +59,36 @@ $cinNo = getSetting('cin_number', 'U86901BR2026NPL087665');
 
             <!-- Col 3: Partnerships & Quick Links -->
             <div class="col-lg-3 col-md-6">
-                <h5>Partnerships & MOUs</h5>
+                <h5>Partners & Verification</h5>
                 <ul class="footer-links">
+                    <li><a href="<?= BASE_URL; ?>/doctors.php"><i class="fas fa-angle-right"></i> Doctor Network (Allopathy & AYUSH)</a></li>
                     <li><a href="<?= BASE_URL; ?>/schools.php"><i class="fas fa-angle-right"></i> School Partners & MOUs</a></li>
-                    <li><a href="<?= BASE_URL; ?>/doctors.php"><i class="fas fa-angle-right"></i> Doctor Network</a></li>
                     <li><a href="<?= BASE_URL; ?>/hospitals.php"><i class="fas fa-angle-right"></i> Hospital Collaborations</a></li>
-                    <li><a href="<?= BASE_URL; ?>/mou.php"><i class="fas fa-angle-right"></i> Public MOU Archive</a></li>
-                    <li><a href="<?= BASE_URL; ?>/partnerships.php"><i class="fas fa-angle-right"></i> CSR Partnership Application</a></li>
+                    <li><a href="<?= BASE_URL; ?>/certificate-verification.php" class="text-warning fw-bold"><i class="fas fa-certificate text-warning"></i> Verify Certificate Online</a></li>
+                    <li><a href="<?= BASE_URL; ?>/donate.php"><i class="fas fa-angle-right"></i> Bank Transfer & QR Scanner</a></li>
                     <li><a href="<?= BASE_URL; ?>/volunteer.php"><i class="fas fa-angle-right"></i> Join as Volunteer</a></li>
                 </ul>
             </div>
 
             <!-- Col 4: Contact & Office -->
-            <div class="col-lg-3 col-md-6">
-                <h5>Operational Campus</h5>
-                <p class="text-white-50 mb-2 small"><i class="fas fa-map-marker-alt text-warning me-2"></i> Near Birla Open Minds International School, Konhara Road, Hajipur, Vaishali, Bihar - 844101</p>
-                <p class="text-white-50 mb-2 small"><i class="fas fa-phone-alt text-success me-2"></i> <a href="tel:9234055507" class="text-white text-decoration-none fw-bold">+91 92340 55507</a></p>
-                <p class="text-white-50 mb-2 small"><i class="fab fa-whatsapp text-success me-2"></i> <a href="https://wa.me/919234055507" target="_blank" class="text-white text-decoration-none">+91 92340 55507</a></p>
-                <p class="text-white-50 mb-3 small"><i class="fas fa-envelope text-info me-2"></i> <a href="mailto:contact@herbalboxfoundation.org" class="text-white text-decoration-none">contact@herbalboxfoundation.org</a></p>
-                <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-warning w-100 fw-bold text-dark shadow-sm"><i class="fas fa-heart text-danger me-1"></i> Support Our Mission (Donate)</a>
+            <div class="col-lg-4 col-md-6">
+                <h5>Headquarters & Contact</h5>
+                <p class="text-white-50 mb-1 small"><strong class="text-white">Registered Office:</strong><br><i class="fas fa-map-marker-alt text-warning me-2"></i> Azad Nagar, Road No. 1, South Chandmari Road, Kankarbag, Lohia Nagar, Patna - 800020, Bihar</p>
+                <p class="text-white-50 mb-2 small"><strong class="text-white">Operational Campus:</strong><br><i class="fas fa-building text-info me-2"></i> Near Birla Open Minds International School, Konhara Road, Hajipur, Vaishali, Bihar - 844101</p>
+                <div class="row g-2 mb-3">
+                    <div class="col-6">
+                        <small class="text-white-50 d-block"><i class="fas fa-phone-alt text-success me-1"></i> <a href="tel:9234055507" class="text-white text-decoration-none">+91 92340 55507</a></small>
+                        <small class="text-white-50 d-block"><i class="fas fa-phone-alt text-success me-1"></i> <a href="tel:9934043877" class="text-white text-decoration-none">+91 99340 43877</a></small>
+                    </div>
+                    <div class="col-6 text-end">
+                        <div class="d-inline-block text-center p-1 bg-white rounded border">
+                            <img src="<?= BASE_URL; ?>/assets/images/qr/website-qr.png" alt="Website QR" style="width: 58px; height: 58px;" class="d-block">
+                            <span style="font-size: 8.5px; color: #333; font-weight: bold;">SCAN SITE</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-white-50 mb-3 small"><i class="fas fa-envelope text-info me-2"></i> <a href="mailto:herbalboxfoundation@gmail.com" class="text-white text-decoration-none">herbalboxfoundation@gmail.com</a></p>
+                <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-warning w-100 fw-bold text-dark shadow-sm"><i class="fas fa-qrcode text-dark me-1"></i> Donate via UPI Scan & Pay</a>
             </div>
         </div>
     </div>

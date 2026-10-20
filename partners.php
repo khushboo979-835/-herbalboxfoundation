@@ -55,32 +55,32 @@ if (empty($schools)) {
 if (empty($doctors)) {
     $doctors = [
         [
-            'name' => 'Dr. Rajesh Kumar Sharma',
-            'specialization' => 'Senior Ophthalmologist & Eye Surgeon',
-            'qualification' => 'MBBS, MS (Ophthalmology)',
+            'name' => 'Dr. Arvind Kumar Singh',
+            'specialization' => 'Senior Consultant Physician & Clinical Medicine',
+            'qualification' => 'MBBS, MD (Senior Consultant Physician)',
             'treatment_type' => 'allopathy',
-            'photo' => 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=300&q=80'
+            'photo' => 'assets/images/doctors/dr-arvind-kumar-singh.jpg'
         ],
         [
-            'name' => 'Dr. Ananya Verma',
-            'specialization' => 'Consultant Pediatrician & Child Specialist',
-            'qualification' => 'MBBS, MD (Pediatrics)',
+            'name' => 'Dr. Nirbhay Kumar',
+            'specialization' => 'Medical Officer & Emergency Healthcare',
+            'qualification' => 'MBBS (Medical Officer)',
             'treatment_type' => 'allopathy',
-            'photo' => 'https://images.unsplash.com/photo-1594824813587-0b1a03975549?w=300&q=80'
+            'photo' => 'assets/images/doctors/dr-nirbhay-kumar.png'
         ],
         [
-            'name' => 'Acharya Ved Prakash',
-            'specialization' => 'Ayurveda & Panchakarma Specialist',
-            'qualification' => 'BAMS, MD (Ayurveda)',
+            'name' => 'Vaidya Harishankar Joshi',
+            'specialization' => 'Ayurvedic Pulse Diagnosis (Nadi Pariksha) & Panchakarma',
+            'qualification' => 'BAMS, MD (Ayurveda - Kayachikitsa)',
             'treatment_type' => 'ayush',
             'photo' => 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300&q=80'
         ],
         [
-            'name' => 'Dr. Sunita Mishra',
-            'specialization' => 'General Physician & Community Health Expert',
-            'qualification' => 'MBBS, DNB (Family Medicine)',
+            'name' => 'Dr. Sunita Aggarwal',
+            'specialization' => 'Senior Eye Surgeon & Cataract Specialist',
+            'qualification' => 'MBBS, MS (Ophthalmology), FICO',
             'treatment_type' => 'allopathy',
-            'photo' => 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=300&q=80'
+            'photo' => 'https://images.unsplash.com/photo-1594824813587-0b1a03975549?w=300&q=80'
         ]
     ];
 }

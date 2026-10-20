@@ -42,6 +42,9 @@ $cinNumber = getSetting('cin_number', 'U86901BR2026NPL087665');
                     <a href="https://www.instagram.com/herbalboxfoundation/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
                 <span class="cin-top-pill">CIN: <?= e($cinNumber); ?></span>
+                <a href="<?= BASE_URL; ?>/certificate-verification.php" class="btn btn-sm btn-outline-light py-0 px-2 fw-semibold" style="font-size: 11px;">
+                    <i class="fas fa-certificate text-warning me-1"></i> Verify Certificate
+                </a>
             </div>
         </div>
     </div>
@@ -98,10 +101,11 @@ $cinNumber = getSetting('cin_number', 'U86901BR2026NPL087665');
                     </a>
                     <ul class="dropdown-menu shadow-lg border-0 rounded-3">
                         <li><a class="dropdown-item py-2 fw-bold text-dark border-bottom mb-1" href="<?= BASE_URL; ?>/partners.php"><i class="fas fa-handshake-angle text-primary me-2"></i> All Partners Overview</a></li>
+                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/doctors.php"><i class="fas fa-user-md text-success me-2"></i> Doctor Network (Allopathy, AYUSH, Homeo)</a></li>
                         <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/schools.php"><i class="fas fa-school text-primary me-2"></i> School Partners & MOUs</a></li>
-                        <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/doctors.php"><i class="fas fa-user-md text-success me-2"></i> Doctor Network</a></li>
                         <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/hospitals.php"><i class="fas fa-hospital text-info me-2"></i> Hospital Network</a></li>
                         <li><a class="dropdown-item py-2" href="<?= BASE_URL; ?>/mou.php"><i class="fas fa-file-contract text-warning me-2"></i> Public MOU Archive</a></li>
+                        <li><a class="dropdown-item py-2 text-success fw-bold border-top mt-1" href="<?= BASE_URL; ?>/certificate-verification.php"><i class="fas fa-award text-success me-2"></i> Verify Certificate Online</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item py-2 text-primary fw-bold" href="<?= BASE_URL; ?>/partnerships.php"><i class="fas fa-handshake me-2"></i> Become a Partner</a></li>
                     </ul>

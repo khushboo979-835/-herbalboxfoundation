@@ -189,32 +189,32 @@ $schoolsList = !empty($featuredSchools) ? array_map(function($s, $i) use ($defau
 // 4. Guaranteed Real 4 Doctors (One Row)
 $defaultDoctors = [
     [
-        'name' => 'Dr. Arvind Sharma',
-        'specialization' => 'General Physician & Cardiology',
-        'qualification' => 'MBBS, MD (Medicine), FCCP',
-        'type' => 'Allopathy Care',
-        'image' => 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?w=600&q=80'
+        'name' => 'Dr. Arvind Kumar Singh',
+        'specialization' => 'Senior Consultant Physician',
+        'qualification' => 'MBBS, MD (Senior Physician)',
+        'type' => 'Poly Clinic Hajipur (ECR)',
+        'image' => 'assets/images/doctors/dr-arvind-kumar-singh.jpg'
     ],
     [
-        'name' => 'Dr. Sunita Aggarwal',
-        'specialization' => 'Ophthalmology & Cornea Specialist',
-        'qualification' => 'MBBS, MS (Ophthalmology), FICO',
-        'type' => 'Eye Specialist',
-        'image' => 'https://images.unsplash.com/photo-1594824813587-0b1a03975549?w=600&q=80'
+        'name' => 'Dr. Nirbhay Kumar',
+        'specialization' => 'Medical Officer & Emergency Care',
+        'qualification' => 'MBBS, Medical Officer',
+        'type' => 'Railway Hospital Sonpur',
+        'image' => 'assets/images/doctors/dr-nirbhay-kumar.png'
     ],
     [
         'name' => 'Vaidya Harishankar Joshi',
         'specialization' => 'Ayurvedic Pulse Diagnosis (Nadi Pariksha)',
         'qualification' => 'BAMS, MD (Kayachikitsa)',
-        'type' => 'AYUSH Care',
+        'type' => 'AYUSH Wellness Care',
         'image' => 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80'
     ],
     [
-        'name' => 'Dr. Meenakshi Iyer',
-        'specialization' => 'Pediatric Dental Surgeon',
-        'qualification' => 'BDS, MDS (Pediatric Dentistry)',
-        'type' => 'Dental Care',
-        'image' => 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80'
+        'name' => 'Dr. Sunita Aggarwal',
+        'specialization' => 'Senior Eye Surgeon & Cornea Specialist',
+        'qualification' => 'MBBS, MS (Ophthalmology), FICO',
+        'type' => 'Cataract Eye Surgery',
+        'image' => 'https://images.unsplash.com/photo-1594824813587-0b1a03975549?w=600&q=80'
     ]
 ];
 
@@ -225,7 +225,7 @@ $doctorsList = !empty($featuredDoctors) ? array_map(function($d, $i) use ($defau
         'specialization' => !empty($d['specialization']) ? $d['specialization'] : $fallback['specialization'],
         'qualification' => !empty($d['qualification']) ? $d['qualification'] : $fallback['qualification'],
         'type' => !empty($d['treatment_type']) ? ucfirst($d['treatment_type']) . ' Care' : $fallback['type'],
-        'image' => $fallback['image']
+        'image' => !empty($d['photo']) ? getImageUrl($d['photo'], $fallback['image']) : $fallback['image']
     ];
 }, array_slice($featuredDoctors, 0, 4), array_keys(array_slice($featuredDoctors, 0, 4))) : $defaultDoctors;
 
@@ -604,7 +604,7 @@ require_once __DIR__ . '/includes/navbar.php';
             <div class="col-xl-3 col-lg-3 col-md-6">
                 <div class="card h-100 p-4 border-0 shadow-sm rounded-4 text-center bg-white d-flex flex-column">
                     <div class="mx-auto mb-3" style="width: 110px; height: 110px; border-radius: 50%; overflow: hidden; border: 3px solid #f39c12; box-shadow: 0 4px 12px rgba(243, 156, 18, 0.25);">
-                        <img src="<?= e((string)$doc['image']); ?>" alt="<?= e((string)$doc['name']); ?>" style="width: 100%; height: 100%; object-fit: cover;">
+                        <img src="<?= e((string)$doc['image']); ?>" alt="<?= e((string)$doc['name']); ?>" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
                     </div>
                     <h5 class="fw-bold mb-1 fs-6"><?= e((string)$doc['name']); ?></h5>
                     <p class="small text-warning fw-bold mb-1"><?= e((string)$doc['specialization']); ?></p>
@@ -681,6 +681,69 @@ require_once __DIR__ . '/includes/navbar.php';
                 </div>
             </div>
             <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- 11. Instant UPI QR Code & Banking Section -->
+<section class="py-5 bg-light border-top">
+    <div class="container">
+        <div class="p-4 p-lg-5 bg-white rounded-4 border shadow-sm" style="border-left: 6px solid #f39c12 !important;">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-3 text-center">
+                    <div class="p-2 bg-light rounded-4 border shadow-sm d-inline-block">
+                        <img src="<?= BASE_URL; ?>/assets/images/qr/ujjivan-scanner.png" alt="Herbalbox Foundation UPI Scanner" class="img-fluid rounded-3" style="max-height: 240px; width: auto; object-fit: contain;">
+                    </div>
+                    <div class="mt-2">
+                        <span class="badge bg-success-subtle text-success border border-success-subtle"><i class="fas fa-shield-alt me-1"></i> Ujjivan Small Finance Bank</span>
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    <span class="badge bg-warning text-dark fw-bold mb-2 px-3 py-1 text-uppercase"><i class="fas fa-qrcode me-1"></i> INSTANT UPI DONATION</span>
+                    <h3 class="fw-bold mb-2 text-dark">Zero-Fee Instant Support via Any UPI App</h3>
+                    <p class="text-muted small mb-3">
+                        Scan with <strong>Google Pay, PhonePe, Paytm, BHIM UPI, Amazon Pay, or WhatsApp</strong> to sponsor free medicines, rural child education, and doctor medical camps. 100% of funds directly support community beneficiaries.
+                    </p>
+
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded-3 border d-flex align-items-center justify-content-between">
+                                <div>
+                                    <small class="text-muted d-block" style="font-size:11px;">OFFICIAL UPI ID</small>
+                                    <strong class="text-dark font-monospace fs-6">UJJ83981868784@Ujjivan</strong>
+                                </div>
+                                <button type="button" class="btn btn-sm btn-outline-primary fw-bold" onclick="navigator.clipboard.writeText('UJJ83981868784@Ujjivan'); this.innerHTML='<i class=\'fas fa-check\'></i> Copied!';">
+                                    <i class="fas fa-copy me-1"></i> Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="p-3 bg-light rounded-3 border d-flex align-items-center justify-content-between">
+                                <div>
+                                    <small class="text-muted d-block" style="font-size:11px;">ACCOUNT NO. & IFSC</small>
+                                    <strong class="text-dark font-monospace fs-6">3374120030000574</strong> <span class="badge bg-dark text-warning ms-1">UJVN0003374</span>
+                                </div>
+                                <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-sm btn-warning text-dark fw-bold">
+                                    Bank Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2 align-items-center">
+                        <a href="upi://pay?pa=UJJ83981868784@Ujjivan&pn=Herbalbox%20Foundation&cu=INR" class="btn btn-warning text-dark fw-bold btn-sm px-3 py-2">
+                            <i class="fas fa-mobile-alt me-1"></i> Pay via UPI App
+                        </a>
+                        <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-outline-dark btn-sm px-3 py-2 fw-bold">
+                            <i class="fas fa-receipt me-1"></i> Get 80G Tax Exemption Receipt
+                        </a>
+                        <a href="https://wa.me/919234055507?text=<?= urlencode('Hello Herbalbox Foundation, I have made a donation via UPI Scan & Pay. Please issue my 80G Tax Exemption Receipt.'); ?>" target="_blank" class="btn btn-outline-success btn-sm px-3 py-2">
+                            <i class="fab fa-whatsapp me-1"></i> WhatsApp Receipt Request
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>

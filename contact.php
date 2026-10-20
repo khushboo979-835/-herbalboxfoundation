@@ -59,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$siteAddress = getSetting('site_address', 'Herbalbox Foundation, Near Birla Open Minds International School, Konhara Road, Hajipur, Vaishali, Bihar - 844101');
-$regAddress = 'Patna, Bihar, India (CIN: U86901BR2026NPL087665)';
-$sitePhone = getSetting('site_phone', '+91 92340 55507');
-$siteEmail = getSetting('site_email', 'contact@herbalboxfoundation.org');
+$siteAddress = 'Near Birla Open Minds International School, Konhara Road, Hajipur, Vaishali, Bihar - 844101';
+$regAddress = 'Azad Nagar, Road No. 1, South Chandmari Road, Kankarbag, Lohia Nagar, Patna - 800020, Bihar (CIN: U86901BR2026NPL087665)';
+$sitePhone = '+91 92340 55507 / +91 99340 43877';
+$siteEmail = 'herbalboxfoundation@gmail.com';
 $officeHours = getSetting('office_hours', 'Mon - Sat: 9:00 AM - 6:30 PM (Emergency Support 24x7)');
 $mapEmbed = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3596.3776461942125!2d85.2132!3d25.6885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ed586c9945a00b%3A0x6a2c3a52e18d6e99!2sBirla%20Open%20Minds%20International%20School%2C%20Hajipur!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin';
 
@@ -115,8 +115,9 @@ require_once __DIR__ . '/includes/navbar.php';
                         <div>
                             <h6 class="fw-bold mb-1">Helpline & WhatsApp</h6>
                             <p class="small text-muted mb-0">
-                                <a href="tel:9234055507" class="fw-bold text-dark text-decoration-none">+91 92340 55507</a><br>
-                                <a href="https://wa.me/919234055507" target="_blank" class="text-success fw-bold text-decoration-none"><i class="fab fa-whatsapp me-1"></i> WhatsApp: +91 92340 55507</a>
+                                <a href="tel:9234055507" class="fw-bold text-dark text-decoration-none">+91 92340 55507</a> (Director Priti Kumari)<br>
+                                <a href="tel:9934043877" class="fw-bold text-dark text-decoration-none">+91 99340 43877</a> (Director Syed Mehdi Raza)<br>
+                                <a href="https://wa.me/918873043877" target="_blank" class="text-success fw-bold text-decoration-none"><i class="fab fa-whatsapp me-1"></i> WhatsApp: +91 88730 43877</a>
                             </p>
                         </div>
                     </div>
@@ -128,8 +129,8 @@ require_once __DIR__ . '/includes/navbar.php';
                         <div>
                             <h6 class="fw-bold mb-1">Official Email</h6>
                             <p class="small text-muted mb-0">
-                                <a href="mailto:contact@herbalboxfoundation.org" class="text-decoration-none"><?= e($siteEmail); ?></a><br>
-                                <a href="mailto:info@herbalboxfoundation.org" class="text-decoration-none text-muted">info@herbalboxfoundation.org</a>
+                                <a href="mailto:herbalboxfoundation@gmail.com" class="text-decoration-none fw-bold">herbalboxfoundation@gmail.com</a><br>
+                                <a href="mailto:contact@herbalboxfoundation.org" class="text-decoration-none text-muted">contact@herbalboxfoundation.org</a>
                             </p>
                         </div>
                     </div>

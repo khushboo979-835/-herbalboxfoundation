@@ -194,9 +194,12 @@ require_once __DIR__ . '/includes/navbar.php';
                             </div>
 
                             <div class="col-12 mt-4 text-center">
-                                <button type="submit" class="btn btn-ngo-primary btn-lg px-5">
-                                    <i class="fas fa-heart me-2"></i> Join as Volunteer
+                                <button type="submit" class="btn btn-warning btn-lg px-5 text-dark fw-bold shadow-sm">
+                                    <i class="fas fa-heart text-danger me-2"></i> Submit Volunteer Application
                                 </button>
+                                <p class="small text-muted mt-3 mb-0">
+                                    <i class="fas fa-award text-success me-1"></i> <strong>Official Certification:</strong> All volunteers completing community camp hours receive an authorized Herbalbox Foundation Certificate verifiable at our <a href="<?= BASE_URL; ?>/certificate-verification.php" class="text-primary fw-bold">Certificate Verification Portal</a>.
+                                </p>
                             </div>
                         </div>
                     </form>

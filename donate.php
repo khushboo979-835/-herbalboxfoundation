@@ -119,12 +119,141 @@ require_once __DIR__ . '/includes/navbar.php';
 
         <?php else: ?>
 
+        <!-- Highlight Banner: Scan & Pay with UPI -->
+        <div class="row mb-5 justify-content-center">
+            <div class="col-lg-12">
+                <div class="p-4 p-lg-5 bg-white rounded-4 shadow-sm border position-relative overflow-hidden" style="border-left: 6px solid #f39c12 !important;">
+                    <div class="row align-items-center g-4">
+                        <div class="col-lg-4 text-center">
+                            <div class="p-3 bg-light rounded-4 border d-inline-block shadow-sm position-relative">
+                                <span class="badge bg-success position-absolute top-0 start-50 translate-middle px-3 py-1 shadow-sm">
+                                    <i class="fas fa-bolt me-1"></i> Instant Zero Fee
+                                </span>
+                                <a href="<?= BASE_URL; ?>/assets/images/qr/ujjivan-scanner.png" target="_blank" title="Click to view full scanner">
+                                    <img src="<?= BASE_URL; ?>/assets/images/qr/ujjivan-scanner.png" alt="Herbalbox Foundation Ujjivan UPI Scanner" class="img-fluid rounded-3 shadow-sm" style="max-height: 330px; width: auto; object-fit: contain;">
+                                </a>
+                                <div class="mt-2 text-center">
+                                    <a href="<?= BASE_URL; ?>/assets/images/qr/ujjivan-scanner.png" download="Herbalbox_Foundation_UPI_QR.png" class="btn btn-sm btn-outline-secondary mt-1">
+                                        <i class="fas fa-download me-1"></i> Save QR Image
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8">
+                            <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+                                <span class="badge bg-warning text-dark px-3 py-1 fw-bold"><i class="fas fa-qrcode me-1"></i> OFFICIAL UPI SCAN & PAY</span>
+                                <span class="badge bg-light text-muted border">Ujjivan Small Finance Bank</span>
+                                <span class="badge bg-success-subtle text-success border border-success-subtle"><i class="fas fa-shield-alt me-1"></i> 100% Verified</span>
+                            </div>
+
+                            <h3 class="fw-bold mb-2 text-dark">Instant Donation via Any UPI App</h3>
+                            <p class="text-muted mb-3">
+                                Scan the official QR code using <strong>Google Pay, PhonePe, Paytm, BHIM UPI, Amazon Pay, or WhatsApp Pay</strong> to transfer your contribution directly to Herbalbox Foundation account.
+                            </p>
+
+                            <!-- Copyable UPI ID Box -->
+                            <div class="p-3 bg-light rounded-3 border mb-3">
+                                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                                    <div>
+                                        <small class="text-muted d-block text-uppercase fw-semibold" style="letter-spacing: 0.5px; font-size: 11px;">Official Foundation UPI ID</small>
+                                        <span class="fs-5 fw-bold text-dark font-monospace" id="upiIdText">UJJ83981868784@Ujjivan</span>
+                                    </div>
+                                    <div class="d-flex gap-2">
+                                        <button type="button" class="btn btn-outline-primary btn-sm fw-bold px-3 py-2" id="copyUpiBtn" onclick="copyUpiId()">
+                                            <i class="fas fa-copy me-1"></i> Copy UPI ID
+                                        </button>
+                                        <a href="upi://pay?pa=UJJ83981868784@Ujjivan&pn=Herbalbox%20Foundation&cu=INR" class="btn btn-warning text-dark fw-bold btn-sm px-3 py-2 d-inline-flex align-items-center">
+                                            <i class="fas fa-mobile-alt me-1"></i> Pay via UPI App
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bank Details Breakdown -->
+                            <div class="p-3 bg-white rounded-3 border mb-3">
+                                <div class="d-flex align-items-center justify-content-between mb-2">
+                                    <h6 class="fw-bold mb-0 text-dark"><i class="fas fa-university text-primary me-2"></i> Official Bank Transfer (NEFT / RTGS / IMPS)</h6>
+                                    <span class="badge bg-secondary-subtle text-secondary">Verified Current Account</span>
+                                </div>
+                                <div class="row g-2 text-muted small">
+                                    <div class="col-sm-6">
+                                        <div class="p-2 bg-light rounded border">
+                                            <span class="d-block text-muted" style="font-size:11px;">BENEFICIARY / ACCOUNT NAME</span>
+                                            <strong class="text-dark">HERBALBOX FOUNDATION</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="p-2 bg-light rounded border">
+                                            <span class="d-block text-muted" style="font-size:11px;">BANK NAME</span>
+                                            <strong class="text-dark">Ujjivan Small Finance Bank</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="p-2 bg-light rounded border d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="d-block text-muted" style="font-size:11px;">ACCOUNT NUMBER</span>
+                                                <strong class="text-dark font-monospace fs-6" id="bankAccNo">3374120030000574</strong>
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary py-1 px-2" onclick="copyText('3374120030000574', this)" title="Copy Account Number">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="p-2 bg-light rounded border d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <span class="d-block text-muted" style="font-size:11px;">IFSC CODE</span>
+                                                <strong class="text-dark font-monospace fs-6" id="bankIfsc">UJVN0003374</strong>
+                                            </div>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary py-1 px-2" onclick="copyText('UJVN0003374', this)" title="Copy IFSC Code">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="p-2 bg-light rounded border">
+                                            <span class="d-block text-muted" style="font-size:11px;">CIF ID</span>
+                                            <strong class="text-dark font-monospace">3374223335</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="p-2 bg-light rounded border">
+                                            <span class="d-block text-muted" style="font-size:11px;">TERMINAL CODE</span>
+                                            <strong class="text-dark font-monospace">10647 / 3628</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- WhatsApp 80G Receipt Confirmation Notice -->
+                            <div class="p-3 rounded-3 border d-flex flex-wrap align-items-center justify-content-between gap-3" style="background: #f0fdf4; border-color: #bbf7d0 !important;">
+                                <div class="d-flex align-items-center gap-2">
+                                    <i class="fab fa-whatsapp text-success fs-3"></i>
+                                    <div>
+                                        <strong class="text-dark small d-block">Need Instant 80G Tax Exemption Receipt for UPI Transfer?</strong>
+                                        <small class="text-muted">Send your UPI transaction reference screenshot via WhatsApp for immediate receipt issuance.</small>
+                                    </div>
+                                </div>
+                                <a href="https://wa.me/919234055507?text=<?= urlencode('Hello Herbalbox Foundation, I have made a donation via UPI Scan & Pay (UPI ID: UJJ83981868784@Ujjivan). Please issue my 80G Tax Exemption Receipt.'); ?>" target="_blank" class="btn btn-success btn-sm fw-bold px-3 py-2 text-nowrap">
+                                    <i class="fab fa-whatsapp me-1"></i> WhatsApp Receipt Request
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row g-5">
             <!-- Form Left -->
             <div class="col-lg-7">
                 <div class="p-4 p-md-5 bg-white rounded-4 shadow-sm border">
-                    <h3 class="fw-bold mb-3">Make a Secure Online Donation</h3>
-                    <p class="text-muted small mb-4">Select or enter your desired contribution amount. Instant 80G tax receipt will be generated.</p>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <h3 class="fw-bold mb-0">Online Donation Form</h3>
+                        <span class="badge bg-light text-muted border"><i class="fas fa-lock text-success me-1"></i> 256-bit Secure</span>
+                    </div>
+                    <p class="text-muted small mb-4">You may also enter your donation details below to generate an instant digital 80G tax receipt.</p>
 
                     <?php if ($errorMsg): ?>
                         <div class="alert alert-danger shadow-sm mb-4"><i class="fas fa-exclamation-circle me-2"></i> <?= e($errorMsg); ?></div>
@@ -211,7 +340,7 @@ require_once __DIR__ . '/includes/navbar.php';
                         </div>
 
                         <button type="submit" class="btn btn-warning btn-lg w-100 fw-bold text-dark shadow">
-                            <i class="fas fa-lock me-2 text-danger"></i> Proceed to Secure Payment (Razorpay)
+                            <i class="fas fa-lock me-2 text-danger"></i> Proceed to Secure Payment & Instant Receipt
                         </button>
                     </form>
                 </div>
@@ -221,13 +350,23 @@ require_once __DIR__ . '/includes/navbar.php';
             <div class="col-lg-5">
                 <div class="p-4 bg-white rounded-4 shadow-sm border mb-4">
                     <h5 class="fw-bold mb-3"><i class="fas fa-shield-alt text-success me-2"></i> Tax Exemption Under Section 80G</h5>
-                    <p class="small text-muted mb-3">All donations to Seva Arogya & Shiksha Foundation are 50% tax-deductible under Section 80G of the Indian Income Tax Act, 1961.</p>
+                    <p class="small text-muted mb-3">All donations to Herbalbox Foundation are 50% tax-deductible under Section 80G of the Indian Income Tax Act, 1961.</p>
                     <div class="p-3 bg-light rounded-3 small">
                         <strong>80G Unique Reg No:</strong><br>
                         <code class="text-primary"><?= e(getSetting('tax_exemption_80g', '80G-CIT(E)/DEL/2019-20')); ?></code><br><br>
+                        <strong>CIN Number:</strong> <?= e(getSetting('cin_number', 'U86901BR2026NPL087665')); ?><br>
                         <strong>NGO PAN:</strong> <?= e(getSetting('pan_number', 'AAATS1234F')); ?><br>
                         <strong>NITI Aayog Darpan:</strong> <?= e(getSetting('niti_aayog_id', 'DL/2018/0192847')); ?>
                     </div>
+                </div>
+
+                <!-- UPI Quick Card in Sidebar -->
+                <div class="p-4 bg-white rounded-4 shadow-sm border mb-4 text-center">
+                    <span class="badge bg-warning text-dark mb-2 px-3 py-1 fw-bold">Quick UPI Scan</span>
+                    <h6 class="fw-bold mb-2">Scan & Pay via Mobile</h6>
+                    <img src="<?= BASE_URL; ?>/assets/images/qr/ujjivan-scanner.png" alt="Ujjivan Pay Scanner" class="img-fluid rounded-3 border mb-2" style="max-height: 180px;">
+                    <p class="small text-muted mb-2 font-monospace fw-bold">UJJ83981868784@Ujjivan</p>
+                    <button type="button" class="btn btn-sm btn-outline-dark w-100" onclick="copyUpiId()"><i class="fas fa-copy me-1"></i> Copy UPI ID</button>
                 </div>
 
                 <div class="p-4 bg-white rounded-4 shadow-sm border">
@@ -254,6 +393,36 @@ require_once __DIR__ . '/includes/navbar.php';
             </div>
         </div>
         <?php endif; ?>
+    </div>
+</section>
+
+<script>
+function copyUpiId() {
+    var upi = 'UJJ83981868784@Ujjivan';
+    navigator.clipboard.writeText(upi).then(function() {
+        var btn = document.getElementById('copyUpiBtn');
+        if (btn) {
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check text-success me-1"></i> Copied!';
+            setTimeout(function() { btn.innerHTML = orig; }, 2000);
+        }
+    }).catch(function() {
+        prompt('Copy the UPI ID below:', upi);
+    });
+}
+
+function copyText(val, btn) {
+    navigator.clipboard.writeText(val).then(function() {
+        if (btn) {
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check text-success"></i>';
+            setTimeout(function() { btn.innerHTML = orig; }, 2000);
+        }
+    }).catch(function() {
+        prompt('Copy below:', val);
+    });
+}
+</script>
     </div>
 </section>
 

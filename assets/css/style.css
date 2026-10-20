@@ -547,3 +547,50 @@ body {
     padding: 60px 0;
   }
 }
+
+/* ==========================================================================
+   Doctor & Partner Directory Enhancements
+   ========================================================================== */
+.doctor-photo {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  margin: 0 auto 15px auto;
+  border: 4px solid #f39c12;
+  box-shadow: 0 4px 15px rgba(243, 156, 18, 0.25);
+  display: block;
+}
+
+.partner-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.partner-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  border-color: #f39c12;
+}
+
+.btn-ngo-outline {
+  border: 2px solid #f39c12;
+  color: #f39c12;
+  font-weight: 600;
+  background: transparent;
+  transition: all 0.25s ease;
+}
+
+.btn-ngo-outline:hover {
+  background: #f39c12;
+  color: #222222;
+}
