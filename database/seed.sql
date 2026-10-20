@@ -11,8 +11,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 TRUNCATE TABLE `admins`;
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `role`, `profile_image`, `status`, `created_at`) VALUES
 (1, 'Super Administrator', 'admin@ngoseva.org', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'super_admin', 'assets/images/team/admin-1.jpg', 'published', NOW()),
-(2, 'Dr. Arvind Sharma (Medical Director)', 'arvind.sharma@ngoseva.org', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 'assets/images/team/admin-2.jpg', 'published', NOW()),
-(3, 'Pooja Verma (Content Editor)', 'pooja.verma@ngoseva.org', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'editor', 'assets/images/team/admin-3.jpg', 'published', NOW());
+(2, 'Dr. Arvind Kumar Singh (Lead Medical Advisor)', 'arvind.singh@herbalboxfoundation.org', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 'assets/images/doctors/dr-arvind-kumar-singh.jpg', 'published', NOW()),
+(3, 'Syed Mehdi Raza (CEO & Director)', 'mehdi.raza@herbalboxfoundation.org', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', 'assets/images/team/syed-mehdi-raza-director.jpg', 'published', NOW());
 
 -- ----------------------------------------------------------------------------
 -- 2. Admin Sessions
@@ -71,6 +71,16 @@ INSERT INTO `about_documents` (`id`, `title`, `document_type`, `file_path`, `des
 (2, '12A Registration Order', 'registration', 'uploads/documents/12a_certificate.pdf', 'Order of registration under Section 12AA / 12AB of the Income Tax Act.', 1, 'published'),
 (3, 'CSR-1 MCA Registration Approval', 'certificate', 'uploads/documents/csr1_approval.pdf', 'Registration for undertaking CSR activities issued by Ministry of Corporate Affairs.', 1, 'published'),
 (4, 'Annual Audit Report 2024-2025', 'annual_report', 'uploads/documents/audit_report_2025.pdf', 'Statutory audited financial statements and balance sheet.', 1, 'published');
+
+-- ----------------------------------------------------------------------------
+-- 6b. Team Members & Executive Leadership
+-- ----------------------------------------------------------------------------
+TRUNCATE TABLE `team_members`;
+INSERT INTO `team_members` (`id`, `name`, `designation`, `category`, `photo`, `bio`, `phone`, `email`, `sort_order`, `status`) VALUES
+(1, 'Syed Mehdi Raza', 'Chief Executive Officer (CEO) & Director', 'trustee', 'assets/images/team/syed-mehdi-raza-director.jpg', 'Leading institutional strategy, corporate partnerships, healthcare missions, and overall foundation vision.', '+91 99340 43877', 'herbalboxfoundation@gmail.com', 1, 'active'),
+(2, 'Priti Kumari', 'General Secretary & Director', 'trustee', 'assets/images/team/director-herbalbox.jpg', 'Leading organizational governance, community outreach, school education programs, and women empowerment.', '+91 92340 55507', 'herbalboxfoundation@gmail.com', 2, 'active'),
+(3, 'Dr. Arvind Kumar Singh', 'Senior Consultant Physician', 'advisor', 'assets/images/doctors/dr-arvind-kumar-singh.jpg', 'Senior Consultant Physician at Poly Clinic, Hajipur (East Central Railway). Lead Medical Advisor for community health checkups.', '+91 92340 55507', 'herbalboxfoundation@gmail.com', 3, 'active'),
+(4, 'Dr. Nirbhay Kumar', 'Medical Officer & Emergency Healthcare', 'advisor', 'assets/images/doctors/dr-nirbhay-kumar.png', 'Medical Officer at Divisional Railway Hospital Sonpur. Community medicine advisor and emergency care coordinator.', '+91 92340 55507', 'herbalboxfoundation@gmail.com', 4, 'active');
 
 -- ----------------------------------------------------------------------------
 -- 7. Media Files

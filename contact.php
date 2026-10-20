@@ -207,6 +207,56 @@ require_once __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
+<!-- Official Banking & UPI Scanner -->
+<section class="py-4 bg-light border-top">
+    <div class="container">
+        <div class="p-4 bg-white rounded-4 border shadow-sm">
+            <div class="row align-items-center g-4">
+                <div class="col-md-3 text-center">
+                    <img src="<?= BASE_URL; ?>/assets/images/qr/ujjivan-scanner.png" alt="Herbalbox Foundation UPI Scanner" class="img-fluid rounded-3 border p-1" style="max-height: 200px;">
+                    <div class="mt-2"><small class="text-muted fw-bold">UJJ83981868784@Ujjivan</small></div>
+                </div>
+                <div class="col-md-9">
+                    <span class="badge bg-warning text-dark fw-bold mb-2 px-3 py-1 text-uppercase"><i class="fas fa-university me-1"></i> Official Foundation Bank Account</span>
+                    <h4 class="fw-bold text-dark mb-2">Herbalbox Foundation Official Credentials</h4>
+                    <p class="text-muted small mb-3">All financial contributions, school sponsorships, and medical camp grants are accepted directly through our audited institutional bank account:</p>
+                    <div class="row g-2 small">
+                        <div class="col-sm-6">
+                            <div class="p-2 rounded bg-light border">
+                                <span class="text-muted d-block">Account Name:</span>
+                                <strong class="text-dark">HERBALBOX FOUNDATION</strong>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-2 rounded bg-light border">
+                                <span class="text-muted d-block">Bank Name:</span>
+                                <strong class="text-dark">Ujjivan Small Finance Bank</strong>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-2 rounded bg-light border">
+                                <span class="text-muted d-block">Account Number:</span>
+                                <strong class="text-dark font-monospace">3374120030000574</strong>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="p-2 rounded bg-light border">
+                                <span class="text-muted d-block">IFSC Code &amp; CIF:</span>
+                                <strong class="text-dark font-monospace">UJVN0003374</strong> (CIF: 3374223335)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <a href="<?= BASE_URL; ?>/donate.php" class="btn btn-warning text-dark fw-bold btn-sm px-3 py-2">
+                            <i class="fas fa-qrcode me-1"></i> Go to Donation Page &amp; Get 80G Receipt
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Google Map Embed Section -->
 <section class="bg-white py-4">
     <div class="container">
