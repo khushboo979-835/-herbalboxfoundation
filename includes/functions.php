@@ -228,9 +228,30 @@ function getImageUrl(?string $imagePath, string $fallback = 'assets/images/place
         if (str_starts_with($imagePath, 'http://') || str_starts_with($imagePath, 'https://')) {
             return $imagePath;
         }
-        $fullPath = APP_ROOT . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $imagePath);
-        if (file_exists($fullPath)) {
-            return BASE_URL . '/uploads/' . ltrim($imagePath, '/');
+
+        $cleanPath = ltrim(str_replace('\\', '/', $imagePath), '/');
+
+        // 1. Direct check relative to APP_ROOT (e.g. assets/images/... or uploads/...)
+        $rootCheck = APP_ROOT . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $cleanPath);
+        if (file_exists($rootCheck)) {
+            return BASE_URL . '/' . $cleanPath;
+        }
+
+        // 2. Check inside uploads/
+        $uploadCheck = APP_ROOT . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $cleanPath);
+        if (file_exists($uploadCheck)) {
+            return BASE_URL . '/uploads/' . $cleanPath;
+        }
+
+        // 3. Check inside assets/
+        $assetsCheck = APP_ROOT . DIRECTORY_SEPARATOR . 'assets' . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $cleanPath);
+        if (file_exists($assetsCheck)) {
+            return BASE_URL . '/assets/' . $cleanPath;
+        }
+
+        // 4. If path already specifies assets/ or uploads/, return directly with BASE_URL
+        if (str_starts_with($cleanPath, 'assets/') || str_starts_with($cleanPath, 'uploads/')) {
+            return BASE_URL . '/' . $cleanPath;
         }
 
         // Contextual smart image mapping based on file name or category

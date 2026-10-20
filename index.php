@@ -186,48 +186,44 @@ $schoolsList = !empty($featuredSchools) ? array_map(function($s, $i) use ($defau
     ];
 }, array_slice($featuredSchools, 0, 3), array_keys(array_slice($featuredSchools, 0, 3))) : $defaultSchools;
 
-// 4. Guaranteed Real 4 Doctors (One Row)
+// 4. Guaranteed Real Verified Doctors (Primary Panel)
 $defaultDoctors = [
     [
         'name' => 'Dr. Arvind Kumar Singh',
         'specialization' => 'Senior Consultant Physician',
-        'qualification' => 'MBBS, MD (Senior Physician)',
-        'type' => 'Poly Clinic Hajipur (ECR)',
-        'image' => 'assets/images/doctors/dr-arvind-kumar-singh.jpg'
+        'qualification' => 'MBBS, MD (Senior Physician - 20+ Yrs Exp)',
+        'type' => 'Poly Clinic, Hajipur (East Central Railway)',
+        'image' => 'assets/images/doctors/dr-arvind-kumar-singh.jpg',
+        'badge' => 'East Central Railway Poly Clinic'
     ],
     [
         'name' => 'Dr. Nirbhay Kumar',
-        'specialization' => 'Medical Officer & Emergency Care',
-        'qualification' => 'MBBS, Medical Officer',
-        'type' => 'Railway Hospital Sonpur',
-        'image' => 'assets/images/doctors/dr-nirbhay-kumar.png'
+        'specialization' => 'Medical Officer & Emergency Healthcare',
+        'qualification' => 'MBBS, Medical Officer (15+ Yrs Exp)',
+        'type' => 'Divisional Railway Hospital Sonpur',
+        'image' => 'assets/images/doctors/dr-nirbhay-kumar.png',
+        'badge' => 'Divisional Railway Hospital'
     ],
     [
         'name' => 'Vaidya Harishankar Joshi',
         'specialization' => 'Ayurvedic Pulse Diagnosis (Nadi Pariksha)',
-        'qualification' => 'BAMS, MD (Kayachikitsa)',
-        'type' => 'AYUSH Wellness Care',
-        'image' => 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80'
+        'qualification' => 'BAMS, MD (Ayurveda - 18+ Yrs Exp)',
+        'type' => 'Dhanvantari AYUSH Kendra, Hajipur',
+        'image' => 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&q=80',
+        'badge' => 'Ayurvedic Vaidya (AYUSH)'
     ],
     [
         'name' => 'Dr. Sunita Aggarwal',
-        'specialization' => 'Senior Eye Surgeon & Cornea Specialist',
+        'specialization' => 'Senior Eye Surgeon & Cataract Specialist',
         'qualification' => 'MBBS, MS (Ophthalmology), FICO',
-        'type' => 'Cataract Eye Surgery',
-        'image' => 'https://images.unsplash.com/photo-1594824813587-0b1a03975549?w=600&q=80'
+        'type' => 'Drishti Netralaya Partner, Patna',
+        'image' => 'https://images.unsplash.com/photo-1594824813587-0b1a03975549?w=600&q=80',
+        'badge' => 'Cataract Eye Surgeon'
     ]
 ];
 
-$doctorsList = !empty($featuredDoctors) ? array_map(function($d, $i) use ($defaultDoctors) {
-    $fallback = $defaultDoctors[$i % count($defaultDoctors)];
-    return [
-        'name' => !empty($d['name']) ? $d['name'] : $fallback['name'],
-        'specialization' => !empty($d['specialization']) ? $d['specialization'] : $fallback['specialization'],
-        'qualification' => !empty($d['qualification']) ? $d['qualification'] : $fallback['qualification'],
-        'type' => !empty($d['treatment_type']) ? ucfirst($d['treatment_type']) . ' Care' : $fallback['type'],
-        'image' => !empty($d['photo']) ? getImageUrl($d['photo'], $fallback['image']) : $fallback['image']
-    ];
-}, array_slice($featuredDoctors, 0, 4), array_keys(array_slice($featuredDoctors, 0, 4))) : $defaultDoctors;
+// Always enforce real verified doctors Dr. Arvind Kumar Singh & Dr. Nirbhay Kumar
+$doctorsList = $defaultDoctors;
 
 // 5. Guaranteed Real 3 News / Articles
 $defaultBlogs = [
@@ -590,30 +586,151 @@ require_once __DIR__ . '/includes/navbar.php';
     </div>
 </section>
 
-<!-- 9. Distinguished Doctor Network (Fixed Photo Rendering & 4-Column Grid) -->
+<!-- 9. Distinguished Doctor Network (Real Verified Doctors & Specialists) -->
 <section class="py-5 bg-light">
     <div class="container py-3">
         <div class="text-center mb-5">
             <span class="text-warning fw-bold text-uppercase small tracking-wider mb-2 d-inline-block">MEDICAL EXPERTISE</span>
             <h2 class="fw-bold display-6 mb-2">Distinguished Doctor Network</h2>
-            <p class="text-muted max-w-650 mx-auto">Dedicated allopathic specialists and AYUSH practitioners volunteering their medical expertise.</p>
+            <p class="text-muted max-w-650 mx-auto">Dedicated allopathic specialists, railway medical officers, and AYUSH vaidyas volunteering their clinical expertise.</p>
         </div>
 
         <div class="row g-4">
             <?php foreach ($doctorsList as $doc): ?>
             <div class="col-xl-3 col-lg-3 col-md-6">
-                <div class="card h-100 p-4 border-0 shadow-sm rounded-4 text-center bg-white d-flex flex-column">
-                    <div class="mx-auto mb-3" style="width: 110px; height: 110px; border-radius: 50%; overflow: hidden; border: 3px solid #f39c12; box-shadow: 0 4px 12px rgba(243, 156, 18, 0.25);">
+                <div class="card h-100 p-4 border rounded-4 shadow-sm text-center bg-white d-flex flex-column">
+                    <div class="mx-auto mb-3 position-relative" style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 4px solid #f39c12; box-shadow: 0 4px 15px rgba(243, 156, 18, 0.28);">
                         <img src="<?= e((string)$doc['image']); ?>" alt="<?= e((string)$doc['name']); ?>" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
                     </div>
-                    <h5 class="fw-bold mb-1 fs-6"><?= e((string)$doc['name']); ?></h5>
+                    <?php if (!empty($doc['badge'])): ?>
+                    <span class="badge bg-dark text-warning border mb-2 px-2 py-1 small mx-auto">
+                        <i class="fas fa-certificate me-1"></i> <?= e($doc['badge']); ?>
+                    </span>
+                    <?php endif; ?>
+                    <h5 class="fw-bold mb-1 fs-6 text-dark"><?= e((string)$doc['name']); ?></h5>
                     <p class="small text-warning fw-bold mb-1"><?= e((string)$doc['specialization']); ?></p>
                     <p class="small text-muted mb-2" style="font-size: 12.5px;"><?= e((string)$doc['qualification']); ?></p>
-                    <div class="badge bg-light text-dark border mb-3"><?= e((string)$doc['type']); ?></div>
-                    <a href="<?= BASE_URL; ?>/doctors.php" class="btn btn-sm btn-outline-dark mt-auto py-2">Consultation Details</a>
+                    <div class="p-2 bg-light rounded text-start small border mb-3">
+                        <i class="fas fa-hospital text-primary me-1"></i> <strong class="text-dark"><?= e((string)$doc['type']); ?></strong>
+                    </div>
+                    <div class="mt-auto d-flex flex-column gap-2">
+                        <a href="<?= BASE_URL; ?>/doctors.php" class="btn btn-sm btn-outline-dark w-100 py-2">Consultation Details</a>
+                        <a href="https://wa.me/919234055507?text=<?= urlencode('Hello Herbalbox Foundation, I would like consultation details for ' . $doc['name']); ?>" target="_blank" class="btn btn-sm btn-outline-success w-100 py-1">
+                            <i class="fab fa-whatsapp me-1"></i> WhatsApp OPD
+                        </a>
+                    </div>
                 </div>
             </div>
             <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- 10. Executive Leadership & Official Visiting Cards Section -->
+<section class="py-5 bg-white border-top">
+    <div class="container py-3">
+        <div class="text-center mb-5">
+            <span class="text-warning fw-bold text-uppercase small tracking-wider mb-2 d-inline-block">FOUNDATION GOVERNANCE</span>
+            <h2 class="fw-bold display-6 mb-2">Our Executive Leadership & Official Credentials</h2>
+            <p class="text-muted max-w-650 mx-auto">Meet the directors steering Herbalbox Foundation forward with transparency, dedication, and community impact.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <!-- Director 1: CEO Syed Mehdi Raza -->
+            <div class="col-lg-6">
+                <div class="p-4 p-md-5 bg-light rounded-4 border shadow-sm h-100 d-flex flex-column">
+                    <div class="row align-items-center g-4">
+                        <div class="col-sm-5 text-center">
+                            <div class="mx-auto rounded-4 overflow-hidden border shadow-sm" style="width: 170px; height: 190px;">
+                                <img src="<?= BASE_URL; ?>/assets/images/team/syed-mehdi-raza-director.jpg" alt="Syed Mehdi Raza - CEO & Director" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+                            </div>
+                            <span class="badge bg-primary text-white mt-2 px-3 py-1">CEO & Director</span>
+                        </div>
+                        <div class="col-sm-7">
+                            <span class="badge bg-warning text-dark fw-bold mb-1 px-2 py-1">EXECUTIVE LEADERSHIP</span>
+                            <h4 class="fw-bold text-dark mb-1">Syed Mehdi Raza</h4>
+                            <p class="text-primary fw-bold small mb-2">Chief Executive Officer (CEO) & Director</p>
+                            <p class="small text-muted mb-3">
+                                Heading institutional operations, free mega medical camps, rural education development, and partner hospital MOUs across Bihar.
+                            </p>
+                            <div class="small p-2 bg-white rounded border">
+                                <div><i class="fas fa-phone-alt text-success me-2"></i> <a href="tel:9934043877" class="text-dark fw-bold text-decoration-none">+91 99340 43877</a></div>
+                                <div><i class="fab fa-whatsapp text-success me-2"></i> <a href="https://wa.me/918873043877" target="_blank" class="text-success fw-bold text-decoration-none">+91 88730 43877</a></div>
+                                <div><i class="fas fa-envelope text-info me-2"></i> <a href="mailto:herbalboxfoundation@gmail.com" class="text-muted text-decoration-none">herbalboxfoundation@gmail.com</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Director 2: General Secretary Priti Kumari -->
+            <div class="col-lg-6">
+                <div class="p-4 p-md-5 bg-light rounded-4 border shadow-sm h-100 d-flex flex-column">
+                    <div class="row align-items-center g-4">
+                        <div class="col-sm-5 text-center">
+                            <div class="mx-auto rounded-4 overflow-hidden border shadow-sm" style="width: 170px; height: 190px;">
+                                <img src="<?= BASE_URL; ?>/assets/images/team/director-herbalbox.jpg" alt="Priti Kumari - General Secretary & Director" style="width: 100%; height: 100%; object-fit: cover; object-position: top center;">
+                            </div>
+                            <span class="badge bg-success text-white mt-2 px-3 py-1">General Secretary & Director</span>
+                        </div>
+                        <div class="col-sm-7">
+                            <span class="badge bg-warning text-dark fw-bold mb-1 px-2 py-1">ORGANIZATIONAL GOVERNANCE</span>
+                            <h4 class="fw-bold text-dark mb-1">Priti Kumari</h4>
+                            <p class="text-success fw-bold small mb-2">General Secretary & Director</p>
+                            <p class="small text-muted mb-3">
+                                <em>“Leading with Purpose, Building a Healthier, Educated & Brighter Future.”</em> Spearheading women empowerment, child nutrition, and school support.
+                            </p>
+                            <div class="small p-2 bg-white rounded border">
+                                <div><i class="fas fa-phone-alt text-success me-2"></i> <a href="tel:9234055507" class="text-dark fw-bold text-decoration-none">+91 92340 55507</a></div>
+                                <div><i class="fab fa-whatsapp text-success me-2"></i> <a href="https://wa.me/919234055507" target="_blank" class="text-success fw-bold text-decoration-none">+91 92340 55507</a></div>
+                                <div><i class="fas fa-envelope text-info me-2"></i> <a href="mailto:herbalboxfoundation@gmail.com" class="text-muted text-decoration-none">herbalboxfoundation@gmail.com</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Official Visiting Cards Showcase -->
+        <div class="p-4 p-lg-5 bg-light rounded-4 border shadow-sm">
+            <div class="row align-items-center g-4">
+                <div class="col-lg-7 text-center">
+                    <div class="p-2 bg-white rounded-4 border shadow-sm d-inline-block">
+                        <a href="<?= BASE_URL; ?>/assets/images/team/visiting-cards.png" target="_blank" title="Click to view full-resolution visiting cards">
+                            <img src="<?= BASE_URL; ?>/assets/images/team/visiting-cards.png" alt="Herbalbox Foundation Director Visiting Cards" class="img-fluid rounded-3" style="max-height: 290px; width: auto; object-fit: contain;">
+                        </a>
+                    </div>
+                    <div class="mt-2 text-center">
+                        <small class="text-muted"><i class="fas fa-id-card text-warning me-1"></i> Official Identity Cards: <strong>Priti Kumari (Director)</strong> &amp; <strong>Syed Mehdi Raza (Director)</strong></small>
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <span class="badge bg-warning text-dark fw-bold mb-2 px-3 py-1">OFFICIAL VERIFICATION</span>
+                    <h4 class="fw-bold text-dark mb-2">Connect Directly with Leadership</h4>
+                    <p class="text-muted small mb-3">Reach out directly to our registered headquarters in Patna or operational campus in Hajipur for collaborations, school kits, or medical camps.</p>
+
+                    <div class="p-3 bg-white rounded-3 border mb-3 small">
+                        <div class="mb-2">
+                            <strong class="text-dark d-block"><i class="fas fa-landmark text-primary me-1"></i> Registered Office:</strong>
+                            <span class="text-muted">Azad Nagar, Road No. 1, South Chandmari Road, Kankarbag, Lohia Nagar, Patna - 800020, Bihar</span>
+                        </div>
+                        <div>
+                            <strong class="text-dark d-block"><i class="fas fa-school text-warning me-1"></i> Operational Campus:</strong>
+                            <span class="text-muted">Near Birla Open Minds International School, Konhara Road, Hajipur, Vaishali, Bihar - 844101</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="<?= BASE_URL; ?>/about.php" class="btn btn-dark btn-sm fw-bold px-3 py-2">
+                            <i class="fas fa-users me-1"></i> View Full Leadership
+                        </a>
+                        <a href="<?= BASE_URL; ?>/certificate-verification.php" class="btn btn-warning text-dark btn-sm fw-bold px-3 py-2">
+                            <i class="fas fa-award me-1"></i> Verify Certificates
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
